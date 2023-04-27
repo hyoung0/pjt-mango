@@ -6,7 +6,28 @@
 
 {% block content %}
 <header>
-  리뷰 이미지 캐러셀??
+  <div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        첫 이미지
+      </div>
+      {% for store in stores %}
+      <div class="carousel-item">
+        <div class="d-block w-100">
+          {{ store.image }}
+        </div>  
+      </div>
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 </header>
 <main>
   <div class="container-fluid">

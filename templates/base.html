@@ -11,160 +11,57 @@
       {% block title %}
       {% endblock title %}
     </title>
-    
-    {% block style %}
-    {% endblock style %}
+    <style>
+      html {
+          height: 100%;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+      }
+      body {
+          height: 100%;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+      }
+      img {
+        display: block;
+      }
+    </style>
   </head>
   <body>
     {% comment %} 상단 나브바  {% endcomment %}
+  <div class="container-fluid" style="padding: 0;">
     <header>
-      <nav class="navbar">
-        <div class="container">
-          <a class="navbar-brand" href="#">
-            <img src="url('data:image/png;base64,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')"
-             alt="Bootstrap" width="30" height="24">
-          </a>
-        </div>
-        <div class="container">
-          <div class="container">
-            <a href="#">EAT딜</a>
+      <div class="container-fluid position-sticky shadow p-3" style="height: 6rem;">
+        <nav class="navbar bg-body-primary">
+          <div class="container-fluid d-flex justify-content-between">
+            <a class="navbar-brand" href="#">
+              <img src="https://d1.awsstatic.com/logos/customers/KO/logo_Mangoplate.12908c5b9952bc4f14bdc966e5e81b521415fc6a.png" style="width: 4rem; height: 1.5rem;">
+            </a>
+            <div class="d-flex" style="border: 1px solid; padding: 10px 20px">
+                <a href="#" class="btn me-3 d-flex" role="button">EAT딜</a>
+                <a href="#" class="btn me-3 d-flex" role="button">맛집 리스트</a>
+                <a href="#" class="btn me-3 d-flex" role="button">망고 스토리</a>
+                <a href="#" class="ms-3 d-flex"><img src="https://cdn.icon-icons.com/icons2/1893/PNG/512/scientistavatar_120780.png" style="width: 1.5rem; height: 1.5rem;"></a>
+            </div>
           </div>
-          <div class="container">
-            <a href="#">맛집 리스트</a>
-          </div>
-          <div class="container">
-            <a href="#">망고 스토리</a>
-          </div>
-          <div class="container">
-            {% comment %} 프로필 기능  {% endcomment %}
-            <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Bottom popover">
-              <ul class="nav nav-underline">
-                <li class="nav-item">
-                  <a>최근 본 맛집(숫자)</a>
-                </li>
-                <li class="nav-item">
-                  <a>가고싶다(즐겨찾기 목록)(비로그인 시 로그인 연계)</a>
-                </li>
-              </ul>
-              <div class="container">
-                {% if request.user.is_authenticated %}
-                  <form action="{% url 'accounts:logout' %}" method = 'POST'>
-                    {% csrf_token %}
-                    <input class="btn btn-light" type="submit" value ='LogOut'>
-                  </form>
-                {% else %}
-                  <li class="nav-item me-4">
-                    <a class="nav-link active" aria-current="page" href="{% url 'accounts:login' %}">LogIn</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'accounts:signup' %}">SingUp</a>
-                  </li>
-                {% endif %}
-              </div>
-            </button>
-          </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </header>
-    <main>
-      {% comment %} index 부분 {% endcomment %}
-      <div class="container-fluid">
-        <header 
-        class="bg-image d-flex justify-content-center align-items-center"
-        style="background-image: url('https://d2v80xjmx68n4w.cloudfront.net/gigs/fPoZ31584321311.jpg');
-        height: 100vh;">
-          <div class='container-fluid'>
-            <p class="title">솔직한 리뷰, 믿을 수 있는 평점!</p>
-            <h1 class="title">망고플레이트</h1>
-            {% comment %} 검색 기능 구현 필요 {% endcomment %}
-            <div class="input-group">
-              <div class="form-outline">
-                <input type="search" id="form1" class="form-control" />
-                <label class="form-label" for="form1">
-                  <span class="icon">검색 :</span>
-                  <p>지역, 식당 또는 음식</p>
-                </label>
-              </div>
-              <button type="button" class="btn btn-primary">
-                <p>검색</p>
-              </button>
-            </div>
-            <a href="EAT딜"><img src="ㅇㅇ" alt="no img"></a>
-          </div>
-        </header>
-        {% comment %} carousel슬라이드  {% endcomment %}
-        <div id="carouselExampleIndicators" class="carousel slide">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="container">
-                <h1>토픽 1</h1>
-                {% comment %} 반복문 끼워서 그리드로 게시글 정리  {% endcomment %}
-                  <div class="row">
-                    <div class="col">
-                      {% comment %} 데이터 들어갈 부분 {% endcomment %}
-                    </div>
-                  </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="container">
-                <h1>토픽 2</h1>
-                {% comment %} 반복문 끼워서 그리드로 게시글 정리  {% endcomment %}
-                  <div class="row">
-                    <div class="col">
-                      {% comment %} 데이터 들어갈 부분 {% endcomment %}
-                    </div>
-                  </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="container">
-                <h1>토픽 3</h1>
-                {% comment %} 반복문 끼워서 그리드로 게시글 정리  {% endcomment %}
-                  <div class="row">
-                    <div class="col">
-                      {% comment %} 데이터 들어갈 부분 {% endcomment %}
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
+      
+      
+
         
-        {% comment %} 그리드로 반복  {% endcomment %}
-        <div class="container">
-          <h1>토픽 1</h1>
-          {% comment %} 반복문 끼워서 그리드로 게시글 정리  {% endcomment %}
-            <div class="row">
-              <div class="col">
-                {% comment %} 데이터 들어갈 부분 {% endcomment %}
-              </div>
-            </div>
-        </div>
         {% block content %}
 
       {% endblock content %}
-      </div>
-    </main>
     
 
     
 
    
-    
+  </div>
   </body>
   {% block script %}
 
