@@ -1,77 +1,6 @@
 {% extends 'base.html' %}
 
 
-{% block title %}
-<header>
-    리뷰 이미지 캐러셀??
-  </header>
-  <main>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <p>{{ store.name }} {{store.rating_avg}}</p>
-          <span>조회수, 리뷰수, 즐겨찾기 수</span>
-          <hr>
-          <p>{{ store.address }}</p>
-          <p>{{ store.phonenumber }}</p>
-          <p>{{ store.category }}</p>
-          <p>{{ store.price }}</p>
-          <p>{{ store.parking }}</p>
-          <p>{{ store.starttime }}</p>
-          <p>{{ store.endtime }}</p>
-          <p>{{ store.menu }}</p>
-          <p>{{ store.content }}</p>
-        </div>
-        <div class="col">
-          네이버지도
-          관련 인기 식당
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid">
-      <hr>
-      <div class="container-fluid">
-        <span>리뷰: ({{ 리뷰전부 }})</span>
-        <a href="">전체 ({{ 리뷰전부 }})</a>
-        <a href="">맛있다 ({{ 맛있다 리뷰 }})</a>
-        <a href="">괜찮다 ({{ 괜찮다 전부 }})</a>
-        <a href="">별로 ({{ 별로 전부 }})</a>
-      </div>
-      <hr>
-      <div class="container-fluid">
-        {% for review in reviews  %}
-        <div class="row">
-          <div class="col">
-            <div class="container-fluid">
-              <span>{{ user.image }}</span>
-              <p>{{ review.nickname }} </p>
-            </div>
-          </div>
-          <div class="col">
-            <div class="container-fluid">
-              <p>review.created_at</p>
-              <p>review.content</p>
-              <div class="container-fluid">
-                {{ review.image }}
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            {{ review.emote }}
-          </div>
-        </div>
-        <hr>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="container">
-      인덱스처럼 다른 식당 리스트 불러오기
-    </div>
-  </main>
-
-{% endblock title %}
-
-
 {% block content %}
   
   <h1>Index</h1>
@@ -79,6 +8,7 @@
   {% if request.user.is_superuser %}
     <a href="{% url 'stores:create' %}" class="">가게 등록</a>
   {% endif %}
+
 
   {% for store in stores %}
     <p class="">
