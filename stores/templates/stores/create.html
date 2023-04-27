@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block title %}25 & 27 - 가게 등록{% endblock title %}
+
+{% block content %}
+  
+  <h1>가게 등록</h1>
+
+  <form action="{% url 'stores:create' %}" method="post" class="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">가게 등록</button>
+  </form>
+
+{% endblock content %}

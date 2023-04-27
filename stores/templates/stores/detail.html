@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block title %} 25 & 27s {% endblock title %}
+
+
+{% block content %}
+  <h1>Detail</h1>
+
+  <p class="">
+    가게 이름 - 
+    <span class="">{{ store.name }}</span>
+  </p>
+  <p class="">
+    폰 번호 - 
+    <span class="">{{ store.phone_number }}</span>
+  </p>
+  <p class="">
+    정보 - 
+    <span class="">{{ store.info }}</span>
+  </p>
+  <p class="">
+    여는 시간 - 
+    <span class="">{{ store.open_hours }}</span>
+  </p>
+  <p class="">
+    닫는 시간 - 
+    <span class="">{{ store.closing_hours }}</span>
+  </p>
+
+  <p class="">
+    {% if store.image %}
+      <img src="{{ store.image.url }}" alt="" class="">
+    {% else %}
+      <img src="" alt="no image">
+    {% endif %}
+  </p>
+
+{% endblock content %}
