@@ -24,9 +24,7 @@
           margin: 0;
           padding: 0;
       }
-      img {
-        display: block;
-      }
+
     </style>
   </head>
   <body>
@@ -36,14 +34,14 @@
       <div class="container-fluid position-sticky shadow p-3" style="height: 6rem;">
         <nav class="navbar bg-body-primary">
           <div class="container-fluid d-flex justify-content-between">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'stores:index' %}">
               <img src="https://d1.awsstatic.com/logos/customers/KO/logo_Mangoplate.12908c5b9952bc4f14bdc966e5e81b521415fc6a.png" style="width: 4rem; height: 1.5rem;">
             </a>
-            <div class="d-flex" style="border: 1px solid; padding: 10px 20px">
+            <div class="d-flex">
                 <a href="#" class="btn me-3 d-flex" role="button">EAT딜</a>
                 <a href="#" class="btn me-3 d-flex" role="button">맛집 리스트</a>
                 <a href="#" class="btn me-3 d-flex" role="button">망고 스토리</a>
-                <a href="#" class="ms-3 d-flex"><img src="https://cdn.icon-icons.com/icons2/1893/PNG/512/scientistavatar_120780.png" style="width: 1.5rem; height: 1.5rem;"></a>
+                <a href="#" class="ms-3 d-flex mt-2"><img src="https://cdn.icon-icons.com/icons2/1893/PNG/512/scientistavatar_120780.png" style="width: 1.5rem; height: 1.5rem;"></a>
             </div>
           </div>
         </nav>

@@ -6,15 +6,15 @@
 <div class="container-fluid" style="padding: 0;">
     <header class="d-flex justify-content-center align-items-center">
         <div class="container-fluid bg-image" style="background-image: url('https://d2v80xjmx68n4w.cloudfront.net/gigs/fPoZ31584321311.jpg'); width: 100%;">
-            <h1 class="title text-light text-center">솔직한 리뷰, 믿을 수 있는 평점!</h1>
+            <h1 class="title text-light text-center mt-5">솔직한 리뷰, 믿을 수 있는 평점!</h1>
             <h1 class="title text-light text-center">망고플레이트</h1>
             <div class="container-fluid d-flex justify-content-center mb-5">
                 <form action="https://search.naver.com/search.naver" method="GET">
-                    <div class="mx-quto input-group mt-5">  
+                    <div class="input-group mt-5">  
                         <mx-auto>
-                            <input name="query" type="text" class="form-control" placeholder="지역, 식당 또는 음식" aria-label="search" aria-describedby="button-addon2">
+                            <input name="query" type="text" class="form-control" placeholder="지역, 식당 또는 음식" aria-label="search" aria-describedby="button-addon2" style="width: 30rem; height: 3rem;">
                         </mx-auto>  
-                        <button class="btn btn-warning" type="submit" id="button-addon2">검색</button>   
+                        <button class="btn btn-warning" type="submit" id="button-addon2" style="width: 5rem;">검색</button>   
                     </div>  
                 </form>  
             </div>  
@@ -32,7 +32,7 @@
                     <div class="container">
                         <h1>토픽 1</h1>
                         <div class="row">
-                            {% for store in stores %}
+                            {% for store in store %}
                             <div class="col">
                                 <div class="container">
                                     <a href="{% url 'stores:detail' store.pk %}">{{ store.image }}</a>
@@ -106,16 +106,16 @@
     </main>
 </div>
 
-  {% if request.user.is_superuser %}
-    <a href="{% url 'stores:create' %}" class="">가게 등록</a>
-  {% endif %}
+    {% if request.user.is_superuser %}
+        <a href="{% url 'stores:create' %}" class="">가게 등록</a>
+    {% endif %}
 
 
-  {% for store in stores %}
-    <p class="">
-      가게 이름 - 
-      <a href="{% url 'stores:detail' store.pk %}" class="">{{ store.name }}</a>
-    </p>
-  {% endfor %}
+    {% for store in stores %}
+        <p class="">
+        가게 이름 - 
+        <a href="{% url 'stores:detail' store.pk %}" class="">{{ store.name }}</a>
+        </p>
+    {% endfor %}
 
 {% endblock content %}
