@@ -53,7 +53,7 @@
                     <li>
                       <div class="d-flex align-items-center flex-row p-2 mt-1 me-3">
                         {% if request.user.is_authenticated %}
-                          <h4><a class="text-decoration-none" href="{% url 'accounts:profile' user.username %}"><b style="color: black;">{{ user }}</b></a>님 안녕하세요!</h4> 
+                          <p>{{ user }}</p> 
                         <form action="{% url 'accounts:logout' %}" method="POST" class="ms-3">
                           {% csrf_token %}
                           <a href="{% url 'accounts:profile' user.username %}" class="btn btn-outline-primary ms-3 btn-sm">마이페이지</a>
