@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}25 & 27: 리뷰 수정{% endblock title %}
+
+{% block content %}
+<div>
+  <h2>리뷰 수정</h2>
+  <form action="{% url 'reviews:update' review.store.pk review.pk %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="저장">
+  </form>
+</div>
+{% endblock content %}
