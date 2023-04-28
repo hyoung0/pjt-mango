@@ -6,6 +6,12 @@
 
 {% block content %}
 <header>
+  {% if store.latitude and store.longitude %}
+    <div id="map" style="height:400px;" class="container-fluid"></div>
+  {% else %}
+    <p class="text-secondary fst-italic">No Location Information</p>
+  {% endif %}
+  
   <div id="carouselExample" class="carousel slide">
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -40,11 +46,12 @@
         <p>{{ store.phonenumber }}</p>
         <p>{{ store.category }}</p>
         <p>{{ store.price }}</p>
-        <p>{{ store.parking }}</p>
         <p>{{ store.starttime }}</p>
         <p>{{ store.endtime }}</p>
         <p>{{ store.menu }}</p>
         <p>{{ store.content }}</p>
+        <p id="lat" style="display: none">{{ store.latitude }}</p>
+        <p id="lng" style="display: none">{{ store.longitude }}</p>
       </div>
       <div class="col">
         네이버지도
@@ -54,6 +61,7 @@
   </div>
   <div class="container-fluid">
     <hr>
+{% comment %} 
     <div class="container-fluid">
       <span>리뷰: ({{ 리뷰전부 }})</span>
       <a href="">전체 ({{ 리뷰전부 }})</a>
@@ -61,6 +69,7 @@
       <a href="">괜찮다 ({{ 괜찮다 전부 }})</a>
       <a href="">별로 ({{ 별로 전부 }})</a>
     </div>
+     {% endcomment %}
     <hr>
     <div class="container-fluid">
       {% for review in reviews  %}
@@ -94,3 +103,36 @@
 </main>
 
 {% endblock content %}
+
+
+{% block script %}
+{# APIKEY 숨기기는 React 권장 #}
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=afbeb49e64cb240112a667970ea3d85f"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=afbeb49e64cb240112a667970ea3d85f&libraries=services,clusterer,drawing"></script>
+<script>
+  const mapLat = document.getElementById('lat').textContent
+  const mapLng = document.getElementById('lng').textContent
+
+  if (mapLat !== 'None' && mapLng !== 'None') {
+    const mapPosition = new kakao.maps.LatLng(mapLat, mapLng)
+  
+    console.log(mapLat, mapLng)
+  
+    var mapContainer = document.getElementById('map')
+    var mapOption = {
+      center: mapPosition,
+      level: 3
+    }
+  
+    var map = new kakao.maps.Map(mapContainer, mapOption)
+  
+    var markerPosition = mapPosition
+  
+    var marker = new kakao.maps.Marker({
+      position: markerPosition
+    })
+  
+    marker.setMap(map)
+  }
+</script>
+{% endblock script %}

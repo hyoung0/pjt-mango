@@ -7,6 +7,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('create/', views.create, name='create'),
     path('<int:store_pk>/', views.detail, name='detail'),
-    path('delete/<int:store_pk>/', views.delete, name='delete'),
-    path('update/<int:store_pk>/', views.update, name='update'),
+    path('<int:store_pk>/delete/', views.delete, name='delete'),
+    path('<int:store_pk>/update/', views.update, name='update'),
 ]

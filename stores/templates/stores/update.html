@@ -8,7 +8,7 @@
   
   <h1>Update</h1>
 
-  <form action="{% url 'stores:create' %}" method="post" class="" enctype="multipart/form-data">
+  <form action="{% url 'stores:update' store.pk %}" method="post" class="" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">가게 정보 수정</button>
