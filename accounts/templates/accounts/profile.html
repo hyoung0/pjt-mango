@@ -8,11 +8,16 @@
 </head>
 <body>
   <h1>{{ person.username }}의 프로필 페이지</h1>
+  
+  {% comment %} profile 사진 {% endcomment %}
+  <form action="{% url 'accounts:profile' username %}" method="post" class="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+  </form>
 
   <div>
     팔로잉 : {{ person.followings.all|length }} / 팔로워 : {{ person.followers.all|length }}
   </div>
-
   
   <hr>
   {% comment %} 여기서 어떤 식당의 리뷰인지 식당도 나오면 좋을듯 {% endcomment %}

@@ -25,9 +25,7 @@
           margin: 0;
           padding: 0;
       }
-      img {
-        display: block;
-      }
+
     </style>
   </head>
   <body>
@@ -37,14 +35,40 @@
       <div class="container-fluid position-sticky shadow p-3" style="height: 6rem;">
         <nav class="navbar bg-body-primary">
           <div class="container-fluid d-flex justify-content-between">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'stores:index' %}">
               <img src="https://d1.awsstatic.com/logos/customers/KO/logo_Mangoplate.12908c5b9952bc4f14bdc966e5e81b521415fc6a.png" style="width: 4rem; height: 1.5rem;">
             </a>
-            <div class="d-flex" style="border: 1px solid; padding: 10px 20px">
+            <div class="d-flex">
                 <a href="#" class="btn me-3 d-flex" role="button">EAT딜</a>
                 <a href="#" class="btn me-3 d-flex" role="button">맛집 리스트</a>
                 <a href="#" class="btn me-3 d-flex" role="button">망고 스토리</a>
-                <a href="#" class="ms-3 d-flex"><img src="https://cdn.icon-icons.com/icons2/1893/PNG/512/scientistavatar_120780.png" style="width: 1.5rem; height: 1.5rem;"></a>
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="https://cdn.icon-icons.com/icons2/1893/PNG/512/scientistavatar_120780.png" style="width: 1.5rem; height: 1.5rem;">
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton" style="position:absolute; left:auto; right:0;">
+                    <li><a class="dropdown-item" href="#">ex) 조회 이력</a></li>
+                    <li><a class="dropdown-item" href="#">ex) 즐겨찾기</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                      <div class="d-flex align-items-center flex-row p-2 mt-1 me-3">
+                        {% if request.user.is_authenticated %}
+                          <h4><a class="text-decoration-none" href="{% url 'accounts:profile' user.username %}"><b style="color: black;">{{ user }}</b></a>님 안녕하세요!</h4> 
+                        <form action="{% url 'accounts:logout' %}" method="POST" class="ms-3">
+                          {% csrf_token %}
+                          <a href="{% url 'accounts:profile' user.username %}" class="btn btn-outline-primary ms-3 btn-sm">마이페이지</a>
+                          <input type="submit" value="로그아웃" class="btn btn-outline-danger btn-sm">
+                        </form>
+                        {% else %}
+                        <div>
+                          <a href="{% url 'accounts:login' %}" class="btn">로그인</a>
+                          <a href="{% url 'accounts:signup' %}" class="btn">회원가입</a>
+                        </div>
+                        {% endif %} 
+                      </div>
+                    </li>
+                  </ul>
+                </div>
             </div>
           </div>
         </nav>
