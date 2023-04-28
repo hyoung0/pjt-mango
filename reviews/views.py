@@ -52,11 +52,6 @@ def delete(request, review_pk):
     return redirect('stores:detail', review.store.pk)
 
 
-EMOTIONS = [
-    {'label': '좋아요', 'value': 1},
-    {'label': '싫어요', 'value': 2},
-]
-
 @login_required
 def emotes(request, review_pk, emotion):
     review = Review.objects.get(pk=review_pk)
@@ -66,6 +61,3 @@ def emotes(request, review_pk, emotion):
     else:
         Emote.objects.create(review=review, user=request.user, emotion=emotion)
     return redirect('stores:detail', review.store.pk)
-
-# 내가 좋아요/싫어요 버튼을 눌렀다면 안누른 버튼 비활성화
-# store detail page로 EMOTIONS 옮기고 context 담아서 출력
