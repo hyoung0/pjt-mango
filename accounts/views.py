@@ -5,6 +5,8 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import Profile
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 def login(request):
@@ -84,13 +86,19 @@ def change_password(request):
     return render(request, 'accounts/change_password.html', context)
 
 
-from django.contrib.auth import get_user_model
-
 def profile(request, username):
     User = get_user_model()
     person = User.objects.get(username=username)
+    if request.method == "POST":
+        form = Profile(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:profile', username)
+    else:
+        form = Profile()
     context = {
         'person': person,
+        'form': form,
     }
     return render(request, 'accounts/profile.html', context)
 
@@ -107,3 +115,5 @@ def follow(request, user_pk):
         else:
             you.followers.add(me)
     return redirect('accounts:profile', you.username)
+
+

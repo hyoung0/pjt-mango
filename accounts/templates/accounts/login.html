@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
@@ -26,4 +27,16 @@
       </div>
     </div>
   </div>
+{% load socialaccount %}
+<a href="{% provider_login_url 'google' method='oauth2' %}">
+구글 회원가입
+</a>
+
+<a href="{% provider_login_url 'kakao' method='oauth2' %}">
+카카오톡 회원가입
+</a>
+
+</body>
+</html>
+
 {% endblock content %}
