@@ -90,3 +90,7 @@ def update(request, store_pk: int):
         'store': store,
     }
     return render(request, 'stores/update.html', context)
+
+
+def redirect_index(request):
+    return redirect('stores:index')

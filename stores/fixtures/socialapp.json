@@ -1,0 +1,30 @@
+[
+{
+    "model": "socialaccount.socialapp",
+    "pk": 1,
+    "fields": {
+        "provider": "google",
+        "name": "mango-google",
+        "client_id": "139923054870-d0h3o9cd81ttfi0j40jind052co84a0u.apps.googleusercontent.com",
+        "secret": "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",
+        "key": "",
+        "sites": [
+            1
+        ]
+    }
+},
+{
+    "model": "socialaccount.socialapp",
+    "pk": 2,
+    "fields": {
+        "provider": "kakao",
+        "name": "mango-kakao",
+        "client_id": "c31c04d5be8269c41102fa6012ff0f16",
+        "secret": "pFnHE5Y9rO9sN2WEsRdXUlsTi7C6mjQC",
+        "key": "",
+        "sites": [
+            1
+        ]
+    }
+}
+]

@@ -1,0 +1,38 @@
+[
+{
+    "model": "socialaccount.socialaccount",
+    "pk": 1,
+    "fields": {
+        "user": 2,
+        "provider": "google",
+        "uid": "110069707489364089168",
+        "last_login": "2023-04-28T08:03:08.738Z",
+        "date_joined": "2023-04-28T04:36:42.197Z",
+        "extra_data": "{\"iss\": \"https://accounts.google.com\", \"azp\": \"139923054870-d0h3o9cd81ttfi0j40jind052co84a0u.apps.googleusercontent.com\", \"aud\": \"139923054870-d0h3o9cd81ttfi0j40jind052co84a0u.apps.googleusercontent.com\", \"sub\": \"110069707489364089168\", \"at_hash\": \"WmHsPShqh8G8NzlYg1h95g\", \"name\": \"\\uc870\\ud604\\uc601\", \"picture\": \"https://lh3.googleusercontent.com/a/AGNmyxYVIeohKIXiMnOxcsLMm1i72shsSkVrHEnez7LN=s96-c\", \"given_name\": \"\\uc870\\ud604\\uc601\", \"locale\": \"ko\", \"iat\": 1682668989, \"exp\": 1682672589}"
+    }
+},
+{
+    "model": "socialaccount.socialaccount",
+    "pk": 2,
+    "fields": {
+        "user": 3,
+        "provider": "kakao",
+        "uid": "2766776116",
+        "last_login": "2023-04-28T08:02:18.844Z",
+        "date_joined": "2023-04-28T05:15:46.583Z",
+        "extra_data": "{\"id\": 2766776116, \"connected_at\": \"2023-04-28T05:15:47Z\", \"kakao_account\": {\"has_email\": true, \"email_needs_agreement\": true}}"
+    }
+},
+{
+    "model": "socialaccount.socialaccount",
+    "pk": 3,
+    "fields": {
+        "user": 4,
+        "provider": "google",
+        "uid": "106625186197685136798",
+        "last_login": "2023-04-28T08:04:20.244Z",
+        "date_joined": "2023-04-28T08:04:20.244Z",
+        "extra_data": "{\"iss\": \"https://accounts.google.com\", \"azp\": \"139923054870-d0h3o9cd81ttfi0j40jind052co84a0u.apps.googleusercontent.com\", \"aud\": \"139923054870-d0h3o9cd81ttfi0j40jind052co84a0u.apps.googleusercontent.com\", \"sub\": \"106625186197685136798\", \"at_hash\": \"dWUHOf4DXy5ncA6VnE1gEw\", \"name\": \"hyunyoung cho\", \"picture\": \"https://lh3.googleusercontent.com/a/AGNmyxaPacYzS4-BKUNlbE3YAPKhYyJqPjhxZ-xjnoY=s96-c\", \"given_name\": \"hyunyoung\", \"family_name\": \"cho\", \"locale\": \"ko\", \"iat\": 1682669061, \"exp\": 1682672661}"
+    }
+}
+]
