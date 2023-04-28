@@ -52,41 +52,53 @@
       </div>
     </div>
   </div>
+  <hr>
   <div class="container-fluid">
-    <hr>
-    <div class="container-fluid">
-      <span>리뷰: ({{ 리뷰전부 }})</span>
-      <a href="">전체 ({{ 리뷰전부 }})</a>
-      <a href="">맛있다 ({{ 맛있다 리뷰 }})</a>
-      <a href="">괜찮다 ({{ 괜찮다 전부 }})</a>
-      <a href="">별로 ({{ 별로 전부 }})</a>
+    <div class="d-flex align-items-center">
+      <h3>리뷰</h3>
+      <i class="bi bi-chat-left-text ms-3 me-2"></i>{{ reviews|length }}
     </div>
-    <hr>
     <div class="container-fluid">
-      {% for review in reviews  %}
-      <div class="row">
-        <div class="col">
-          <div class="container-fluid">
-            <span>{{ user.image }}</span>
-            <p>{{ review.nickname }} </p>
-          </div>
-        </div>
-        <div class="col">
-          <div class="container-fluid">
-            <p>review.created_at</p>
-            <p>review.content</p>
+        {% for review in reviews %}
+          <div>
+            {% comment %} 프로필, 작성일, 평점, 좋아요/싫어요 {% endcomment %}
+            <div class="container-fluid d-flex justify-content-between">
+              <div class="d-flex align-items-center">
+                <div>
+                  {% comment %} <img src="{{ review.user.image.url }}" alt="profile_img"> {% endcomment %}
+                  <div>{{ review.user }}</div>
+                </div>
+                <div>{{ review.created_at }}</div>
+              </div>
+              <div>
+                {% comment %} emote {% endcomment %}
+                <div class="d-flex">
+                  <form action="{% url 'reviews:emotes' review.pk 1 %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="border-0 bg-transparent">좋아요 {{ review.likes }}</button>
+                  </form>
+                  <form action="{% url 'reviews:emotes' review.pk 2 %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="border-0 bg-transparent">싫어요 {{ review.dislikes }}</button>
+                  </form>
+                </div>
+
+                {% comment %} rating {% endcomment %}
+                <div class="text-center">별점 : {{ review.rate_to_star }}</div>
+              </div>
+            </div>
+            {% comment %} 리뷰 내용, 리뷰 이미지 {% endcomment %}
             <div class="container-fluid">
-              {{ review.image }}
+              <p>{{ review.content }}</p>
+              {% if review.image %}
+                <img src="{{ review.image.url }}" alt="profile_img">
+              {% endif %}
             </div>
           </div>
-        </div>
-        <div class="col">
-          {{ review.emote }}
-        </div>
-      </div>
-      <hr>
-      {% endfor %}
+          <hr>
+        {% endfor %}
     </div>
+
   </div>
   <div class="container">
     인덱스처럼 다른 식당 리스트 불러오기
