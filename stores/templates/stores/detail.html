@@ -59,20 +59,24 @@
       </div>
     </div>
   </div>
-  <hr>
   <div class="container-fluid">
-    <div class="d-flex align-items-center">
-      <h3>리뷰</h3>
-      <i class="bi bi-chat-left-text ms-3 me-2"></i>{{ reviews|length }}
+    <div class="d-flex justify-content-between">
+      <div class="d-flex align-items-center ms-4">
+        <h3>리뷰</h3>
+        <i class="bi bi-chat-left-text ms-3 me-2"></i>{{ reviews|length }}
+      </div>
+      <a href="{% url 'reviews:create' store.pk %}" class="text-decoration-none me-4 btn btn-warning">리뷰 작성</a>
     </div>
     <div class="container-fluid">
         {% for review in reviews %}
           <div>
             {% comment %} 프로필, 작성일, 평점, 좋아요/싫어요 {% endcomment %}
-            <div class="container-fluid d-flex justify-content-between">
+            <div class="container-fluid d-flex justify-content-between mt-3">
               <div class="d-flex align-items-center">
                 <div>
-                  {% comment %} <img src="{{ review.user.image.url }}" alt="profile_img"> {% endcomment %}
+                  {% if review.user.image %}
+                    <img src="{{ review.user.image.url }}" alt="profile_img">
+                  {% endif %}
                   <div>{{ review.user }}</div>
                 </div>
                 <div>{{ review.created_at }}</div>
@@ -99,6 +103,15 @@
               <p>{{ review.content }}</p>
               {% if review.image %}
                 <img src="{{ review.image.url }}" alt="profile_img">
+              {% endif %}
+              {% if request.user == review.user %}
+                <div class="d-flex justify-content-end">
+                  <a href="{% url 'reviews:update' review.pk %}" class="btn btn-sm btn-outline-primary">수정</a>
+                  <form action="{% url 'reviews:delete' review.pk %}" method="POST" class="mx-3">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-sm btn-outline-danger" value="삭제">
+                  </form>
+                </div>
               {% endif %}
             </div>
           </div>
