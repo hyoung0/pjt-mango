@@ -46,19 +46,36 @@
                   <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="https://cdn.icon-icons.com/icons2/1893/PNG/512/scientistavatar_120780.png" style="width: 1.5rem; height: 1.5rem;">
                   </button>
-                  <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton" style="position:absolute; left:auto; right:0;">
+                  <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton" style="position:absolute; left:auto; right:0; height: 30rem; width: 15rem;">
                     <li><a class="dropdown-item" href="#">ex) 조회 이력</a></li>
                     <li><a class="dropdown-item" href="#">ex) 즐겨찾기</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
-                      <div class="d-flex align-items-center flex-row p-2 mt-1 me-3">
+                      <div class="container-fluid d-flex align-items-center">
+                        <div class="container-fluid d-flex justify-content-center">
                         {% if request.user.is_authenticated %}
-                          <p>{{ user }}</p> 
-                        <form action="{% url 'accounts:logout' %}" method="POST" class="ms-3">
-                          {% csrf_token %}
-                          <a href="{% url 'accounts:profile' user.username %}" class="btn btn-outline-primary ms-3 btn-sm">마이페이지</a>
-                          <input type="submit" value="로그아웃" class="btn btn-outline-danger btn-sm">
-                        </form>
+                          <h1 class="mt-1">{{ user }}</h1> 
+                        </div>
+                        <hr>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <div class="row d-flex">
+                          <div class="col-5">
+                              <form action="{% url 'accounts:logout' %}" method="POST" class="ms-3">
+                                {% csrf_token %}
+                                <input type="submit" value="로그아웃" class="btn btn-outline-danger">
+                              </form>
+                          </div>
+                          <div class="col-5">
+                              <a href="{% url 'accounts:profile' user.username %}" class="btn btn-outline-primary" style="width: 7rem;">마이페이지</a>
+                          </div>
+                          <div class="col-5">
+                            {% if request.user.is_superuser %}
+                              <a href="{% url 'stores:create' %}" class="btn btn-outline-primary ms-3 mt-2" style="width: 13rem;">가게 등록</a>
+                            {% endif %}
+                          </div>
+                        </div>
                         {% else %}
                         <div>
                           <a href="{% url 'accounts:login' %}" class="btn">로그인</a>
