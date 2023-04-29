@@ -8,15 +8,15 @@
     <div class="container d-flex justify-content-center mt-5">
       <ul class="nav flex-column">
           <li class="nav-item text-center">
-              <p class="fs-5 ms-3">회원가입</p>
+              <p class="fs-5 ms-3">간단한 회원가입</p>
           </li>
           <li class="nav-item">
           <form action="{% url 'accounts:signup' %}" method="POST" class="nav-link" enctype = 'multipart/form-data'>
               {% csrf_token %}
-              {{ form.as_p }}
-          <div class="container-fluid d-flex justify-content-end me-5 mt-3">
-              <input type="submit" class="btn">
-          </div>
+              {{ form.as_p }}       
+              <div class="container-fluid d-flex justify-content-center">
+                <input type="submit" class="btn btn-outline-primary"  role="button" value="회원가입">
+              </div>
           </form>
           </li>
       </ul>
