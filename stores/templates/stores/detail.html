@@ -86,11 +86,27 @@
                 <div class="d-flex">
                   <form action="{% url 'reviews:emotes' review.pk 1 %}" method="POST">
                     {% csrf_token %}
-                    <button type="submit" class="border-0 bg-transparent">좋아요 {{ review.likes }}</button>
+                    {% if review.like_exist %}
+                      <button type="submit" class="border-0 bg-transparent">
+                        <i class="bi bi-hand-thumbs-up-fill"></i> {{ review.likes|length }}
+                      </button>
+                    {% else %}
+                      <button type="submit" class="border-0 bg-transparent">
+                        <i class="bi bi-hand-thumbs-up"></i> {{ review.likes|length }}
+                      </button>
+                    {% endif %}
                   </form>
                   <form action="{% url 'reviews:emotes' review.pk 2 %}" method="POST">
                     {% csrf_token %}
-                    <button type="submit" class="border-0 bg-transparent">싫어요 {{ review.dislikes }}</button>
+                    {% if review.dislike_exist %}
+                      <button type="submit" class="border-0 bg-transparent">
+                        <i class="bi bi-hand-thumbs-down-fill"></i> {{ review.dislikes|length }}
+                      </button>
+                    {% else %}
+                      <button type="submit" class="border-0 bg-transparent">
+                        <i class="bi bi-hand-thumbs-down"></i> {{ review.dislikes|length }}
+                      </button>
+                    {% endif %}
                   </form>
                 </div>
 

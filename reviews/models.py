@@ -8,7 +8,6 @@ from imagekit.processors import ResizeToFill
 class Review(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     store = models.ForeignKey(Store, on_delete=models.CASCADE)
-    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reviews')
     emote_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='emote_reviews', through='Emote')
     content = models.CharField(max_length=500)
     rating = models.IntegerField()

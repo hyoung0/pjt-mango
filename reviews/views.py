@@ -55,9 +55,13 @@ def delete(request, review_pk):
 @login_required
 def emotes(request, review_pk, emotion):
     review = Review.objects.get(pk=review_pk)
-    my_emotion = Emote.objects.filter(review=review, user=request.user, emotion=emotion)
-    if my_emotion.exists():
-        my_emotion.delete()
+    my_emote = Emote.objects.filter(review=review, user=request.user)
+    input_emote = Emote.objects.filter(review=review, user=request.user, emotion=emotion)
+
+    # 기존에 좋아요/싫어요 버튼을 누른 경우 지금 누른 버튼이라면 삭제, 다른 버튼이라면 동작하지 않도록!
+    if my_emote.exists():
+        if input_emote.exists():
+            my_emote.delete()
     else:
         Emote.objects.create(review=review, user=request.user, emotion=emotion)
     return redirect('stores:detail', review.store.pk)

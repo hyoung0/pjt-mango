@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Store
 from .forms import StoreForm
-from django.db.models import Avg, Prefetch, Count, Case, When, Q
+from django.db.models import Prefetch, Count, Q
 from reviews.models import Review, Emote
 import requests, json
 
@@ -51,16 +51,13 @@ def create(request):
     return render(request, 'stores/create.html', context)
 
 
-EMOTIONS = [
-    {'label': '좋아요;', 'value': 1},
-    {'label': '싫어요', 'value': 2},
-]
-
 def detail(request, store_pk: int):
     store = Store.objects.get(pk=store_pk)
-    reviews = Review.objects.filter(store=store).annotate(
-        likes=Count('emote', filter=Q(emote__emotion='1')),
-        dislikes=Count('emote', filter=Q(emote__emotion='2')),
+    reviews = Review.objects.filter(store=store).prefetch_related(
+        Prefetch('emote_set', queryset=Emote.objects.filter(emotion=1), to_attr='likes'),
+        Prefetch('emote_set', queryset=Emote.objects.filter(emotion=1, user=request.user), to_attr='like_exist'),
+        Prefetch('emote_set', queryset=Emote.objects.filter(emotion=2), to_attr='dislikes'),
+        Prefetch('emote_set', queryset=Emote.objects.filter(emotion=2, user=request.user), to_attr='dislike_exist')
     )
     context = {
         'store':store,
