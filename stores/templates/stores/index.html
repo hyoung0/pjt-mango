@@ -35,7 +35,15 @@
                             {% for store in store %}
                             <div class="col">
                                 <div class="container">
-                                    <a href="{% url 'stores:detail' store.pk %}">{{ store.image }}</a>
+                                    {% comment %}
+                                    # 기존 코드
+                                    <a href="{% url 'stores:detail' store.pk %}">{{ store.image.url }}</a>
+                                    {% endcomment %}
+                                    {% if store.image %}
+                                    <img src="{{ store.image.url }}" alt="Thumbnail Image">
+                                    {% else %}
+                                    <img src="" alt="No Image">
+                                    {% endif %}
                                     <p>{{ store.name }}</p>
                                     <p>{{ store.address }} - {{ store.category }}</p>
                                 </div>
@@ -52,7 +60,15 @@
                             {% for store in stores %}
                             <div class="col">
                                 <div class="container">
-                                    <a href="{% url 'stores:detail' store.pk %}">{{ store.image }}</a>
+                                    {% comment %}
+                                    # 기존 코드
+                                    <a href="{% url 'stores:detail' store.pk %}">{{ store.image.url }}</a>
+                                    {% endcomment %}
+                                    {% if store.image %}
+                                    <img src="{{ store.image.url }}" alt="Thumbnail Image">
+                                    {% else %}
+                                    <img src="" alt="No Image">
+                                    {% endif %}
                                     <p>{{ store.name }}</p>
                                     <p>{{ store.address }} - {{ store.category }}</p>
                                 </div>
@@ -69,7 +85,15 @@
                             {% for store in stores %}
                             <div class="col">
                                 <div class="container">
-                                    <a href="{% url 'stores:detail' store.pk %}">{{ store.image }}</a>
+                                    {% comment %}
+                                    기존 코드
+                                    <a href="{% url 'stores:detail' store.pk %}">{{ store.image.url }}</a>
+                                    {% endcomment %}
+                                    {% if store.image %}
+                                    <img src="{{ store.image.url }}" alt="Thumbnail Image">
+                                    {% else %}
+                                    <img src="" alt="No Image">
+                                    {% endif %}
                                     <p>{{ store.name }}</p>
                                     <p>{{ store.address }} - {{ store.category }}</p>
                                 </div>
@@ -95,7 +119,15 @@
                 {% for store in stores %}
                 <div class="col">
                     <div class="container">
-                        <a href="{% url 'stores:detail' store.pk %}">{{ store.image }}</a>
+                        {% comment %}
+                        # 기존 코드
+                        <a href="{% url 'stores:detail' store.pk %}">{{ store.image.url }}</a>
+                        {% endcomment %}
+                        {% if store.image %}
+                        <img src="{{ store.image.url }}" alt="Thumbnail Image">
+                        {% else %}
+                        <img src="" alt="No Image">
+                        {% endif %}
                         <p>{{ store.name }}</p>
                         <p>{{ store.address }} - {{ store.category }}</p>
                     </div>
