@@ -1,0 +1,8 @@
+.stores-create-input {
+  width: 25rem;
+}
+
+.stores-create-input>p>input {
+  font-size: 1.5rem;
+  padding: 0 0.5rem;
+}

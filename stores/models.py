@@ -9,7 +9,7 @@ class Store(models.Model):
     name = models.CharField(max_length=20)
     like_users = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='like_stores')
     
-    phone_number = models.CharField(max_length=12, blank=True, null=True)
+    phone_number = models.CharField(max_length=13, blank=True, null=True)
     info = models.TextField(blank=True, null=True)
     
     address = models.CharField(max_length=50, blank=True, null=True)

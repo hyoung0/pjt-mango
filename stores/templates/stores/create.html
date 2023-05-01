@@ -3,14 +3,19 @@
 
 {% block title %}25 & 27 - 가게 등록{% endblock title %}
 
-{% block content %}
-  
-  <h1>가게 등록</h1>
+{% block style %}
 
-  <form action="{% url 'stores:create' %}" method="post" class="" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">가게 등록</button>
-  </form>
+{% endblock style %}
+
+{% block content %}
+  <section class="container-fluid my-3">
+    <h1 class="fw-bold ms-3">가게 등록</h1>
+  
+    <form action="{% url 'stores:create' %}" method="post" class="ms-3 stores-create-input" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary fs-4 py-0">가게 등록</button>
+    </form>
+  </section>
 
 {% endblock content %}
