@@ -86,7 +86,7 @@
                 <div class="d-flex">
                   <form action="{% url 'reviews:emotes' review.pk 1 %}" method="POST">
                     {% csrf_token %}
-                    {% if review.like_exist %}
+                    {% if request.user.is_authenticated and review.like_exist %}
                       <button type="submit" class="border-0 bg-transparent">
                         <i class="bi bi-hand-thumbs-up-fill"></i> {{ review.likes|length }}
                       </button>
@@ -98,7 +98,7 @@
                   </form>
                   <form action="{% url 'reviews:emotes' review.pk 2 %}" method="POST">
                     {% csrf_token %}
-                    {% if review.dislike_exist %}
+                    {% if request.user.is_authenticated and review.dislike_exist %}
                       <button type="submit" class="border-0 bg-transparent">
                         <i class="bi bi-hand-thumbs-down-fill"></i> {{ review.dislikes|length }}
                       </button>
