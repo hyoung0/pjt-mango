@@ -24,6 +24,9 @@ class Store(models.Model):
                                 format='JPEG',
                                 options={'quality': 80})
     
+    def __str__(self):
+        return self.name 
+    
     
 class Menu(models.Model):
     store = models.ForeignKey(Store, on_delete=models.CASCADE)
