@@ -5,6 +5,7 @@
 
 
 {% block content %}
+{% load static %}
 <header>
   <div id="carouselExample" class="carousel slide" style="height: 350px;">
     <div class="carousel-inner">
@@ -90,9 +91,11 @@
                     <div class="container-fluid d-flex justify-content-between mt-3">
                       <div class="container-fluid d-flex align-items-center">
                         <div class="row">
-                          <div class="col">
+                          <div class="col text-center">
                             {% if review.user.image %}
-                              <img src="{{ review.user.image.url }}" alt="profile_img">
+                              <img src="{{ review.user.image.url }}" class="rounded-circle" style="width: 50px;" alt="profile_img">
+                            {% else %}
+                              <img src="{% static 'profile_no_image.png' %}" class="rounded-circle" style="width: 50px;" alt="profile_no_image">
                             {% endif %}
                             <p class="align-middle">{{ review.user }}</p>
                           </div>
