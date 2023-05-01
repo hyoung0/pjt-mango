@@ -21,7 +21,7 @@ class Store(models.Model):
     
     image = ProcessedImageField(upload_to='stores', blank=True,
                                 processors=[ResizeToFill(100,100)],
-                                format='jpg',
+                                format='JPEG',
                                 options={'quality': 80})
     
     

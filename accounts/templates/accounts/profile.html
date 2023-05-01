@@ -8,12 +8,15 @@
 </head>
 <body>
   <h1>{{ person.username }}의 프로필 페이지</h1>
-  
-  {% comment %} profile 사진 {% endcomment %}
-  <form action="{% url 'accounts:profile' username %}" method="post" class="" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-  </form>
+
+  <div class="">
+    <p class="">이미지 표시</p>
+    {% if person.image %}
+    <img src="{{ person.image.url }}" alt="" class="">
+    {% else %}
+    <img src="" alt="No Image" class="">
+    {% endif %}
+  </div>
 
   <div>
     팔로잉 : {{ person.followings.all|length }} / 팔로워 : {{ person.followers.all|length }}
