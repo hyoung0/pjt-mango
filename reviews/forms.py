@@ -20,7 +20,7 @@ class ReviewForm(forms.ModelForm):
     ]
     rating = forms.ChoiceField(
         label='평점',
-        widget=forms.TextInput(
+        widget=forms.Select(
             attrs={
                 'class': 'form-select',
             }
