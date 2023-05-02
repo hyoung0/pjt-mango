@@ -6,3 +6,34 @@
   font-size: 1.5rem;
   padding: 0 0.5rem;
 }
+
+.text-orange {
+  color: orange;
+}
+
+.all-head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+}
+.all-likes {
+  position: absolute;
+  top: 3rem;
+  right: 0rem;
+}
+.food-thumbnail-section {
+  position: relative;
+  padding: 2rem 0;
+  width: 50vw;
+  min-width: 50rem;
+}
+
+.food-thumbnail-block {
+  margin-right: 2rem;
+}
+.food-thumbnail-img {
+  width: 15rem;
+  height: 15rem;
+}

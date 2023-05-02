@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<header class="all-head bg-secondary-subtle text-center" style="height: 15rem;">
+  <p class="m-0">25&27s Plates</p>
+  <p class="text-body-tertiary fs-1">모든 가게</p>
+</header>
+
+<main class="container d-flex flex-column align-items-center">
+  {% for store in stores %}
+  <section class="food-thumbnail-section border-bottom">
+
+    <div class="all-likes">
+      <a href="#" class="text-dark">가고 싶다</a>
+    </div>
+      
+
+    <div class="d-flex m-0">
+      <div class="food-thumbnail-block float-start">
+        <a href="{% url 'stores:detail' store.pk %}" class="text-decoration-none">
+          {% if store.image %}
+          <img src="{{ store.image.url }}" alt="Thumbnail Food Image" class="food-thumbnail-img">
+          {% else %}
+          <img src="{% static 'empty-food.jpg' %}" alt="Empty Food Image" class="food-thumbnail-img">
+          {% endif %}
+        </a>
+      </div>
+      
+      
+      <div class="my-auto d-flex flex-column flex-fill ">
+        <p class="fs-1 m-0">
+          <a href="{% url 'stores:detail' store.pk %}" class="text-dark">{{ store.name }}</a>
+          <span class="text-orange">평균 평점이 들어갈곳{{ store.rating }}</span>
+        </p>
+        <p class="text-warning-emphasis fs-2 m-0">{{ store.category }}</p>
+        <p class="text-body-tertiary fs-2">
+          {% if store.address %}
+            {{ store.address }}
+          {% else %}
+            주소 미등록
+          {% endif %}
+        </p>
+        <a href="{% url 'stores:detail' store.pk %}" class="text-body-tertiary mt-3 align-self-end">{{ store.name }} 더보기 ></a>
+  
+      </div>
+    </div>
+
+  </section>
+  {% endfor %}
+</main>
+{% endblock content %}

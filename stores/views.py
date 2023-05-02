@@ -14,6 +14,14 @@ def index(request):
     return render(request, 'stores/index.html', context)
 
 
+def all_stores(request):
+    stores = Store.objects.all()
+    context = {
+        'stores': stores,
+    }
+    return render(request, 'stores/all_stores.html', context)
+
+
 def get_location(address: str):
     url = 'https://dapi.kakao.com/v2/local/search/address.json?query=' + address
     headers = {"Authorization": "KakaoAK 7efccf8a0b485cae348d86aee268d72b"}
