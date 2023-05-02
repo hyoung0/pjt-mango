@@ -38,77 +38,15 @@
     </style>
   </head>
   <body>
-    {% comment %} 상단 나브바  {% endcomment %}
-  <div class="container-fluid" style="padding: 0;">
-    <header>
-      <div class="container-fluid position-sticky shadow p-3" style="height: 6rem;">
-        <nav class="navbar bg-body-primary">
-          <div class="container-fluid d-flex justify-content-between">
-            <a class="navbar-brand" href="{% url 'stores:index' %}">
-              <img src="https://d1.awsstatic.com/logos/customers/KO/logo_Mangoplate.12908c5b9952bc4f14bdc966e5e81b521415fc6a.png" style="width: 4rem; height: 1.5rem;">
-            </a>
-            <div class="d-flex">
-                <a href="#" class="btn me-3 d-flex" role="button" style="font-size: xx-large;">EAT딜</a>
-                <a href="#" class="btn me-3 d-flex" role="button" style="font-size: xx-large;">맛집 리스트</a>
-                <a href="#" class="btn me-3 d-flex" role="button" style="font-size: xx-large;">망고 스토리</a>
-                <div class="dropdown">
-                  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="https://cdn.icon-icons.com/icons2/1893/PNG/512/scientistavatar_120780.png" style="width: 1.5rem; height: 1.5rem;">
-                  </button>
-                  <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton" style="position:absolute; left:auto; right:0; height: 30rem; width: 15rem;">
-                    <li><a class="dropdown-item" href="#" style="font-size: xx-large;">ex) 조회 이력</a></li>
-                    <li><a class="dropdown-item" href="#" style="font-size: xx-large;">ex) 즐겨찾기</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                      <div class="container-fluid d-flex align-items-center">
-                        <div class="container-fluid d-flex justify-content-center">
-                        {% if request.user.is_authenticated %}
-                          <h1 class="mt-1" style="font-size: xx-large;">{{ user }}</h1> 
-                        </div>
-                        <hr>
-                    </li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <div class="row d-flex">
-                          <div class="col-5">
-                              <form action="{% url 'accounts:logout' %}" method="POST" class="ms-3">
-                                {% csrf_token %}
-                                <input type="submit" value="로그아웃" class="btn btn-outline-danger" style="font-size: xx-large;">
-                              </form>
-                          </div>
-                          <div class="col-5">
-                              <a href="{% url 'accounts:profile' user.username %}" class="btn btn-outline-primary" style="width: 7rem; font-size: xx-large;">마이페이지</a>
-                          </div>
-                          <div class="col-5">
-                            {% if request.user.is_superuser %}
-                              <a href="{% url 'stores:create' %}" class="btn btn-outline-primary ms-3 mt-2" style="width: 13rem; font-size: xx-large;">가게 등록</a>
-                            {% endif %}
-                          </div>
-                        </div>
-                        {% else %}
-                        <div>
-                          <a href="{% url 'accounts:login' %}" class="btn">로그인</a>
-                          <a href="{% url 'accounts:signup' %}" class="btn">회원가입</a>
-                        </div>
-                        {% endif %} 
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header>
+    <div class="container-fluid" style="padding: 0;">
       
-     
+    {# 상단 나브바  #}
+    {% include 'navbar.html' %}  
+      
     {% block content %}{% endblock content %}
     
+    </div>
 
-    
-
-   
-  </div>
   </body>
   {% block script %}{% endblock script %}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
