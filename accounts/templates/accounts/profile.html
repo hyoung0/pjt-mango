@@ -1,19 +1,53 @@
 {% extends 'base.html' %}
+
+
 {% block content %}
   <h1 class="text-center mt-5" style="color: orange;">{{ person.username }}님의 프로필 페이지</h1>
 
-  <div class="container-fluid d-flex justify-content-center">
-    <p class="">이미지 표시</p>
-    {% if person.image %}
-    <img src="{{ person.image.url }}" alt="" class="">
+  <div class='my-4'>
+    <a href="{% url 'stores:index' %}">
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="40" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+      </svg>
+    </a>
+  </div>
+  <div class='d-flex flex-row justify-content-between'>
+    <div class='d-flex flex-row'>
+      <div class='px-3'>
+        {% if person.image %}
+        <img class='rounded-circle' src="{{ person.image.url }}" alt="" class="">
+        {% else %}
+        <img src="" alt="No Image" class="">
+        {% endif %}
+      </div>
+      <div class='d-flex flex-column align-items-center px-3'>
+        <p>팔로잉</p>
+        {{ person.followings.all|length }} 
+      </div>
+      <div class='d-flex flex-column align-items-center px-3'>
+        <p>팔로워</p>
+        {{ person.followers.all|length }}
+      </div>
+    </div>
+    {% if request.user != person %}
+      <form action="{% url 'accounts:follow' person.pk %}" method="POST">
+        {% csrf_token %}
+        {% if request.user in person.followers.all %}
+          <input type="submit" value="언팔로우">
+        {% else %}
+          <button type='submit'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="50" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+              <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+              <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+          </button>
+        {% endif %}
+      </form>
     {% else %}
-    <img src="" alt="No Image" class="">
-    {% endif %}
+      <a href="{% url 'accounts:update' %}">수정 아이콘</a>
+    {% endif %}  
   </div>
-
-  <div class="container-fluid d-flex justify-content-center">
-    팔로잉 : {{ person.followings.all|length }} / 팔로워 : {{ person.followers.all|length }}
-  </div>
+  <h3 class='mx-3 my-4'>{{ person.username }}</h3>
   
   <hr>
   
@@ -25,6 +59,7 @@
         <th scope="col">리뷰 이미지</th>
         <th scope="col">내가 남긴 가게 점수</th>
         <th scope="col">리뷰 작성 날짜</th>
+        <th scope="col">가게</th>
       </tr>
     </thead>
     <tbody>
@@ -41,6 +76,7 @@
         </td>
         <td>{{ review.rating }}</td>
         <td>{{ review.created_at }}</td>
+        <td><a href="{% url 'stores:detail' review.store.pk %}">{{ review.store.name }}</a></td>
         </tr>
       {% endfor %}
 
@@ -71,21 +107,5 @@
   {% endfor %}
   </div>
 
-
-
-
-  {% comment %} 팔로우 언팔로우 {% endcomment %}
-  {% if request.user != person %}
-    <div>
-      <form action="{% url 'accounts:follow' person.pk %}" method="POST">
-        {% csrf_token %}
-        {% if request.user in person.followers.all %}
-          <input type="submit" value="언팔로우">
-        {% else %}
-          <input type="submit" value="팔로우">
-        {% endif %}
-      </form>
-    </div>
-  {% endif %}  
 
   {% endblock content %}
