@@ -1,5 +1,5 @@
 from django import forms
-from .models import Store
+from .models import Store, StoreImage
 
 
 class StoreForm(forms.ModelForm):
@@ -14,7 +14,7 @@ class StoreForm(forms.ModelForm):
             'address': '주소',
             'open_hours': '개장 시간',
             'closing_hours': '폐장 시간',
-            'image': '썸네일 사진',
+            'thumbnail': '썸네일 사진',
         }
         
         widgets = {
@@ -29,5 +29,21 @@ class StoreForm(forms.ModelForm):
             'address': forms.TextInput(attrs={'class': 'form-control'}),
             'open_hours': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control w-25'}),
             'closing_hours': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control w-25'}),
-            'image': forms.ClearableFileInput(attrs={'class': 'form-control w-75'}),
+            'thumbnail': forms.ClearableFileInput(attrs={'class': 'form-control w-75'}),
         }
+
+
+class StoreImageForm(forms.ModelForm):
+    image = forms.ImageField(
+        label='가게 이미지 업로드',
+        widget=forms.ClearableFileInput(
+            attrs={
+                'class': 'form-control',
+                'multiple': True,
+            },
+        ),
+        required = False,
+    )
+    class Meta:
+        model = StoreImage
+        fields = ('image',)

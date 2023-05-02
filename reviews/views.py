@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import ReviewForm
-from .models import Review, Emote
+from .forms import ReviewForm, ReviewImageForm
+from .models import Review, ReviewImage, Emote
 from stores.models import Store
 from django.contrib.auth.decorators import login_required
 
@@ -8,17 +8,25 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def create(request, store_pk):
     if request.method == 'POST':
-        form = ReviewForm(request.POST, request.FILES)
-        if form.is_valid():
-            review = form.save(commit=False)
+        review_form = ReviewForm(request.POST)
+        review_image_form = ReviewImageForm(request.POST, request.FILES)
+        files = request.FILES.getlist('image')
+        if review_form.is_valid() and review_image_form.is_valid():
+            review = review_form.save(commit=False)
             review.user = request.user
             review.store = Store.objects.get(pk=store_pk)
             review.save()
+            
+            for file in files:
+                ReviewImage.objects.create(review=review, image=file)
+
             return redirect('stores:detail', store_pk)
     else:
-        form = ReviewForm()
+        review_form = ReviewForm()
+        review_image_form = ReviewImageForm()
     context = {
-        'form': form,
+        'review_form': review_form,
+        'review_image_form': review_image_form,
         'store_pk': store_pk,
     }
     return render(request, 'reviews/create.html', context)
