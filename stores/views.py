@@ -53,12 +53,18 @@ def create(request):
 
 def detail(request, store_pk: int):
     store = Store.objects.get(pk=store_pk)
-    reviews = Review.objects.filter(store=store).prefetch_related(
-        Prefetch('emote_set', queryset=Emote.objects.filter(emotion=1), to_attr='likes'),
-        Prefetch('emote_set', queryset=Emote.objects.filter(emotion=1, user=request.user), to_attr='like_exist'),
-        Prefetch('emote_set', queryset=Emote.objects.filter(emotion=2), to_attr='dislikes'),
-        Prefetch('emote_set', queryset=Emote.objects.filter(emotion=2, user=request.user), to_attr='dislike_exist')
-    )
+    if request.user.is_authenticated:
+        reviews = Review.objects.filter(store=store).prefetch_related(
+            Prefetch('emote_set', queryset=Emote.objects.filter(emotion=1), to_attr='likes'),
+            Prefetch('emote_set', queryset=Emote.objects.filter(emotion=1, user=request.user), to_attr='like_exist'),
+            Prefetch('emote_set', queryset=Emote.objects.filter(emotion=2), to_attr='dislikes'),
+            Prefetch('emote_set', queryset=Emote.objects.filter(emotion=2, user=request.user), to_attr='dislike_exist')
+        )
+    else:
+        reviews = Review.objects.filter(store=store).prefetch_related(
+            Prefetch('emote_set', queryset=Emote.objects.filter(emotion=1), to_attr='likes'),
+            Prefetch('emote_set', queryset=Emote.objects.filter(emotion=2), to_attr='dislikes'),
+        )
     context = {
         'store':store,
         'reviews': reviews,
