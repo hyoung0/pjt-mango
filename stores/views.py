@@ -130,5 +130,12 @@ def like_stores(request, store_pk):
     return redirect('stores:detail', store_pk)
 
 
-# me in store.like_users.all()
-    
+def category(request, subject):
+    subject = subject
+    store = Store.objects.filter(category=subject).order_by('-pk')
+    context = {
+        'subject': subject,
+        'store': store,
+    }
+    return render(request, 'stores/category.html', context)
+

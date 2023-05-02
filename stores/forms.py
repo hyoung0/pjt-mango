@@ -3,6 +3,28 @@ from .models import Store
 
 
 class StoreForm(forms.ModelForm):
+    category = forms.ChoiceField(
+        label='카테고리',
+        widget=forms.Select(
+            attrs={
+                'placeholder': '카테고리 입력',
+                'class': 'form-select',
+            }
+        ),
+        choices = (('퓨전 중식','퓨전 중식'), ('전통 중식', '전통 중식'), 
+        ('퓨전 한식','퓨전 한식'), ('전통 한식','전통 한식'),
+        ('닭 오리 요리', '닭 오리 요리'), ('카페 디저트', '카페 디저트'), 
+        ('고기 요리', '고기 요리'), ('해산물', '해산물'), 
+        ('이탈리안', '이탈리안'), ('프랑스 음식', '프랑스 음식'), 
+        ('국수 면 요리', '국수 면 요리'), ('퓨전 양식', '퓨전 양식'), 
+        ('분식', '분식'), ('탕 찌개 전골', '탕 찌개 전골'),
+        ('브런치 버거 샌드', '브런치 버거 샌드'), ('일식', '일식'),
+        ('기타 양식', '기타 양식'), ('패스트 푸드', '패스트 푸드'),
+        ('돼지 고기', '돼지 고기'), ('소고기', '소고기')
+        ), 
+        required=True,
+    )
+
     class Meta:
         model = Store
         exclude = ('like_users', 'latitude', 'longitude', )

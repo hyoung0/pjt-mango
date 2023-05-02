@@ -24,6 +24,8 @@ class Store(models.Model):
                                 format='JPEG',
                                 options={'quality': 80})
     
+    category = models.CharField(max_length=20)
+
     def __str__(self):
         return self.name 
     
@@ -34,11 +36,6 @@ class Menu(models.Model):
     price = models.DecimalField(blank=True, max_digits=18, decimal_places=0)
 
 
-class Category(models.Model):
-    stores = models.ManyToManyField(Store, related_name='categories')
-    category = models.CharField(max_length=20)
-    
-    
 class StoreImage(models.Model):
     store = models.ForeignKey(to=Store, on_delete=models.CASCADE)
     image = ProcessedImageField(upload_to='stores', blank=True,
