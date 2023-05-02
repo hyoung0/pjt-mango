@@ -11,9 +11,8 @@
           <button class="btn dropdown-toggle mb-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="https://cdn.icon-icons.com/icons2/1893/PNG/512/scientistavatar_120780.png" style="width: 1.5rem; height: 1.5rem;">
           </button>
-          <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton" style="position:absolute; left:auto; right:0; height: 30rem; width: 15rem; z-index: 10;">
+          <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton" style="position:absolute; left:auto; right:0; width: 15rem; z-index: 10;">
             <li><a class="dropdown-item" href="#" style="font-size: xx-large;">ex) 조회 이력</a></li>
-            <li><a class="dropdown-item" href="#" style="font-size: xx-large;">ex) 즐겨찾기</a></li>
             <li><hr class="dropdown-divider"></li>
             <li>
               <div class="container-fluid d-flex align-items-center">
@@ -37,7 +36,7 @@
                   </div>
                   <div class="col-5">
                     {% if request.user.is_superuser %}
-                      <a href="{% url 'stores:create' %}" class="btn btn-outline-primary ms-3 mt-2" style="width: 13rem; font-size: xx-large;">가게 등록</a>
+                      <a href="{% url 'stores:create' %}" class="btn btn-success ms-3 mt-2" style="width: 13rem; font-size: xx-large;">가게 등록</a>
                     {% endif %}
                   </div>
                 </div>

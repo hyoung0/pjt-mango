@@ -117,16 +117,4 @@
     </main>
 </div>
 
-    {% if request.user.is_superuser %}
-        <a href="{% url 'stores:create' %}" class="">가게 등록</a>
-    {% endif %}
-
-
-    {% for store in stores %}
-        <p class="">
-        가게 이름 - 
-        <a href="{% url 'stores:detail' store.pk %}" class="">{{ store.name }}</a>
-        </p>
-    {% endfor %}
-
 {% endblock content %}
