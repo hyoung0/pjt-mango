@@ -118,3 +118,17 @@ def search(request):
         return render(request, 'stores/search.html', {'search': search, 'store': store})
     else:
         return render(request, 'stores/search.html', {})
+    
+
+def like_stores(request, store_pk):
+    store = Store.objects.get(pk=store_pk)
+    me = request.user
+    if store.like_users.filter(pk=request.user.pk).exists():
+        store.like_users.remove(request.user)
+    else:
+        store.like_users.add(request.user)
+    return redirect('stores:detail', store_pk)
+
+
+# me in store.like_users.all()
+    
