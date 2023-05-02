@@ -139,18 +139,6 @@
                               </button>
                             {% endif %}
                           </form>
-                          <form action="{% url 'reviews:emotes' review.pk 2 %}" method="POST">
-                            {% csrf_token %}
-                            {% if review.dislike_exist %}
-                              <button type="submit" class="border-0 bg-transparent">
-                                <i class="bi bi-hand-thumbs-down-fill"></i> {{ review.dislikes|length }}
-                              </button>
-                            {% else %}
-                              <button type="submit" class="border-0 bg-transparent">
-                                <i class="bi bi-hand-thumbs-down"></i> {{ review.dislikes|length }}
-                              </button>
-                            {% endif %}
-                          </form>
                         </div>
         
                         {% comment %} rating {% endcomment %}
