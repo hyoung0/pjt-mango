@@ -8,10 +8,7 @@ from imagekit.processors import ResizeToFill
 
 class User(AbstractUser):
     followings = models.ManyToManyField('self', related_name='followers', symmetrical=False)
-    
-
-class Profile(models.Model):
-    image = ProcessedImageField(upload_to='stores', blank=True,
+    image = ProcessedImageField(upload_to='users', blank=True,
                                     processors=[ResizeToFill(100,100)],
-                                    format='jpg',
+                                    format='JPEG',
                                     options={'quality': 80})

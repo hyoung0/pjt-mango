@@ -108,3 +108,12 @@ def update(request, store_pk: int):
 
 def redirect_index(request):
     return redirect('stores:index')
+
+
+def search(request):
+    if request.method == 'POST':
+        search = request.POST['search']        
+        store = Store.objects.filter(name__contains=search)
+        return render(request, 'stores/search.html', {'search': search, 'store': store})
+    else:
+        return render(request, 'stores/search.html', {})

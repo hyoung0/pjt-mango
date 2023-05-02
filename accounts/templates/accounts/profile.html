@@ -1,58 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>{{ person.username }}의 프로필 페이지</h1>
-  
-  {% comment %} profile 사진 {% endcomment %}
-  <form action="{% url 'accounts:profile' username %}" method="post" class="" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-  </form>
+{% extends 'base.html' %}
 
-  <div>
-    팔로잉 : {{ person.followings.all|length }} / 팔로워 : {{ person.followers.all|length }}
+
+{% block content %}
+  <h1 class="text-center mt-5" style="color: orange;">{{ person.username }}님의 프로필 페이지</h1>
+
+  <div class='my-4'>
+    <a href="{% url 'stores:index' %}">
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="40" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+      </svg>
+    </a>
   </div>
-  
-  <hr>
-  {% comment %} 여기서 어떤 식당의 리뷰인지 식당도 나오면 좋을듯 {% endcomment %}
-  <h3>{{ person.username }}가 작성한 모든 리뷰</h3>
-  {% for review in person.review_set.all %}
-  <div>{{ review.content }}</div>
-  {% endfor %}
-  
-  <hr>
-  
-  <h3>{{ person.username }}가 좋아요를 누른 모든 게시글</h3>
-  {% for article in person.like_articles.all %}
-  <div>{{ article.title }}</div>
-  {% endfor %}
-
-  {% comment %} 가고싶다 별표한 식당 {% endcomment %}
-  {% for review in person.like_stores.all %}
-    {{ review.name }}
-  {% endfor %}
-
-
-  {% comment %} 팔로우 언팔로우 {% endcomment %}
-  {% if request.user != person %}
-    <div>
+  <div class='d-flex flex-row justify-content-between'>
+    <div class='d-flex flex-row'>
+      <div class='px-3'>
+        {% if person.image %}
+        <img class='rounded-circle' src="{{ person.image.url }}" alt="" class="">
+        {% else %}
+        <img src="" alt="No Image" class="">
+        {% endif %}
+      </div>
+      <div class='d-flex flex-column align-items-center px-3'>
+        <p>팔로잉</p>
+        {{ person.followings.all|length }} 
+      </div>
+      <div class='d-flex flex-column align-items-center px-3'>
+        <p>팔로워</p>
+        {{ person.followers.all|length }}
+      </div>
+    </div>
+    {% if request.user != person %}
       <form action="{% url 'accounts:follow' person.pk %}" method="POST">
         {% csrf_token %}
         {% if request.user in person.followers.all %}
           <input type="submit" value="언팔로우">
         {% else %}
-          <input type="submit" value="팔로우">
+          <button type='submit'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="50" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+              <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+              <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+          </button>
         {% endif %}
       </form>
+    {% else %}
+      <a href="{% url 'accounts:update' %}">수정 아이콘</a>
+    {% endif %}  
+  </div>
+  <h3 class='mx-3 my-4'>{{ person.username }}</h3>
+  
+  <hr>
+  
+  <h1 class="text-center mt-5 mb-5" style="color: orange; ">{{ person.username }}님의 리뷰</h1>
+  <table class="table table-hover mx-2">
+    <thead>
+      <tr>
+        <th scope="col">리뷰 내용</th>
+        <th scope="col">리뷰 이미지</th>
+        <th scope="col">내가 남긴 가게 점수</th>
+        <th scope="col">리뷰 작성 날짜</th>
+        <th scope="col">가게</th>
+      </tr>
+    </thead>
+    <tbody>
+     
+      {% for review in person.review_set.all %}
+      <tr>
+        <td href="">{{ review.content }}</td>
+        <td>
+        {% if store.image %}
+        <img src="{{ review.image.url }}" alt="Thumbnail Image">
+        {% else %}
+        <img src="" alt="No Image">
+        {% endif %}
+        </td>
+        <td>{{ review.rating }}</td>
+        <td>{{ review.created_at }}</td>
+        <td><a href="{% url 'stores:detail' review.store.pk %}">{{ review.store.name }}</a></td>
+        </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+  
+  <hr>
+  
+  <h1 class="text-center mt-5 mb-5" style="color: orange;">{{ person.username }}가 좋아요를 누른 모든 게시글</h1>
+  <div class="row">
+  {% for store in person.like_stores.all %}
+    <div class="col mt-5">
+      <div class="container-fluid d-flex">
+        <div class="card" style="width: 27rem;">
+          <img src="#" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h1 class="card-title text-center">{{ store.name }}</h1>
+            <p class="card-text text-center">{{ store.address }}</p>
+            <p class="card-text text-center">{{store.rating_avg}}</p>
+            <p class="card-text text-center">{{ store.content }}</p>
+            <div class="container-fluid d-flex justify-content-end">
+              <a href="#" class="btn btn-primary">해당 가게 보기</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  {% endif %}  
+  {% endfor %}
+  </div>
 
 
-</body>
-</html>
+  {% endblock content %}

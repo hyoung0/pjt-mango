@@ -5,7 +5,6 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import Profile
 from django.contrib.auth import get_user_model
 
 # Create your views here.
@@ -58,7 +57,7 @@ def delete(request):
 @login_required
 def update(request):
     if request.method == 'POST':
-        form = CustomUserChangeForm(request.POST, instance=request.user)
+        form = CustomUserChangeForm(request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect('stores:index')
@@ -89,16 +88,8 @@ def change_password(request):
 def profile(request, username):
     User = get_user_model()
     person = User.objects.get(username=username)
-    if request.method == "POST":
-        form = Profile(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('accounts:profile', username)
-    else:
-        form = Profile()
     context = {
         'person': person,
-        'form': form,
     }
     return render(request, 'accounts/profile.html', context)
 

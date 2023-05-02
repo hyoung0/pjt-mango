@@ -1,0 +1,16 @@
+{% extends 'base.html' %}      
+{% block content %}
+<div class="container-fluid d-flex justify-content-center mt-5">
+    {% if searched %}        
+    <h1 class="mt-5"> 검색하신 {{ search }} 맛집 정보입니다. </h1>
+    <br>
+    {% for store in store %}       
+            {{ store.name }} <br>
+            {{ store.address }} <br>
+            {{ store.category }} <br>
+    {% endfor %}
+    {% else %}        
+    <h1> 찾고 있는 맛집 정보가 존재하지 않습니다. </h1>
+    {% endif %}
+</div>
+{% endblock content %}

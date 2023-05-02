@@ -20,6 +20,7 @@ class CustomUserChangeForm(UserChangeForm):
             'email',
             'first_name',
             'last_name',
+            'image',
         )
 
     def __init__(self, *args, **kwargs):
