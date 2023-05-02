@@ -6,11 +6,38 @@
 </div>
 <div class="container-fluid d-flex flex-column">
     {% for store in store %}
-        <ul>
-            <li class="spread-underline" style="list-style: none;">
-                <a href="{% url 'stores:detail' store.pk %}">가게명 - {{ store.name }} / 카테고리 - {{ store.category }}</a>
-            </li>
-        </ul>
+    <div class="container">
+        {% comment %}
+        기존 코드
+        <a href="{% url 'stores:detail' store.pk %}">{{ store.image.url }}</a>
+        {% endcomment %}
+        {% if store.image %}
+        <img src="{{ store.image.url }}" alt="Thumbnail Image">
+        {% else %}
+        <img src="" alt="No Image">
+        {% endif %}
+        <p>{{ store.name }}</p>
+        <p>{{ store.address }} - {{ store.category }}</p>
+    </div>
     {% endfor %}
 </div>
+
+
+{% for store in stores %}
+
+<div class="container">
+    {% comment %}
+    기존 코드
+    <a href="{% url 'stores:detail' store.pk %}">{{ store.image.url }}</a>
+    {% endcomment %}
+    {% if store.image %}
+    <img src="{{ store.image.url }}" alt="Thumbnail Image">
+    {% else %}
+    <img src="" alt="No Image">
+    {% endif %}
+    <p>{{ store.name }}</p>
+    <p>{{ store.address }} - {{ store.category }}</p>
+</div>
+
+{% endfor %}
 {% endblock content %}
