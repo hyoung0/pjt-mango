@@ -6,13 +6,7 @@
 
 {% block content %}
 <header>
-  {% if store.latitude and store.longitude %}
-    <div id="map" style="height:400px;" class="container-fluid"></div>
-  {% else %}
-    <p class="text-secondary fst-italic">No Location Information</p>
-  {% endif %}
-  
-  <div id="carouselExample" class="carousel slide">
+  <div id="carouselExample" class="carousel slide" style="height: 350px;">
     <div class="carousel-inner">
       <div class="carousel-item active">
         첫 이미지
@@ -38,102 +32,145 @@
 <main>
   <div class="container-fluid">
     <div class="row">
-      <div class="col">
-        <p>{{ store.name }} {{store.rating_avg}}</p>
-        <span>조회수, 리뷰수, 즐겨찾기 수</span>
-        <hr>
-        <p>{{ store.address }}</p>
-        <p>{{ store.phonenumber }}</p>
-        <p>{{ store.category }}</p>
-        <p>{{ store.price }}</p>
-        <p>{{ store.starttime }}</p>
-        <p>{{ store.endtime }}</p>
-        <p>{{ store.menu }}</p>
-        <p>{{ store.content }}</p>
-        <p id="lat" style="display: none">{{ store.latitude }}</p>
-        <p id="lng" style="display: none">{{ store.longitude }}</p>
+      <div class="col-lg-9">
+        <div class="container-fluid">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <p class="mt-4">{{ store.name }} {{store.rating_avg}}</p>
+              </div>
+              <div class="col">
+                <div class="container-fluid d-flex justify-content-end">
+                  <div class="row">
+                    <div class="col-sm-4 ms-5">
+                      <div class="row">
+                        <a href="{% url 'reviews:create' store.pk %}" class="text-decoration-none btn" style="width: 5rem;">
+                          <img src="https://png.pngtree.com/png-vector/20190628/ourmid/pngtree-pencil-icon-for-your-project-png-image_1520432.jpg" style="width: 3rem;">
+                        </a>
+                        <p>리뷰 작성</p>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="row">
+                        <a href="#" class="text-decoration-none btn" style="width: 5rem;">
+                          <img src="https://static.vecteezy.com/system/resources/thumbnails/000/456/464/small/15_-_1_-_Star.jpg" style="width: 3rem;">
+                        </a>
+                        <p>즐겨찾기</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span>조회수, 리뷰수, 즐겨찾기 수</span>
+          <hr>
+          <p>{{ store.address }}</p>
+          <p>{{ store.phonenumber }}</p>
+          <p>{{ store.category }}</p>
+          <p>{{ store.price }}</p>
+          <p>{{ store.starttime }}</p>
+          <p>{{ store.endtime }}</p>
+          <p>{{ store.menu }}</p>
+          <p>{{ store.content }}</p>
+          <p id="lat" style="display: none">{{ store.latitude }}</p>
+          <p id="lng" style="display: none">{{ store.longitude }}</p>
+          <hr>
+          <div class="container-fluid">
+            <div class="d-flex justify-content-between">
+              <div class="d-flex align-items-center ms-4">
+                <h3>리뷰</h3>
+                <i class="bi bi-chat-left-text ms-3 me-2"></i>{{ reviews|length }}
+              </div>
+            </div>
+            <div class="container-fluid">
+                {% for review in reviews %}
+                  <div>
+                    {% comment %} 프로필, 작성일, 평점, 좋아요/싫어요 {% endcomment %}
+                    <div class="container-fluid d-flex justify-content-between mt-3">
+                      <div class="container-fluid d-flex align-items-center">
+                        <div class="row">
+                          <div class="col">
+                            {% if review.user.image %}
+                              <img src="{{ review.user.image.url }}" alt="profile_img">
+                            {% endif %}
+                            <p class="align-middle">{{ review.user }}</p>
+                          </div>
+                          <div class="col">
+                            <div class="container-fluid">
+                              <p>{{ review.created_at }}</p>
+                            </div>
+                            <div class="container-fluid">
+                              <p>{{ review.content }}</p>
+                              {% if review.image %}
+                                <img src="{{ review.image.url }}" alt="profile_img">
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        {% comment %} emote {% endcomment %}
+                        <div class="d-flex">
+                          <form action="{% url 'reviews:emotes' review.pk 1 %}" method="POST">
+                            {% csrf_token %}
+                            {% if review.like_exist %}
+                              <button type="submit" class="border-0 bg-transparent">
+                                <i class="bi bi-hand-thumbs-up-fill"></i> {{ review.likes|length }}
+                              </button>
+                            {% else %}
+                              <button type="submit" class="border-0 bg-transparent">
+                                <i class="bi bi-hand-thumbs-up"></i> {{ review.likes|length }}
+                              </button>
+                            {% endif %}
+                          </form>
+                          <form action="{% url 'reviews:emotes' review.pk 2 %}" method="POST">
+                            {% csrf_token %}
+                            {% if review.dislike_exist %}
+                              <button type="submit" class="border-0 bg-transparent">
+                                <i class="bi bi-hand-thumbs-down-fill"></i> {{ review.dislikes|length }}
+                              </button>
+                            {% else %}
+                              <button type="submit" class="border-0 bg-transparent">
+                                <i class="bi bi-hand-thumbs-down"></i> {{ review.dislikes|length }}
+                              </button>
+                            {% endif %}
+                          </form>
+                        </div>
+        
+                        {% comment %} rating {% endcomment %}
+                        <div class="text-center">별점 : {{ review.rate_to_star }}</div>
+                      </div>
+                    </div>
+                    {% comment %} 리뷰 내용, 리뷰 이미지 {% endcomment %}
+                    {% if request.user == review.user %}
+                    <div class="d-flex justify-content-end">
+                      <a href="{% url 'reviews:update' review.pk %}" class="btn btn-outline-primary mt-2" style="width: 3rem; height: 2rem;">수정</a>
+                      <form action="{% url 'reviews:delete' review.pk %}" method="POST" class="mx-3">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-outline-danger" value="삭제" style="width: 3rem; height: 2rem;">
+                      </form>
+                    </div>
+                  {% endif %}
+                  </div>
+                  <hr>
+                {% endfor %}
+                
+            </div>
+        </div>
       </div>
-      <div class="col">
-        네이버지도
-        관련 인기 식당
+      </div>
+      <div class="col-lg-3">
+        {% if store.latitude and store.longitude %}
+        <div id="map" style="height:300px; width: 350px;" class="container-fluid"></div>
+        {% else %}
+        <p class="text-secondary fst-italic">No Location Information</p>
+        {% endif %}
+        <p class="text-center">주변 인기 식당</p>
       </div>
     </div>
   </div>
-  <div class="container-fluid">
-    <div class="d-flex justify-content-between">
-      <div class="d-flex align-items-center ms-4">
-        <h3>리뷰</h3>
-        <i class="bi bi-chat-left-text ms-3 me-2"></i>{{ reviews|length }}
-      </div>
-      <a href="{% url 'reviews:create' store.pk %}" class="text-decoration-none me-4 btn btn-warning">리뷰 작성</a>
-    </div>
-    <div class="container-fluid">
-        {% for review in reviews %}
-          <div>
-            {% comment %} 프로필, 작성일, 평점, 좋아요/싫어요 {% endcomment %}
-            <div class="container-fluid d-flex justify-content-between mt-3">
-              <div class="d-flex align-items-center">
-                <div>
-                  {% if review.user.image %}
-                    <img src="{{ review.user.image.url }}" alt="profile_img">
-                  {% endif %}
-                  <div>{{ review.user }}</div>
-                </div>
-                <div>{{ review.created_at }}</div>
-              </div>
-              <div>
-                {% comment %} emote {% endcomment %}
-                <div class="d-flex">
-                  <form action="{% url 'reviews:emotes' review.pk 1 %}" method="POST">
-                    {% csrf_token %}
-                    {% if review.like_exist %}
-                      <button type="submit" class="border-0 bg-transparent">
-                        <i class="bi bi-hand-thumbs-up-fill"></i> {{ review.likes|length }}
-                      </button>
-                    {% else %}
-                      <button type="submit" class="border-0 bg-transparent">
-                        <i class="bi bi-hand-thumbs-up"></i> {{ review.likes|length }}
-                      </button>
-                    {% endif %}
-                  </form>
-                  <form action="{% url 'reviews:emotes' review.pk 2 %}" method="POST">
-                    {% csrf_token %}
-                    {% if review.dislike_exist %}
-                      <button type="submit" class="border-0 bg-transparent">
-                        <i class="bi bi-hand-thumbs-down-fill"></i> {{ review.dislikes|length }}
-                      </button>
-                    {% else %}
-                      <button type="submit" class="border-0 bg-transparent">
-                        <i class="bi bi-hand-thumbs-down"></i> {{ review.dislikes|length }}
-                      </button>
-                    {% endif %}
-                  </form>
-                </div>
-
-                {% comment %} rating {% endcomment %}
-                <div class="text-center">별점 : {{ review.rate_to_star }}</div>
-              </div>
-            </div>
-            {% comment %} 리뷰 내용, 리뷰 이미지 {% endcomment %}
-            <div class="container-fluid">
-              <p>{{ review.content }}</p>
-              {% if review.image %}
-                <img src="{{ review.image.url }}" alt="profile_img">
-              {% endif %}
-              {% if request.user == review.user %}
-                <div class="d-flex justify-content-end">
-                  <a href="{% url 'reviews:update' review.pk %}" class="btn btn-sm btn-outline-primary">수정</a>
-                  <form action="{% url 'reviews:delete' review.pk %}" method="POST" class="mx-3">
-                    {% csrf_token %}
-                    <input type="submit" class="btn btn-sm btn-outline-danger" value="삭제">
-                  </form>
-                </div>
-              {% endif %}
-            </div>
-          </div>
-          <hr>
-        {% endfor %}
-    </div>
+  
 
   </div>
   <div class="container">
