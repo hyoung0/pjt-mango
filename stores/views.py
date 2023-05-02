@@ -114,6 +114,16 @@ def search(request):
     if request.method == 'POST':
         search = request.POST['search']        
         store = Store.objects.filter(name__contains=search)
+        print(store)
         return render(request, 'stores/search.html', {'search': search, 'store': store})
     else:
         return render(request, 'stores/search.html', {})
+
+def category(request, subject):
+    subject = subject
+    store = Store.objects.filter(category=subject).order_by('-pk')
+    context = {
+        'subject': subject,
+        'store': store,
+    }
+    return render(request, 'stores/category.html', context)

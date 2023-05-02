@@ -2,6 +2,7 @@
 
 
 {% block content %}
+  {% load static %}
   <h1 class="text-center mt-5" style="color: orange;">{{ person.username }}님의 프로필 페이지</h1>
 
   <div class='my-4'>
@@ -15,9 +16,9 @@
     <div class='d-flex flex-row'>
       <div class='px-3'>
         {% if person.image %}
-        <img class='rounded-circle' src="{{ person.image.url }}" alt="" class="">
+        <img src="{{ person.image.url }}" alt="profile_img" class="rounded-circle">
         {% else %}
-        <img src="" alt="No Image" class="">
+        <img src="{% static 'profile_no_image.png' %}" alt="No Image" class="rounded-circle">
         {% endif %}
       </div>
       <div class='d-flex flex-column align-items-center px-3'>
