@@ -9,14 +9,12 @@
   <div id="carouselExample" class="carousel slide" style="height: 350px;">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        첫 이미지
+        <img src="{{ store.thumbnail.url }}" class="d-block mx-auto" alt="thumbnail" style="height: 350px;">
       </div>
-      {% for store in stores %}
-      <div class="carousel-item">
-        <div class="d-block w-100">
-          {{ store.image }}
-        </div>  
-      </div>
+      {% for store_image in store_images %}
+        <div class="carousel-item">
+          <img src="{{ store_image.image.url }}" class="d-block mx-auto" alt="store_image" style="height: 350px;">
+        </div>
       {% endfor %}
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -120,9 +118,11 @@
                             </div>
                             <div class="container-fluid">
                               <p>{{ review.content }}</p>
-                              {% if review.image %}
-                                <img src="{{ review.image.url }}" alt="profile_img">
-                              {% endif %}
+                              <div class="d-flex">
+                                {% for review_image in review.reviewimage_set.all %}
+                                  <img src="{{ review_image.image.url }}" class="me-2" alt="review img">
+                                {% endfor %}
+                              </div>
                             </div>
                           </div>
                         </div>

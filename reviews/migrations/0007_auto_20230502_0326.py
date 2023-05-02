@@ -17,9 +17,4 @@ class Migration(migrations.Migration):
             name='created_at',
             field=models.DateTimeField(auto_now_add=True),
         ),
-        migrations.AlterField(
-            model_name='review',
-            name='image',
-            field=imagekit.models.fields.ProcessedImageField(blank=True, null=True, upload_to=reviews.models.Review.reviews_image_path),
-        ),
     ]

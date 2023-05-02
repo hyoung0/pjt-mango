@@ -1,5 +1,5 @@
 from django import forms
-from .models import Review
+from .models import Review, ReviewImage
 
 
 class ReviewForm(forms.ModelForm):
@@ -27,14 +27,22 @@ class ReviewForm(forms.ModelForm):
         ),
         choices=CHOICES,
     )
-    image = forms.ImageField(
-        label='사진 업로드',
-        widget=forms.FileInput(
-            attrs={
-                'class': 'form-control',
-            },
-        ),
-    )
     class Meta:
         model = Review
-        fields = ('content', 'rating', 'image',)
+        fields = ('content', 'rating',)
+
+
+class ReviewImageForm(forms.ModelForm):
+    image = forms.ImageField(
+        label='리뷰 이미지 업로드',
+        widget=forms.ClearableFileInput(
+            attrs={
+                'class': 'form-control',
+                'multiple': True,
+            },
+        ),
+        required = False,
+    )
+    class Meta:
+        model = ReviewImage
+        fields = ('image',)

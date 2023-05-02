@@ -18,11 +18,14 @@ class Store(models.Model):
     
     open_hours = models.TimeField(blank=True, null=True)
     closing_hours = models.TimeField(blank=True, null=True)
+
+    def store_image_path(instance, filename):
+        return f'stores/{instance.name}/{filename}'
     
-    image = ProcessedImageField(upload_to='stores', blank=True,
-                                processors=[ResizeToFill(100,100)],
+    thumbnail = ProcessedImageField(upload_to=store_image_path, blank=True,
+                                processors=[ResizeToFill(350,350)],
                                 format='JPEG',
-                                options={'quality': 80})
+                                options={'quality': 100})
     
     category = models.CharField(max_length=20)
 
@@ -38,7 +41,11 @@ class Menu(models.Model):
 
 class StoreImage(models.Model):
     store = models.ForeignKey(to=Store, on_delete=models.CASCADE)
-    image = ProcessedImageField(upload_to='stores', blank=True,
-                                processors=[ResizeToFill(100,100)],
-                                format='jpg',
-                                options={'quality': 80})
+
+    def store_image_path(instance, filename):
+        return f'stores/{instance.store}/{filename}'
+
+    image = ProcessedImageField(upload_to=store_image_path, blank=True,
+                                processors=[ResizeToFill(350,350)],
+                                format='JPEG',
+                                options={'quality': 100})

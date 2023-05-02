@@ -69,10 +69,8 @@
       <tr>
         <td href="">{{ review.content }}</td>
         <td>
-        {% if store.image %}
+        {% if review.image %}
         <img src="{{ review.image.url }}" alt="Thumbnail Image">
-        {% else %}
-        <img src="" alt="No Image">
         {% endif %}
         </td>
         <td>{{ review.rating }}</td>

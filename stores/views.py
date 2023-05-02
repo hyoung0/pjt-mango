@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Store
-from .forms import StoreForm
+from .models import Store, StoreImage
+from .forms import StoreForm, StoreImageForm
 from django.db.models import Prefetch, Count, Q
 from reviews.models import Review, Emote
 import requests, json
@@ -40,27 +40,35 @@ def create(request):
     if not request.user.is_superuser:
         return redirect('stores:index')
     
-    if request.method == 'GET':
-        form = StoreForm()
-    else:
-        form = StoreForm(data=request.POST, files=request.FILES)
-        if form.is_valid():
-            store = form.save(commit=False)
+    if request.method == 'POST':
+        store_form = StoreForm(data=request.POST, files=request.FILES)
+        store_image_form = StoreImageForm(data=request.POST, files=request.FILES)
+        files = request.FILES.getlist('image')
+        if store_form.is_valid() and store_image_form.is_valid():
+            store = store_form.save(commit=False)
             if store.address:
                 pos = get_location(store.address)
                 store.latitude = pos.get('lat')
                 store.longitude = pos.get('lng')
-            form.save()
+            store.save()
+
+            for file in files:
+                StoreImage.objects.create(store=store, image=file)
+
             return redirect('stores:index')
-    
+    else:
+        store_form = StoreForm()
+        store_image_form = StoreImageForm()
     context = {
-        'form': form,
+        'store_form': store_form,
+        'store_image_form': store_image_form,
     }
     return render(request, 'stores/create.html', context)
 
 
 def detail(request, store_pk: int):
     store = Store.objects.get(pk=store_pk)
+    store_images = StoreImage.objects.filter(store=store)
     if request.user.is_authenticated:
         reviews = Review.objects.filter(store=store).prefetch_related(
             Prefetch('emote_set', queryset=Emote.objects.filter(emotion=1), to_attr='likes'),
@@ -75,6 +83,7 @@ def detail(request, store_pk: int):
         )
     context = {
         'store':store,
+        'store_images': store_images,
         'reviews': reviews,
     }
     return render(request, 'stores/detail.html', context)
