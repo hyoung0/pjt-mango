@@ -49,6 +49,10 @@
     {% endif %}  
   </div>
   <h3 class='mx-3 my-4'>{{ person.username }}</h3>
+  <form action="{% url 'accounts:delete' %}">
+    {% csrf_token %}
+    <input class='ms-3' type="submit" value='회원탈퇴'>
+  </form>
   
   <hr>
   
