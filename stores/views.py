@@ -4,6 +4,8 @@ from .forms import StoreForm, StoreImageForm
 from django.db.models import Prefetch, Count, Q
 from reviews.models import Review, Emote
 import requests, json
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -146,14 +148,20 @@ def search(request):
         return render(request, 'stores/search.html', {})
     
 
+@login_required
 def like_stores(request, store_pk):
     store = Store.objects.get(pk=store_pk)
     me = request.user
     if store.like_users.filter(pk=request.user.pk).exists():
         store.like_users.remove(request.user)
+        is_liked = False
     else:
         store.like_users.add(request.user)
-    return redirect('stores:detail', store_pk)
+        is_liked = True
+    context = {
+        'is_liked': is_liked,
+    }
+    return JsonResponse(context)
 
 
 def category(request, subject):
