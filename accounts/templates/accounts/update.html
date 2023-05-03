@@ -14,9 +14,10 @@
           <form action="{% url 'accounts:update' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-              <div class="container-fluid d-flex justify-content-center">
-                <input type="submit" class="btn btn-outline-primary"  role="button" value="정보수정">
-              </div>
+            <a href="{% url 'accounts:change_password' %}" class="btn-orange">비밀번호 변경</a>
+            <div class="container-fluid d-flex justify-content-center">
+              <input type="submit" class="btn btn-orange"  role="button" value="정보수정">
+            </div>
           </form>
           </li>
       </ul>

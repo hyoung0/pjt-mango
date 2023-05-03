@@ -24,8 +24,7 @@ def all_stores(request):
     paginator = Paginator(stores, per_page)
     page_obj = paginator.get_page(page)
     context = {
-        'stores': stores,
-        'page_obj': page_obj,
+        'stores': page_obj,
     }
     return render(request, 'stores/all_stores.html', context)
 
