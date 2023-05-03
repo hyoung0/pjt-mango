@@ -1,17 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>회원정보 수정</h1>
-  <form action="{% url 'accounts:update' %}" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit">
-  </form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="container-fluid d-flex justify-content-center">
+      <img src="https://d1.awsstatic.com/logos/customers/KO/logo_Mangoplate.12908c5b9952bc4f14bdc966e5e81b521415fc6a.png" style="width: 20rem;">
+    </div>
+    <div class="container d-flex justify-content-center mt-5">
+      <ul class="nav flex-column">
+          <li class="nav-item text-center">
+              <p class="fs-5 ms-3">회원정보 수정</p>
+          </li>
+          <li class="nav-item">
+          <form action="{% url 'accounts:update' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+              <div class="container-fluid d-flex justify-content-center">
+                <input type="submit" class="btn btn-outline-primary"  role="button" value="정보수정">
+              </div>
+          </form>
+          </li>
+      </ul>
+    </div>
+</div>
+
+
+{% endblock content %}

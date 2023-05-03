@@ -12,3 +12,5 @@ class User(AbstractUser):
                                     processors=[ResizeToFill(100,100)],
                                     format='JPEG',
                                     options={'quality': 80})
+    address = models.CharField(max_length=50, blank=True, null=True)
+    nickname = models.CharField(max_length=20)
