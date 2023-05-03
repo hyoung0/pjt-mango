@@ -1,10 +1,17 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
+from django import forms
 
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
+       
+        labels = {
+            'username': '사용자 id',
+            'address': '주소'
+        }
+        
         fields = (
             'username', 'password1', 'password2', 'nickname', 'email', 'address',
         )
@@ -18,6 +25,13 @@ class CustomUserCreationForm(UserCreationForm):
 class CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = get_user_model()
+
+        labels = {
+            'username': '사용자 id',
+            'address': '주소',
+            'image': '이미지',
+        }
+
         fields = (
             'nickname',
             'email',
