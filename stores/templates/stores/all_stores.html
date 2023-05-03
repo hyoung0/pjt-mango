@@ -13,15 +13,25 @@
   <section class="food-thumbnail-section border-bottom">
 
     <div class="all-likes">
-      <a href="#" class="text-dark">가고 싶다</a>
+      <form class="like-forms" data-store-id={{ store.pk }}>
+        {% csrf_token %}
+        <button id="like-{{ store.pk }}" class='bg-transparent border-0'>
+          {% if request.user in store.like_users.all %}
+          <i class="bi bi-star-fill text-orange fs-1"></i>
+          {% else %}
+          <i class="bi bi-star fs-1"></i>
+          {% endif %}
+          <p class=''>즐겨찾기</p>
+        </button>
+      </form>
     </div>
       
 
     <div class="d-flex m-0">
       <div class="food-thumbnail-block float-start">
         <a href="{% url 'stores:detail' store.pk %}" class="text-decoration-none">
-          {% if store.image %}
-          <img src="{{ store.image.url }}" alt="Thumbnail Food Image" class="food-thumbnail-img">
+          {% if store.thumbnail %}
+          <img src="{{ store.thumbnail.url }}" alt="Thumbnail Food Image" class="food-thumbnail-img">
           {% else %}
           <img src="{% static 'empty-food.jpg' %}" alt="Empty Food Image" class="food-thumbnail-img">
           {% endif %}
@@ -51,3 +61,43 @@
   {% endfor %}
 </main>
 {% endblock content %}
+
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  const forms = document.querySelectorAll('.like-forms')
+  const csrftoken = document.querySelector('.like-forms>[name=csrfmiddlewaretoken]').value
+
+  forms.forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      const storeId = event.target.dataset.storeId
+      
+      axios({
+        method: 'post',
+        url: `/stores/${storeId}/like-stores/`,
+        headers: {'X-CSRFToken': csrftoken,},
+      })
+      .then((response) => {
+        const isLiked = response.data.is_liked
+        const likeBtn = document.querySelector(`#like-${storeId}`)
+        const iTag = document.querySelector(`#like-${storeId}>i`)
+        
+        console.log(iTag)
+        if (isLiked) {
+          iTag.classList.replace('bi-star', 'bi-star-fill')
+          iTag.classList.add('text-orange')
+        } else {
+          iTag.classList.replace('bi-star-fill', 'bi-star')
+          iTag.classList.remove('text-orange')
+        }
+        console.log(iTag)
+      })
+      .catch((error) => {
+        console.log(error.response)
+      })
+      })
+    })
+</script>
+{% endblock script %}

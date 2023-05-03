@@ -16,14 +16,6 @@ class Review(models.Model):
 
     def rate_to_star(self):
         return '★' * self.rating
-
-    def reviews_image_path(instance, filename):
-        return f'reviews/{instance.user.username}/{filename}'
-
-    image = ProcessedImageField(upload_to=reviews_image_path, blank=True, null=True,
-                                processors=[ResizeToFill(100,100)],
-                                format='JPEG',
-                                options={'quality': 80})
     
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -44,6 +36,17 @@ class Review(models.Model):
         
     updated_at = models.DateField(auto_now=True)
 
+
+class ReviewImage(models.Model):
+    review = models.ForeignKey(Review, on_delete=models.CASCADE)
+
+    def review_image_path(instance, filename):
+        return f'reviews/{instance.review.user.username}/{filename}'
+
+    image = ProcessedImageField(upload_to=review_image_path, blank=True, null=True,
+                                processors=[ResizeToFill(100,100)],
+                                format='JPEG',
+                                options={'quality': 80})
 
 
 class Emote(models.Model):

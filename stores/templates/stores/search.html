@@ -1,35 +1,103 @@
-{% extends 'base.html' %}      
+{% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<div class="container mt-5">
-    {% if search %}
-    <main>
-    <div class="container">
-        <div class="container">
-            <h1 class="mt-5"> 검색하신 "{{ search }}" 맛집 정보입니다. </h1>
-        </div>
-        <div class="row mt-5">
-            {% for store in store %}
-            <div class="col">
-                {% if store.image %}
-                <div>   
-                        <a href="{% url 'stores:detail' store.pk %}">
-                        <img src="{{ store.image.url }}" alt="Thumbnail Image" style="width: 20rem;">
-                        </a>
-                        {% else %}
-                        <img src="" alt="No Image">
-                    {% endif %}
-                    <div>
-                        <a href="{% url 'stores:detail' store.pk %}">{{ store.name }}</a>
-                        <p>{{ store.address }} - {{ store.category }}</p>
-                    </div>
-                </div>
-            {% endfor %}
-            </div>       
-            {% else %}        
-            <h1> 찾고 있는 맛집 정보가 존재하지 않습니다. </h1>
-            {% endif %}
-        </div> 
+
+<header class="all-head bg-secondary-subtle text-center" style="height: 15rem;">
+  <p class="m-0">25&27s Plates</p>
+  <p class="text-body-tertiary fs-1">"{{ search }}" 맛집 정보</p>
+</header>
+
+<main class="container d-flex flex-column align-items-center">
+  {% for store in stores %}
+  <section class="food-thumbnail-section border-bottom">
+
+    <div class="all-likes">
+      <form class="like-forms" data-store-id={{ store.pk }}>
+        {% csrf_token %}
+        <button id="like-{{ store.pk }}" class='bg-transparent border-0'>
+          {% if request.user in store.like_users.all %}
+          <i class="bi bi-star-fill text-orange fs-1"></i>
+          {% else %}
+          <i class="bi bi-star fs-1"></i>
+          {% endif %}
+          <p class=''>즐겨찾기</p>
+        </button>
+      </form>
     </div>
-    </main>
-</div>
+      
+
+    <div class="d-flex m-0">
+      <div class="food-thumbnail-block float-start">
+        <a href="{% url 'stores:detail' store.pk %}" class="text-decoration-none">
+          {% if store.thumbnail %}
+          <img src="{{ store.thumbnail.url }}" alt="Thumbnail Food Image" class="food-thumbnail-img">
+          {% else %}
+          <img src="{% static 'empty-food.jpg' %}" alt="Empty Food Image" class="food-thumbnail-img">
+          {% endif %}
+        </a>
+      </div>
+      
+      
+      <div class="my-auto d-flex flex-column flex-fill ">
+        <p class="fs-1 m-0">
+          <a href="{% url 'stores:detail' store.pk %}" class="text-dark">{{ store.name }}</a>
+          <span class="text-orange">평균 평점이 들어갈곳{{ store.rating }}</span>
+        </p>
+        <p class="text-warning-emphasis fs-2 m-0">{{ store.category }}</p>
+        <p class="text-body-tertiary fs-2">
+          {% if store.address %}
+            {{ store.address }}
+          {% else %}
+            주소 미등록
+          {% endif %}
+        </p>
+        <a href="{% url 'stores:detail' store.pk %}" class="text-body-tertiary mt-3 align-self-end">{{ store.name }} 더보기 ></a>
+  
+      </div>
+    </div>
+
+  </section>
+  {% endfor %}
+</main>
 {% endblock content %}
+
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  const forms = document.querySelectorAll('.like-forms')
+  const csrftoken = document.querySelector('.like-forms>[name=csrfmiddlewaretoken]').value
+
+  forms.forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      const storeId = event.target.dataset.storeId
+      
+      axios({
+        method: 'post',
+        url: `/stores/${storeId}/like-stores/`,
+        headers: {'X-CSRFToken': csrftoken,},
+      })
+      .then((response) => {
+        const isLiked = response.data.is_liked
+        const likeBtn = document.querySelector(`#like-${storeId}`)
+        const iTag = document.querySelector(`#like-${storeId}>i`)
+        
+        console.log(iTag)
+        if (isLiked) {
+          iTag.classList.replace('bi-star', 'bi-star-fill')
+          iTag.classList.add('text-orange')
+        } else {
+          iTag.classList.replace('bi-star-fill', 'bi-star')
+          iTag.classList.remove('text-orange')
+        }
+        console.log(iTag)
+      })
+      .catch((error) => {
+        console.log(error.response)
+      })
+      })
+    })
+</script>
+{% endblock script %}

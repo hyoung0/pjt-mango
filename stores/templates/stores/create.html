@@ -13,7 +13,8 @@
   
     <form action="{% url 'stores:create' %}" method="post" class="ms-3 stores-create-input" enctype="multipart/form-data">
       {% csrf_token %}
-      {{ form.as_p }}
+      {{ store_form.as_p }}
+      {{ store_image_form.as_p }}
       <button type="submit" class="btn btn-primary fs-4 py-0">가게 등록</button>
     </form>
   </section>
