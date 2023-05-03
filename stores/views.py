@@ -141,11 +141,11 @@ def redirect_index(request):
 def search(request):
     if request.method == 'POST':
         search = request.POST['search']        
-        store = Store.objects.filter(name__contains=search)
-        store_address = Store.objects.filter(address__contains=search)
-        review = Review.objects.filter(content__contains=search)
+        store = Store.objects.filter(Q(address__contains=search)|Q(name__contains=search))
+        reviews = Review.objects.filter(content__contains=search)
         print(store)
-        return render(request, 'stores/search.html', {'search': search, 'store': store, 'store_address': store_address, 'review': review})
+        print(reviews)
+        return render(request, 'stores/search.html', {'search': search, 'store': store, 'reviews': reviews})
     else:
         return render(request, 'stores/search.html', {})
     
@@ -177,7 +177,7 @@ def category(request, subject):
 
 
 def review_average(request):
-    store = Store.objects.aggregate(store_avg=Avg(review)).get(pk=store_pk)
+    store = Store.objects.all().annotate(reviews_count = Count('review')).annotate(average_point = Avg('review'))
     context = {
         'store': store,
     }

@@ -37,7 +37,7 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col">
-                <p class="mt-4">{{ store.name }} {{store.rating_avg}}</p>
+                <p class="mt-4">{{ store.name }} {{item.store_avg}}</p>
               </div>
               <div class="col">
                 <div class="container-fluid d-flex justify-content-end">
@@ -98,15 +98,19 @@
                     <div class="container-fluid d-flex justify-content-between mt-3">
                       <div class="container-fluid d-flex align-items-center">
                         <div class="row">
-                          <div class="col">
-                            {% if review.user.image %}
-                              <img src="{{ review.user.image.url }}" alt="profile_img">
-                            {% endif %}
+                          <div class="col text-center">
+                            <a href="{% url 'accounts:profile' review.user %}">
+                              {% if review.user.image %}
+                                <img src="{{ review.user.image.url }}" class="rounded-circle" style="width: 50px;" alt="profile_img">
+                              {% else %}
+                                <img src="{% static 'profile_no_image.png' %}" class="rounded-circle" style="width: 50px;" alt="profile_no_image">
+                              {% endif %}
+                            </a>
                             <p class="align-middle">{{ review.user }}</p>
                           </div>
                           <div class="col">
                             <div class="container-fluid">
-                              <p>{{ review.created_at }}</p>
+                              <p>{{ review.created_string }}</p>
                             </div>
                             <div class="container-fluid">
                               <p>{{ review.content }}</p>
@@ -124,7 +128,7 @@
                         <div class="d-flex">
                           <form action="{% url 'reviews:emotes' review.pk 1 %}" method="POST">
                             {% csrf_token %}
-                            {% if review.like_exist %}
+                            {% if request.user.is_authenticated and review.like_exist %}
                               <button type="submit" class="border-0 bg-transparent">
                                 <i class="bi bi-hand-thumbs-up-fill"></i> {{ review.likes|length }}
                               </button>
@@ -136,7 +140,7 @@
                           </form>
                           <form action="{% url 'reviews:emotes' review.pk 2 %}" method="POST">
                             {% csrf_token %}
-                            {% if review.dislike_exist %}
+                            {% if request.user.is_authenticated and review.dislike_exist %}
                               <button type="submit" class="border-0 bg-transparent">
                                 <i class="bi bi-hand-thumbs-down-fill"></i> {{ review.dislikes|length }}
                               </button>
@@ -152,7 +156,7 @@
                         <div class="text-center">별점 : {{ review.rate_to_star }}</div>
                       </div>
                     </div>
-                    {% comment %} 리뷰 내용, 리뷰 이미지 {% endcomment %}
+                    {% comment %} 리뷰 수정, 삭제 버튼 {% endcomment %}
                     {% if request.user == review.user %}
                     <div class="d-flex justify-content-end">
                       <a href="{% url 'reviews:update' review.pk %}" class="btn btn-outline-primary mt-2" style="width: 3rem; height: 2rem;">수정</a>
