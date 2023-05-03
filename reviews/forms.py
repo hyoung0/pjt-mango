@@ -5,7 +5,7 @@ from .models import Review, ReviewImage
 class ReviewForm(forms.ModelForm):
     content = forms.CharField(
         label='리뷰 내용',
-        widget=forms.TextInput(
+        widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
             }

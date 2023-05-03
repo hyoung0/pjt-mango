@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def create(request, store_pk):
+    store = Store.objects.get(pk=store_pk)
     if request.method == 'POST':
         review_form = ReviewForm(request.POST)
         review_image_form = ReviewImageForm(request.POST, request.FILES)
@@ -27,7 +28,7 @@ def create(request, store_pk):
     context = {
         'review_form': review_form,
         'review_image_form': review_image_form,
-        'store_pk': store_pk,
+        'store': store,
     }
     return render(request, 'reviews/create.html', context)
 
@@ -37,14 +38,17 @@ def update(request, review_pk):
     review = Review.objects.get(pk=review_pk)
     if request.user == review.user:
         if request.method == 'POST':
-            form = ReviewForm(request.POST, request.FILES, instance=review)
-            if form.is_valid():
-                form.save()
+            review_form = ReviewForm(request.POST, instance=review)
+            review_image_form = ReviewImageForm(request.POST, request.FILES, instance=review)
+            if review_form.is_valid() and review_image_form.is_valid():
+                review_form.save()
                 return redirect('stores:detail', review.store.pk)
         else:
-            form = ReviewForm(instance=review)
+            review_form = ReviewForm(instance=review)
+            review_image_form = ReviewImageForm(instance=review)
         context = {
-            'form': form,
+            'review_form': review_form,
+            'review_image_form': review_image_form,
             'review': review,
         }
         return render(request, 'reviews/update.html', context)

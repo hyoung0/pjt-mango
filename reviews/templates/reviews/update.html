@@ -3,12 +3,17 @@
 {% block title %}25 & 27: 리뷰 수정{% endblock title %}
 
 {% block content %}
-<div>
-  <h2>리뷰 수정</h2>
-  <form action="{% url 'reviews:update' review.pk %}" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="저장">
-  </form>
+<h1 class="my-5 text-center fw-bold">리뷰 수정</h1>
+<div class="card mx-auto" style="width: 50rem; border-color: orange;">
+  <div class="card-body">
+    <form action="{% url 'reviews:update' review.pk %}" method="POST" class="reviews-input" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ review_form.as_p }}
+      {{ review_image_form.as_p }}
+      <div class="text-end">
+        <input type="submit" class="mt-5 btn fs-3" style="background-color: orange; width: 100px;" value="저장">
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock content %}
