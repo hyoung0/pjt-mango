@@ -19,6 +19,8 @@ class Store(models.Model):
     open_hours = models.TimeField(blank=True, null=True)
     closing_hours = models.TimeField(blank=True, null=True)
 
+    hits = models.PositiveIntegerField(default=0)
+
     def store_image_path(instance, filename):
         return f'stores/{instance.name}/{filename}'
     
@@ -31,6 +33,11 @@ class Store(models.Model):
 
     def __str__(self):
         return self.name 
+
+    @property
+    def update_counter(self):
+        self.hits = self.hits + 1
+        self.save()
     
     
 class Menu(models.Model):

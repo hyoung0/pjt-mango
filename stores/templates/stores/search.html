@@ -68,7 +68,7 @@
     {% for review in reviews %}
         {{ review.content }}
         {{ review.rating }}
-        {{ review.store.name }}
+        <a href="{% url 'stores:detail' review.store.pk %}">{{ review.store.name }}</a>
     {% endfor %}
 
 

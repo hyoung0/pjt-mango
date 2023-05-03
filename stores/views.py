@@ -4,8 +4,10 @@ from .forms import StoreForm, StoreImageForm
 from django.db.models import Prefetch, Count, Q, Avg
 from reviews.models import Review, Emote
 import requests, json
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from accounts.models import User
+from datetime import date, datetime, timedelta
 
 # Create your views here.
 def index(request):
@@ -22,6 +24,11 @@ def all_stores(request):
         'stores': stores,
     }
     return render(request, 'stores/all_stores.html', context)
+
+
+def review_average(store_pk):
+    rating_avg = Store.objects.annotate(store_avg = Avg('review__rating')).get(pk=store_pk)
+    return rating_avg.store_avg
 
 
 def get_location(address: str):
@@ -68,9 +75,12 @@ def create(request):
     return render(request, 'stores/create.html', context)
 
 
-def detail(request, store_pk: int):
+def detail(request, store_pk: int, no=0):
     store = Store.objects.get(pk=store_pk)
+    store_avg = review_average(store_pk)
     store_images = StoreImage.objects.filter(store=store)
+
+
     if request.user.is_authenticated:
         reviews = Review.objects.filter(store=store).prefetch_related(
             Prefetch('emote_set', queryset=Emote.objects.filter(emotion=1), to_attr='likes'),
@@ -87,6 +97,7 @@ def detail(request, store_pk: int):
         'store':store,
         'store_images': store_images,
         'reviews': reviews,
+        'store_avg': store_avg,
     }
     return render(request, 'stores/detail.html', context)
 
@@ -176,9 +187,3 @@ def category(request, subject):
     return render(request, 'stores/category.html', context)
 
 
-def review_average(request):
-    store = Store.objects.all().annotate(reviews_count = Count('review')).annotate(average_point = Avg('review'))
-    context = {
-        'store': store,
-    }
-    return render(request, 'stores/detail.html', context)

@@ -37,7 +37,7 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col">
-                <p class="mt-4">{{ store.name }} {{item.store_avg}}</p>
+                <p class="mt-4">{{ store.name }} {{ store_avg }}</p>
               </div>
               <div class="col">
                 <div class="container-fluid d-flex justify-content-end">
@@ -71,7 +71,8 @@
               </div>
             </div>
           </div>
-          <span>조회수, 리뷰수, 즐겨찾기 수</span>
+          <p>조회수 {{ store.hits }}</p>
+          <span>즐겨찾기 수</span>
           <hr>
           <p>{{ store.address }}</p>
           <p>{{ store.phonenumber }}</p>
@@ -184,6 +185,7 @@
       </div>
     </div>
   </div>
+  <div style="display: none;">{{ store.update_counter }}</div>
   
 
   </div>
