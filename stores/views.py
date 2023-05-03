@@ -6,6 +6,7 @@ from reviews.models import Review, Emote
 import requests, json
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
@@ -18,8 +19,13 @@ def index(request):
 
 def all_stores(request):
     stores = Store.objects.all()
+    page = request.GET.get('page', '1')
+    per_page = 5
+    paginator = Paginator(stores, per_page)
+    page_obj = paginator.get_page(page)
     context = {
         'stores': stores,
+        'page_obj': page_obj,
     }
     return render(request, 'stores/all_stores.html', context)
 
@@ -182,3 +188,4 @@ def review_average(request):
         'store': store,
     }
     return render(request, 'stores/detail.html', context)
+
