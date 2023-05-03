@@ -10,7 +10,7 @@ urlpatterns = [
     path('<int:store_pk>/delete/', views.delete, name='delete'),
     path('<int:store_pk>/update/', views.update, name='update'),
     path('search/', views.search, name='search'),
-    path('<int:store_pk>/like_stores/', views.like_stores, name='like_stores'),
+    path('<int:store_pk>/like-stores/', views.like_stores, name='like_stores'),
     path('category/<str:subject>/', views.category, name='category'),
     path('all/', views.all_stores, name='all_stores'),
 ]
