@@ -4,6 +4,8 @@ from .forms import StoreForm, StoreImageForm
 from django.db.models import Prefetch, Count, Q
 from reviews.models import Review, Emote
 import requests, json
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -139,29 +141,34 @@ def redirect_index(request):
 def search(request):
     if request.method == 'POST':
         search = request.POST['search']        
-        store = Store.objects.filter(name__contains=search)
-        print(store)
-        return render(request, 'stores/search.html', {'search': search, 'store': store})
+        stores = Store.objects.filter(name__contains=search)
+        return render(request, 'stores/search.html', {'search': search, 'stores': stores})
     else:
         return render(request, 'stores/search.html', {})
     
 
+@login_required
 def like_stores(request, store_pk):
     store = Store.objects.get(pk=store_pk)
     me = request.user
     if store.like_users.filter(pk=request.user.pk).exists():
         store.like_users.remove(request.user)
+        is_liked = False
     else:
         store.like_users.add(request.user)
-    return redirect('stores:detail', store_pk)
+        is_liked = True
+    context = {
+        'is_liked': is_liked,
+    }
+    return JsonResponse(context)
 
 
 def category(request, subject):
     subject = subject
-    store = Store.objects.filter(category=subject).order_by('-pk')
+    stores = Store.objects.filter(category=subject).order_by('-pk')
     context = {
         'subject': subject,
-        'store': store,
+        'stores': stores,
     }
     return render(request, 'stores/category.html', context)
 
