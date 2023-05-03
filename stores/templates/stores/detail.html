@@ -307,7 +307,7 @@
         const iTag = document.querySelector(`#review-like-${ reviewId }>i`)
         const cntSpanTag = document.querySelector(`#review-like-${ reviewId }>span`)
 
-        if (isAlert) {
+        if (isAlert || isChecked === undefined) {
 
         } else if (isChecked) {
           iTag.classList.replace('bi-hand-thumbs-up', 'bi-hand-thumbs-up-fill')
@@ -339,8 +339,10 @@
         const iTag = document.querySelector(`#review-dislike-${ reviewId }>i`)
         const cntSpanTag = document.querySelector(`#review-dislike-${ reviewId }>span`)
 
-        if (isAlert) {
+        console.log(emoteCnt)
 
+        if (isAlert || isChecked === undefined) {
+          // 경고창
         } else if (isChecked) {
           iTag.classList.replace('bi-hand-thumbs-down', 'bi-hand-thumbs-down-fill')
           cntSpanTag.textContent = emoteCnt
