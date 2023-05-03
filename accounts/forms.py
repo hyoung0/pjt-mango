@@ -10,8 +10,8 @@ class CustomUserCreationForm(UserCreationForm):
         labels = {
             'username': '사용자 id',
             'address': '주소'
-        }
-        
+        },
+
         fields = (
             'username', 'password1', 'password2', 'nickname', 'email', 'address',
         )
@@ -32,6 +32,9 @@ class CustomUserChangeForm(UserChangeForm):
             'image': '이미지',
         }
 
+        # widgets = {
+        #     'nickname': forms.CharField(attrs={'class': 'mx-auto'}),
+        # }
         fields = (
             'nickname',
             'email',
