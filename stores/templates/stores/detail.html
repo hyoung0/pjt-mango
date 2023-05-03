@@ -6,7 +6,7 @@
 
 {% block content %}
 <header>
-  <div id="carouselExample" class="carousel slide" style="height: 350px;">
+  <div id="reviewImage" class="carousel slide" style="height: 350px;">
     <div class="carousel-inner">
       <div class="carousel-item active">
         {% if store.thumbnail %}
@@ -21,11 +21,11 @@
         </div>
       {% endfor %}
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#reviewImage" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#reviewImage" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
@@ -106,26 +106,53 @@
             <div class="container-fluid">
                 {% for review in reviews %}
                   <div>
-                    {% comment %} 프로필, 작성일, 평점, 좋아요/싫어요 {% endcomment %}
+                    {% comment %} 프로필, 작성일, 리뷰 내용, 이미지 {% endcomment %}
                     <div class="container-fluid d-flex justify-content-between mt-3">
                       <div class="container-fluid d-flex align-items-center">
                         <div class="row">
                           <div class="col">
                             {% if review.user.image %}
                               <img src="{{ review.user.image.url }}" alt="profile_img">
+                            {% else %}
+                              <img src="{% static 'profile_no_image.png' %}" alt="profile_no_img">
                             {% endif %}
                             <p class="align-middle">{{ review.user }}</p>
                           </div>
                           <div class="col">
                             <div class="container-fluid">
-                              <p>{{ review.created_at }}</p>
+                              <p>{{ review.created_string }}</p>
                             </div>
                             <div class="container-fluid">
                               <p>{{ review.content }}</p>
                               <div class="d-flex">
-                                {% for review_image in review.reviewimage_set.all %}
-                                  <img src="{{ review_image.image.url }}" class="me-2" alt="review img">
-                                {% endfor %}
+                                {% if review.reviewimage_set.all|length > 5 %}
+                                  {% for review_image in review.reviewimage_set.all|slice:":5" %}
+                                    <img src="{{ review_image.image.url }}" class="me-2" alt="review img">
+                                  {% endfor %}
+                                  <!-- Button trigger modal -->
+                                  <button type="button" class="border-0 text-bg-secondary" style="width: 100px;" data-bs-toggle="modal" data-bs-target="#plusModal">
+                                    +더보기
+                                  </button>
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="plusModal" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                          {% for review_image in review.reviewimage_set.all %}
+                                            <img src="{{ review_image.image.url }}" class="mb-2 w-100"alt="review img">
+                                          {% endfor %}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                {% else %}
+                                  {% for review_image in review.reviewimage_set.all %}
+                                    <img src="{{ review_image.image.url }}" class="me-2" alt="review img">
+                                  {% endfor %}
+                                {% endif %}
                               </div>
                             </div>
                           </div>
@@ -164,7 +191,7 @@
                         <div class="text-center">별점 : {{ review.rate_to_star }}</div>
                       </div>
                     </div>
-                    {% comment %} 리뷰 내용, 리뷰 이미지 {% endcomment %}
+                    {% comment %} 리뷰 수정, 삭제 버튼 {% endcomment %}
                     {% if request.user == review.user %}
                     <div class="d-flex justify-content-end">
                       <a href="{% url 'reviews:update' review.pk %}" class="btn btn-outline-primary mt-2" style="width: 3rem; height: 2rem;">수정</a>
