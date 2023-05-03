@@ -1,4 +1,5 @@
-{% extends 'base.html' %}      
+{% extends 'base.html' %}     
+{% load static %} 
 {% block content %}
 <div class="container mt-5">
     {% if search %}
@@ -10,13 +11,13 @@
         <div class="row mt-5">
             {% for store in store %}
             <div class="col">
-                {% if store.image %}
+                {% if store.thumbnail %}
                 <div>   
                         <a href="{% url 'stores:detail' store.pk %}">
-                        <img src="{{ store.image.url }}" alt="Thumbnail Image" style="width: 20rem;">
+                        <img src="{{ store.thumbnail.url }}" alt="Thumbnail Image" style="width: 20rem;">
                         </a>
                         {% else %}
-                        <img src="" alt="No Image">
+                        <img src="{% static 'empty-food.jpg' %}" alt="No Image">
                     {% endif %}
                     <div>
                         <a href="{% url 'stores:detail' store.pk %}">{{ store.name }}</a>

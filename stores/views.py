@@ -55,7 +55,7 @@ def create(request):
             for file in files:
                 StoreImage.objects.create(store=store, image=file)
 
-            return redirect('stores:index')
+            return redirect('stores:detail', store.pk)
     else:
         store_form = StoreForm()
         store_image_form = StoreImageForm()
@@ -103,21 +103,30 @@ def update(request, store_pk: int):
         return redirect('stores:index')
     
     store = Store.objects.get(pk=store_pk)
-    if request.method == 'GET':
-        form = StoreForm(instance=store)
-    else:
-        form = StoreForm(data=request.POST, files=request.FILES, instance=store)
-        if form.is_valid():
-            store = form.save(commit=False)
+    store_image = StoreImage.objects.filter(store=store)
+    if request.method == 'POST':
+        store_form = StoreForm(data=request.POST, files=request.FILES, instance=store)
+        store_image_form = StoreImageForm(data=request.POST, files=request.FILES)
+        files = request.FILES.getlist('image')
+        if store_form.is_valid() and store_image_form.is_valid():
+            store = store_form.save(commit=False)
             if store.address:
                 pos = get_location(store.address)
                 store.latitude = pos.get('lat')
                 store.longitude = pos.get('lng')
-            form.save()
-            return redirect('stores:index')
-    
+            store.save()
+
+            for file in files:
+                StoreImage.objects.create(store=store, image=file)
+
+            return redirect('stores:detail', store.pk)
+    else:
+        store_form = StoreForm(instance=store)
+        store_image_form = StoreImageForm()
+
     context = {
-        'form': form,
+        'store_form': store_form,
+        'store_image_form': store_image_form,
         'store': store,
     }
     return render(request, 'stores/update.html', context)

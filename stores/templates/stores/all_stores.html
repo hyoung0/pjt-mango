@@ -20,8 +20,8 @@
     <div class="d-flex m-0">
       <div class="food-thumbnail-block float-start">
         <a href="{% url 'stores:detail' store.pk %}" class="text-decoration-none">
-          {% if store.image %}
-          <img src="{{ store.image.url }}" alt="Thumbnail Food Image" class="food-thumbnail-img">
+          {% if store.thumbnail %}
+          <img src="{{ store.thumbnail.url }}" alt="Thumbnail Food Image" class="food-thumbnail-img">
           {% else %}
           <img src="{% static 'empty-food.jpg' %}" alt="Empty Food Image" class="food-thumbnail-img">
           {% endif %}

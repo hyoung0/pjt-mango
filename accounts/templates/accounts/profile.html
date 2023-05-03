@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
   {% load static %}
@@ -90,14 +90,18 @@
     <div class="col mt-5">
       <div class="container-fluid d-flex">
         <div class="card" style="width: 27rem;">
-          <img src="#" class="card-img-top" alt="...">
+          {% if store.thumbnail %}
+          <img src="{{ store.thumbnail.url }}" class="card-img-top" alt="...">
+          {% else %}
+          <img src="{% static 'empty-food.jpg' %}" alt="" class="">
+          {% endif %}
           <div class="card-body">
             <h1 class="card-title text-center">{{ store.name }}</h1>
             <p class="card-text text-center">{{ store.address }}</p>
             <p class="card-text text-center">{{store.rating_avg}}</p>
             <p class="card-text text-center">{{ store.content }}</p>
             <div class="container-fluid d-flex justify-content-end">
-              <a href="#" class="btn btn-primary">해당 가게 보기</a>
+              <a href="{% url 'stores:detail' store.pk %}" class="btn btn-primary">해당 가게 보기</a>
             </div>
           </div>
         </div>

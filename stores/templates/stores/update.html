@@ -9,9 +9,10 @@
   <section class="container-fluid my-3">
     <h1 class="fw-bold ms-3">가게 정보 수정</h1>
   
-    <form action="{% url 'stores:create' %}" method="post" class="ms-3 stores-create-input" enctype="multipart/form-data">
+    <form action="{% url 'stores:update' store.pk %}" method="post" class="ms-3 stores-create-input" enctype="multipart/form-data">
       {% csrf_token %}
-      {{ form.as_p }}
+      {{ store_form.as_p }}
+      {{ store_image_form.as_p }}
       <button type="submit" class="btn btn-primary fs-4 py-0">정보 수정</button>
     </form>
   </section>

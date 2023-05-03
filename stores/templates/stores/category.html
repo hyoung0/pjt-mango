@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <div class="container-fluid d-flex flex-column mb-3">
     <h4> {{ subject }} 게시글 목록</h4>
@@ -9,12 +9,12 @@
     <div class="container">
         {% comment %}
         기존 코드
-        <a href="{% url 'stores:detail' store.pk %}">{{ store.image.url }}</a>
+        <a href="{% url 'stores:detail' store.pk %}">{{ store.thumbnail.url }}</a>
         {% endcomment %}
-        {% if store.image %}
-        <img src="{{ store.image.url }}" alt="Thumbnail Image">
+        {% if store.thumbnail %}
+        <img src="{{ store.thumbnail.url }}" alt="Thumbnail Image">
         {% else %}
-        <img src="" alt="No Image">
+        <img src="{% static 'empty-food.jpg' %}" alt="No Image">
         {% endif %}
         <p>{{ store.name }}</p>
         <p>{{ store.address }} - {{ store.category }}</p>
@@ -28,10 +28,10 @@
 <div class="container">
     {% comment %}
     기존 코드
-    <a href="{% url 'stores:detail' store.pk %}">{{ store.image.url }}</a>
+    <a href="{% url 'stores:detail' store.pk %}">{{ store.thumbnail.url }}</a>
     {% endcomment %}
-    {% if store.image %}
-    <img src="{{ store.image.url }}" alt="Thumbnail Image">
+    {% if store.thumbnail %}
+    <img src="{{ store.thumbnail.url }}" alt="Thumbnail Image">
     {% else %}
     <img src="" alt="No Image">
     {% endif %}

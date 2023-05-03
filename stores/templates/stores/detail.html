@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block title %} 25 & 27s {% endblock title %}
 
@@ -9,7 +9,11 @@
   <div id="carouselExample" class="carousel slide" style="height: 350px;">
     <div class="carousel-inner">
       <div class="carousel-item active">
+        {% if store.thumbnail %}
         <img src="{{ store.thumbnail.url }}" class="d-block mx-auto" alt="thumbnail" style="height: 350px;">
+        {% else %}
+        <img src="{% static 'empty-food.jpg' %}" alt="" class="d-block mx-auto" style="height: 350px;">
+        {% endif %}
       </div>
       {% for store_image in store_images %}
         <div class="carousel-item">
