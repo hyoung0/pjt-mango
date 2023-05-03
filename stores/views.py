@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Store, StoreImage
 from .forms import StoreForm, StoreImageForm
-from django.db.models import Prefetch, Count, Q
+from django.db.models import Prefetch, Count, Q, Avg
 from reviews.models import Review, Emote
 import requests, json
 from django.http import JsonResponse
@@ -141,8 +141,11 @@ def redirect_index(request):
 def search(request):
     if request.method == 'POST':
         search = request.POST['search']        
-        stores = Store.objects.filter(name__contains=search)
-        return render(request, 'stores/search.html', {'search': search, 'stores': stores})
+        store = Store.objects.filter(name__contains=search)
+        store_address = Store.objects.filter(address__contains=search)
+        review = Review.objects.filter(content__contains=search)
+        print(store)
+        return render(request, 'stores/search.html', {'search': search, 'store': store, 'store_address': store_address, 'review': review})
     else:
         return render(request, 'stores/search.html', {})
     
@@ -172,3 +175,10 @@ def category(request, subject):
     }
     return render(request, 'stores/category.html', context)
 
+
+def review_average(request):
+    store = Store.objects.aggregate(store_avg=Avg(review)).get(pk=store_pk)
+    context = {
+        'store': store,
+    }
+    return render(request, 'stores/detail.html', context)
