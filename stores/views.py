@@ -34,7 +34,7 @@ def all_stores(request):
 
 def review_average(store_pk):
     rating_avg = Store.objects.annotate(store_avg = Avg('review__rating')).get(pk=store_pk)
-    return rating_avg.store_avg
+    return round(rating_avg.store_avg,1)
 
 
 def get_location(address: str):
@@ -86,7 +86,6 @@ def detail(request, store_pk: int, no=0):
     store_avg = review_average(store_pk)
     store_images = StoreImage.objects.filter(store=store)
 
-
     if request.user.is_authenticated:
         reviews = Review.objects.filter(store=store).prefetch_related(
             Prefetch('emote_set', queryset=Emote.objects.filter(emotion=1), to_attr='likes'),
@@ -99,13 +98,20 @@ def detail(request, store_pk: int, no=0):
             Prefetch('emote_set', queryset=Emote.objects.filter(emotion=1), to_attr='likes'),
             Prefetch('emote_set', queryset=Emote.objects.filter(emotion=2), to_attr='dislikes'),
         )
+
+    page = request.GET.get('page', '1')
+    per_page = 5
+    paginator = Paginator(reviews, per_page)
+    page_obj = paginator.get_page(page)
     context = {
         'store':store,
         'store_images': store_images,
         'reviews': reviews,
         'store_avg': store_avg,
+        'page_obj': page_obj,
     }
     return render(request, 'stores/detail.html', context)
+
 
 
 def delete(request, store_pk: int):
