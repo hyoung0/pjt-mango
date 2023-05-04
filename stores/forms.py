@@ -40,18 +40,18 @@ class StoreForm(forms.ModelForm):
         }
         
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control w-50'}),
+            'name': forms.TextInput(attrs={'class': 'form-control w-75'}),
             'phone_number': forms.TextInput(
                 attrs={
                     'type': 'tel', 
                     'pattern': '[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}',
-                    'class': 'form-control w-50',
+                    'class': 'form-control w-75',
                     }),
             'info': forms.Textarea(attrs={'class': 'form-control w-75', 'rows': '5'}),
-            'address': forms.TextInput(attrs={'class': 'form-control'}),
+            'address': forms.TextInput(attrs={'class': 'form-control w-75'}),
             'open_hours': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control w-25'}),
             'closing_hours': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control w-25'}),
-            'thumbnail': forms.ClearableFileInput(attrs={'class': 'form-control w-75'}),
+            'thumbnail': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
 
 
@@ -60,7 +60,7 @@ class StoreImageForm(forms.ModelForm):
         label='가게 이미지 업로드',
         widget=forms.ClearableFileInput(
             attrs={
-                'class': 'form-control',
+                'class': 'form-control mb-5',
                 'multiple': True,
             },
         ),

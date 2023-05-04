@@ -22,52 +22,134 @@
         </div>
     </header>
     <main>
-        <div class="container-fluid">
+        <div class="container">
             <div class="container">
-                <h1 class="mt-5 ms-5">카테고리 별 맛집 리스트</h1>
+                <h1 class="mt-5 ms-5 mb-5 text-center">카테고리 별 맛집 리스트</h1>
             </div>
             <div id="carouselExampleDark" class="carousel carousel-dark slide">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner mt-3 ms-5">
+                <div class="carousel-inner">
+                    <div class="container-lg">
                     <div class="carousel-item active">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="container">
-                                        <p>프랑스 음식</p>
-                                        <a href="{% url 'stores:category' '프랑스 음식' %}">
-                                            <img src="https://www.obonparis.com/uploads/pharma%20star-13.jpg" style="width: 30rem; height: 18rem;">
-                                        </a>
+                            <div class="row d-flex justify-content-center mb-2">
+                                <div class="col-sm-4">
+                                    <div class="container d-flex justify-content-center">
+                                        <div class="row">
+                                            <div class="container d-flex justify-content-center">
+                                                <p>프랑스 음식</p>
+                                            </div>
+                                            <div class="container d-flex justify-content-center">
+                                            <a href="{% url 'stores:category' '프랑스 음식' %}">
+                                                <img src="https://www.obonparis.com/uploads/pharma%20star-13.jpg" style="width: 15rem; height: 10rem;">
+                                            </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="container">
-                                        <p>브런치 버거 샌드</p>
-                                        <a href="{% url 'stores:category' '브런치 버거 샌드' %}">
-                                            <img src="https://www.subway.co.kr/upload/menu/Italian_B.M.T_20211231094910899.png" style="width: 30rem; height: 18rem;">
-                                        </a>
+                                <div class="col-sm-4">
+                                    <div class="container d-flex justify-content-center">
+                                        <div class="row">
+                                            <div class="container d-flex justify-content-center">
+                                                <p>브런치 버거 샌드</p>
+                                            </div>
+                                            <div class="container d-flex justify-content-center">
+                                                <a href="{% url 'stores:category' '브런치 버거 샌드' %}">
+                                                    <img src="https://www.subway.co.kr/upload/menu/Italian_B.M.T_20211231094910899.png" style="width: 15rem; height: 10rem;">
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
-                                <div class="col">
-                                    <div class="container">
-                                        <p>이탈리안</p>
-                                        <a href="{% url 'stores:category' '이탈리안' %}">
-                                            <img src="https://t1.daumcdn.net/cfile/tistory/996E1D345B3F78B107" style="width: 30rem; height: 18rem;">
-                                        </a>
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-sm-4">
+                                    <div class="container d-flex justify-content-center">
+                                        <div class="row">
+                                            <div class="container d-flex justify-content-center">
+                                                <p>이탈리안</p>
+                                            </div>
+                                            <div class="container d-flex justify-content-center">
+                                                <a href="{% url 'stores:category' '이탈리안' %}">
+                                                    <img src="https://t1.daumcdn.net/cfile/tistory/996E1D345B3F78B107" style="width: 15rem; height: 10rem;">
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="container">
-                                        <p>패스트 푸드</p>
-                                        <a href="{% url 'stores:category' '패스트 푸드' %}">
-                                            <img src="https://cdn.dominos.co.kr/admin/upload/goods/20200311_x8StB1t3.jpg" style="width: 30rem; height: 18rem;">
-                                        </a>
+                                <div class="col-sm-4">
+                                    <div class="container d-flex justify-content-center">
+                                        <div class="row">
+                                            <div class="container d-flex justify-content-center">
+                                                <p>패스트 푸드</p>
+                                            </div>
+                                            <div class="container d-flex justify-content-center">
+                                                <a href="{% url 'stores:category' '패스트 푸드' %}">
+                                                    <img src="https://cdn.dominos.co.kr/admin/upload/goods/20200311_x8StB1t3.jpg" style="width: 15rem; height: 10rem;">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="row d-flex justify-content-center mb-2">
+                                <div class="col-sm-4">
+                                    <div class="container d-flex justify-content-center">
+                                        <div class="row">
+                                            <div class="container d-flex justify-content-center">
+                                                <p>퓨전 한식</p>
+                                            </div>
+                                            <div class="container d-flex justify-content-center">
+                                                <a href="{% url 'stores:category' '퓨전 한식' %}">
+                                                    <img src="https://mp-seoul-image-production-s3.mangoplate.com/777663_1605882982842227.jpg?fit=around|512:512&crop=512:512;*,*&output-format=jpg&output-quality=80" style="width: 15rem; height: 10rem;">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="container d-flex justify-content-center">
+                                        <div class="row">
+                                            <div class="container d-flex justify-content-center">
+                                                <p>탕 찌개 전골</p>
+                                            </div>
+                                            <div class="container d-flex justify-content-center">
+                                                <a href="{% url 'stores:category' '탕 찌개 전골' %}">
+                                                    <img src="https://cdn-pro-web-40-6.cdn-nhncommerce.com/appacompany_godomall_com/data/goods/19/11/46//1000000819/1000000819_detail_184.jpg" style="width: 15rem; height: 10rem;">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-sm-4">
+                                    <div class="container d-flex justify-content-center">
+                                        <div class="row">
+                                            <div class="container d-flex justify-content-center">
+                                                <p>해산물</p>
+                                            </div>
+                                            <div class="container d-flex justify-content-center">
+                                                <a href="{% url 'stores:category' '해산물' %}">
+                                                    <img src="https://recipe1.ezmember.co.kr/cache/recipe/2022/05/17/44bb6609cd2302ff3847bfb9e75a79a61.jpg" style="width: 15rem; height: 10rem;">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="container d-flex justify-content-center">
+                                        <div class="row">
+                                            <div class="container d-flex justify-content-center">
+                                                <p>국수 면 요리</p>
+                                            </div>
+                                            <div class="container d-flex justify-content-center">
+                                                <a href="{% url 'stores:category' '국수 면 요리' %}">
+                                                    <img src="https://t1.daumcdn.net/cfile/tistory/193617254C40DBBF47" style="width: 15rem; height: 10rem;">
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -75,83 +157,68 @@
                     </div>
                     <div class="carousel-item">
                         <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="container">
-                                        <p>퓨전 한식</p>
-                                        <a href="{% url 'stores:category' '퓨전 한식' %}">
-                                            <img src="https://mp-seoul-image-production-s3.mangoplate.com/777663_1605882982842227.jpg?fit=around|512:512&crop=512:512;*,*&output-format=jpg&output-quality=80" style="width: 30rem; height: 18rem;">
-                                        </a>
+                            <div class="row d-flex justify-content-center mb-2">
+                                <div class="col-sm-4">
+                                    <div class="container d-flex justify-content-center">
+                                        <div class="row">
+                                            <div class="container d-flex justify-content-center">
+                                                <p>닭 오리 요리</p>
+                                            </div>
+                                            <div class="container d-flex justify-content-center">
+                                                <a href="{% url 'stores:category' '닭 오리 요리' %}">
+                                                    <img src="https://t1.daumcdn.net/cfile/blog/130B514B4E9623B023" style="width: 15rem; height: 10rem;">
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="container">
-                                        <p>탕 찌개 전골</p>
-                                        <a href="{% url 'stores:category' '탕 찌개 전골' %}">
-                                            <img src="https://cdn-pro-web-40-6.cdn-nhncommerce.com/appacompany_godomall_com/data/goods/19/11/46//1000000819/1000000819_detail_184.jpg" style="width: 30rem; height: 18rem;">
-                                        </a>
+                                <div class="col-sm-4">
+                                    <div class="container d-flex justify-content-center">
+                                        <div class="row">
+                                            <div class="container d-flex justify-content-center">
+                                                <p>일식</p>
+                                            </div>
+                                            <div class="container d-flex justify-content-center">
+                                                <a href="{% url 'stores:category' '일식' %}">
+                                                    <img src="https://premierhotel-group.com/korean/discover/cuisine/img/slider-sp01.jpg" style="width: 15rem; height: 10rem;">
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
-                                <div class="col">
-                                    <div class="container">
-                                        <p>해산물</p>
-                                        <a href="{% url 'stores:category' '해산물' %}">
-                                            <img src="https://recipe1.ezmember.co.kr/cache/recipe/2022/05/17/44bb6609cd2302ff3847bfb9e75a79a61.jpg" style="width: 30rem; height: 18rem;">
-                                        </a>
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-sm-4">
+                                    <div class="container d-flex justify-content-center">
+                                        <div class="row">
+                                            <div class="container d-flex justify-content-center">
+                                                <p>소고기</p>
+                                            </div>
+                                            <div class="container d-flex justify-content-center">
+                                                <a href="{% url 'stores:category' '소고기' %}">
+                                                    <img src="https://cdn.ihanwoo.kr/news/photo/201903/463_850_721.jpg" style="width: 15rem; height: 10rem;">
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="container">
-                                        <p>국수 면 요리</p>
-                                        <a href="{% url 'stores:category' '국수 면 요리' %}">
-                                            <img src="https://t1.daumcdn.net/cfile/tistory/193617254C40DBBF47" style="width: 30rem; height: 18rem;">
-                                        </a>
+                                <div class="col-sm-4">
+                                    <div class="container d-flex justify-content-center">
+                                        <div class="row">
+                                            <div class="container d-flex justify-content-center">
+                                                <p>카페 디저트</p>
+                                            </div>
+                                            <div class="container d-flex justify-content-center">
+                                                <a href="{% url 'stores:category' '카페 디저트' %}">
+                                                    <img src="https://static.wixstatic.com/media/b64393_9dccb35b6a134791ba023ffe4843a187~mv2.jpg/v1/fill/w_640,h_686,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/b64393_9dccb35b6a134791ba023ffe4843a187~mv2.jpg" style="width: 15rem; height: 10rem;">
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="container">
-                                        <p>닭 오리 요리</p>
-                                        <a href="{% url 'stores:category' '닭 오리 요리' %}">
-                                            <img src="https://t1.daumcdn.net/cfile/blog/130B514B4E9623B023" style="width: 30rem; height: 18rem;">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="container">
-                                        <p>일식</p>
-                                        <a href="{% url 'stores:category' '일식' %}">
-                                            <img src="https://premierhotel-group.com/korean/discover/cuisine/img/slider-sp01.jpg" style="width: 30rem; height: 18rem;">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col">
-                                    <div class="container">
-                                        <p>소고기</p>
-                                        <a href="{% url 'stores:category' '소고기' %}">
-                                            <img src="https://cdn.ihanwoo.kr/news/photo/201903/463_850_721.jpg" style="width: 30rem; height: 18rem;">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="container">
-                                        <p>카페 디저트</p>
-                                        <a href="{% url 'stores:category' '카페 디저트' %}">
-                                            <img src="https://static.wixstatic.com/media/b64393_9dccb35b6a134791ba023ffe4843a187~mv2.jpg/v1/fill/w_640,h_686,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/b64393_9dccb35b6a134791ba023ffe4843a187~mv2.jpg" style="width: 30rem; height: 18rem;">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
@@ -162,9 +229,16 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
-            </div>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+            </div>       
         </div>
+  
         <hr class="mt-5">
+
         <div class="container-fluid">
             <div class="container">
                 <h1 class="mt-5">에디터 이정일 선정 맛집 리스트</h1>
