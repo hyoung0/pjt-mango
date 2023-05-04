@@ -11,7 +11,7 @@
               <p class="fs-5 ms-3">간단한 회원가입</p>
           </li>
           <li class="nav-item">
-          <form action="{% url 'accounts:signup' %}" method="POST" class="nav-link" enctype = 'multipart/form-data'>
+          <form action="{% url 'accounts:signup' %}" method="POST" class="nav-link"  enctype = 'multipart/form-data'>
               {% csrf_token %}
               {{ form.as_p }}       
               <div class="container-fluid d-flex justify-content-center">

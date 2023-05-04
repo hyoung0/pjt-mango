@@ -23,6 +23,7 @@ class CustomUserCreationForm(UserCreationForm):
             self.fields[fieldname].help_text = None
 
 class CustomUserChangeForm(UserChangeForm):
+    password = None
     class Meta(UserChangeForm.Meta):
         model = get_user_model()
 
@@ -32,9 +33,7 @@ class CustomUserChangeForm(UserChangeForm):
             'image': '이미지',
         }
 
-        # widgets = {
-        #     'nickname': forms.CharField(attrs={'class': 'mx-auto'}),
-        # }
+
         fields = (
             'nickname',
             'email',
