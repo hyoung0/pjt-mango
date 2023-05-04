@@ -88,12 +88,6 @@ def change_password(request):
     return render(request, 'accounts/change_password.html', context)
 
 
-# def review_average(store_pk):
-#     User = get_user_model()
-#     rating_avg = User.like_stores.all().annotate(store_avg = Avg('review__rating')).get(pk=store_pk)
-#     return rating_avg.store_avg
-
-
 def profile(request, username):
     User = get_user_model()
     person = User.objects.get(username=username)
