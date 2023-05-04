@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
-
+from taggit.managers import TaggableManager
 
 # Create your models here.   
 class Store(models.Model):
@@ -31,13 +31,15 @@ class Store(models.Model):
     
     category = models.CharField(max_length=20)
 
+    tags = TaggableManager(blank = True)
+
     def __str__(self):
         return self.name 
 
-    @property
-    def update_counter(self):
-        self.hits = self.hits + 1
-        self.save()
+    # @property
+    # def update_counter(self):
+    #     self.hits = self.hits + 1
+    #     self.save()
     
     
 class Menu(models.Model):

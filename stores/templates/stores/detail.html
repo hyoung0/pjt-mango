@@ -300,7 +300,14 @@
   </section>
 
   <div style="display: none;">{{ store.update_counter }}</div>
-  
+
+  {% for tag in store.tags.all %}
+    <p>{{ tag.name }}</p>
+  {% endfor %}
+
+  </div>
+
+ 
   {% comment %}     
   <div class="container">
     인덱스처럼 다른 식당 리스트 불러오기
