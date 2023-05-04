@@ -5,6 +5,7 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 from datetime import datetime, timedelta
 from django.utils import timezone
+import os
 
 # Create your models here.
 class Review(models.Model):
@@ -50,6 +51,22 @@ class ReviewImage(models.Model):
                                 processors=[ResizeToFill(100,100)],
                                 format='JPEG',
                                 options={'quality': 80})
+    
+    def delete(self, *args, **kargs):
+        if self.image:
+            os.remove(os.path.join(settings.MEDIA_ROOT, self.image.path))
+            dir_path = os.path.dirname(os.path.join(settings.MEDIA_ROOT, self.image.name))
+            if not os.listdir(dir_path):
+                os.rmdir(dir_path)
+        super(ReviewImage, self).delete(*args, **kargs)
+    
+    # def save(self, *args, **kwargs):
+    #     if self.id:
+    #         old_user = User.objects.get(id=self.id)
+    #         if self.image != old_user.image:
+    #             if old_user.image:
+    #                 os.remove(os.path.join(settings.MEDIA_ROOT, old_user.image.path))
+    #     super(User, self).save(*args, **kwargs)
 
 
 class Emote(models.Model):
