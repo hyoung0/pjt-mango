@@ -113,7 +113,7 @@
     <p class="text-body-tertiary text-center">즐겨찾기한 가게가 없습니다</p>
     {% else %}
     <div class="row row-cols-1 row-cols-lg-2">
-    {% for store in person.like_stores.all %}
+    {% for store in my_stores %}
       <div class="col mt-5 d-flex justify-content-center">
         <div class="mb-3">
           <a href="{% url 'stores:detail' store.pk %}" class="text-decoration-none text-dark">
@@ -131,12 +131,7 @@
                   {{ store.name }}
                 </h1>
                 <span class="text-orange position-absolute end-0 me-3">
-                  ★
-                  {% if store.rating_avg %}
-                    {{ store.rating_avg }}
-                  {% else %}
-                    -
-                  {% endif %}
+                  ★ {{ store.rating_avg|floatformat:1 }}({{ store.review_set.all|length }})
                 </span>
               </div>
               <p class="card-text text-center">{{ store.address }}</p>

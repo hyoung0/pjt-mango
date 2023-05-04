@@ -42,7 +42,14 @@
       <div class="my-auto d-flex flex-column flex-fill ">
         <p class="fs-1 m-0">
           <a href="{% url 'stores:detail' store.pk %}" class="text-dark">{{ store.name }}</a>
-          <span class="text-orange">평균 평점이 들어갈곳{{ store.rating }}</span>
+          <span class="text-orange">★ 
+            {% if store.store_avg %}
+              {{ store.store_avg|floatformat:1 }}
+            {% else %}
+              0.0
+            {% endif %}
+            ({{ store.review_set.all|length }})
+          </span>
         </p>
         <p class="text-warning-emphasis fs-2 m-0">{{ store.category }}</p>
         <p class="text-body-tertiary fs-2">
