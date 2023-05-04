@@ -8,6 +8,8 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from accounts.models import User
 from datetime import date, datetime, timedelta
+from django.core.paginator import Paginator
+
 
 # Create your views here.
 def index(request):
@@ -20,8 +22,12 @@ def index(request):
 
 def all_stores(request):
     stores = Store.objects.all()
+    page = request.GET.get('page', '1')
+    per_page = 5
+    paginator = Paginator(stores, per_page)
+    page_obj = paginator.get_page(page)
     context = {
-        'stores': stores,
+        'stores': page_obj,
     }
     return render(request, 'stores/all_stores.html', context)
 
@@ -185,5 +191,3 @@ def category(request, subject):
         'stores': stores,
     }
     return render(request, 'stores/category.html', context)
-
-

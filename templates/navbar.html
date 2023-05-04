@@ -5,8 +5,6 @@
     </a>
     <div class="d-flex">
         <a href="{% url 'stores:all_stores' %}" class="btn me-3 d-flex" role="button" style="font-size: xx-large;">모든 가게</a>
-        <a href="#" class="btn me-3 d-flex" role="button" style="font-size: xx-large;">맛집 리스트</a>
-        <a href="#" class="btn me-3 d-flex" role="button" style="font-size: xx-large;">망고 스토리</a>
         <div class="dropdown py-2">
           <button class="btn dropdown-toggle mb-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="https://cdn.icon-icons.com/icons2/1893/PNG/512/scientistavatar_120780.png" style="width: 1.5rem; height: 1.5rem;">
@@ -18,7 +16,12 @@
               <div class="container-fluid d-flex align-items-center">
                 <div class="container-fluid d-flex justify-content-center">
                 {% if request.user.is_authenticated %}
-                  <h1 class="mt-1" style="font-size: xx-large;">{{ user }}</h1> 
+                  <h1 class="my-2 d-flex align-items-centers" style="font-size: xx-large;">
+                    {% if request.user.is_superuser %}
+                    <i class="bi bi-wrench-adjustable text-warning me-3"></i>
+                    {% endif %}
+                    <span class="">{{ user }}</span>
+                  </h1> 
                 </div>
                 <hr>
             </li>
@@ -36,14 +39,14 @@
                   </div>
                   <div class="col-5">
                     {% if request.user.is_superuser %}
-                      <a href="{% url 'stores:create' %}" class="btn btn-success ms-3 mt-2" style="width: 13rem; font-size: xx-large;">가게 등록</a>
+                      <a href="{% url 'stores:create' %}" class="btn btn-orange ms-3 mt-4" style="width: 13rem; font-size: xx-large;">가게 등록</a>
                     {% endif %}
                   </div>
                 </div>
                 {% else %}
                 <div>
-                  <a href="{% url 'accounts:login' %}" class="btn">로그인</a>
-                  <a href="{% url 'accounts:signup' %}" class="btn">회원가입</a>
+                  <a href="{% url 'accounts:login' %}" class="btn fs-4">로그인</a>
+                  <a href="{% url 'accounts:signup' %}" class="btn fs-4">회원가입</a>
                 </div>
                 {% endif %} 
               </div>

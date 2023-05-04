@@ -7,8 +7,34 @@
   padding: 0 0.5rem;
 }
 
+.stores-create-input>p>textarea {
+  font-size: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+.stores-create-input>p>select {
+  font-size: 1.5rem;
+  padding: 0 0.5rem;
+}
+
 .text-orange {
   color: orange;
+}
+
+.btn-orange {
+  color: white;
+  background-color: orange;
+  border-radius: 10px;
+}
+.btn-orange:hover {
+  color: white;
+  background-color: rgb(194, 126, 1);
+  border-radius: 10px;
+}
+.btn.btn-orange:active {
+  color: white;
+  background-color: rgb(194, 126, 1);
+  border-radius: 10px;
 }
 
 .all-head {
@@ -36,4 +62,17 @@
 .food-thumbnail-img {
   width: 15rem;
   height: 15rem;
+}
+
+/* reviews */
+.reviews-input > p > input {
+  font-size: 1.5rem;
+}
+
+.reviews-input > p > textarea {
+  font-size: 1.5rem;
+}
+
+.reviews-input > p > select {
+  font-size: 1.5rem;
 }

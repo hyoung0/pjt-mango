@@ -53,13 +53,67 @@
           {% endif %}
         </p>
         <a href="{% url 'stores:detail' store.pk %}" class="text-body-tertiary mt-3 align-self-end">{{ store.name }} 더보기 ></a>
-  
       </div>
     </div>
-
   </section>
   {% endfor %}
 </main>
+
+
+{% comment %} pagination {% endcomment %}
+<div>
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" href="?page=1">처음</a>
+    </li>
+    {% if stores.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ stores.previous_page_number }}">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+    {% endif %}
+  
+    {% for page_number in stores.paginator.page_range %}
+      {% if page_number >= stores.number|add:-5 and page_number <= stores.number|add:5 %}
+        {% if page_number == stores.number %}
+          <li class="page-item active" aria-current="page">
+            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+          </li>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  
+    {% if stores.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ stores.next_page_number }}">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    {% endif %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ stores.paginator.num_pages }}">마지막</a>
+    </li>
+  </ul>
+</div>
+{% comment %}  {% endcomment %}
+
 {% endblock content %}
 
 
@@ -101,3 +155,5 @@
     })
 </script>
 {% endblock script %}
+
+

@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
 
-{% block title %}25 & 27: 리뷰 작성{% endblock title %}
+{% block title %} - 리뷰 작성{% endblock title %}
 
 {% block content %}
-<div>
-  <h2>리뷰 작성</h2>
-  <form action="{% url 'reviews:create' store_pk %}" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ review_form.as_p }}
-    {{ review_image_form.as_p }}
-    <input type="submit" value="저장">
-  </form>
+<h1 class="mt-5 mb-3 text-center fw-bold">{{ store }} 리뷰 작성</h1>
+<div class="card mx-auto" style="width: 50rem; border-color: orange;">
+  <div class="card-body">
+    <form action="{% url 'reviews:create' store.pk %}" method="POST" class="reviews-input" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ review_form.as_p }}
+      {{ review_image_form.as_p }}
+      <div class="text-end">
+        <input type="submit" class="mt-5 btn fs-3" style="background-color: orange; width: 100px;" value="저장">
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock content %}

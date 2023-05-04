@@ -4,7 +4,7 @@
 
 {% block content %}
 <header>
-  <div id="carouselExample" class="carousel slide" style="height: 350px;">
+  <div id="reviewImage" class="carousel slide" style="height: 350px;">
     <div class="carousel-inner">
       <div class="carousel-item active">
         {% if store.thumbnail %}
@@ -19,11 +19,11 @@
         </div>
       {% endfor %}
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#reviewImage" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#reviewImage" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
@@ -95,7 +95,7 @@
             <div class="container-fluid">
                 {% for review in reviews %}
                   <div>
-                    {% comment %} 프로필, 작성일, 평점, 좋아요/싫어요 {% endcomment %}
+                    {% comment %} 프로필, 작성일, 리뷰 내용, 이미지 {% endcomment %}
                     <div class="container-fluid d-flex justify-content-between mt-3">
                       <div class="container-fluid d-flex align-items-center">
                         <div class="row">
@@ -116,9 +116,34 @@
                             <div class="container-fluid">
                               <p>{{ review.content }}</p>
                               <div class="d-flex">
-                                {% for review_image in review.reviewimage_set.all %}
-                                  <img src="{{ review_image.image.url }}" class="me-2" alt="review img">
-                                {% endfor %}
+                                {% if review.reviewimage_set.all|length > 5 %}
+                                  {% for review_image in review.reviewimage_set.all|slice:":5" %}
+                                    <img src="{{ review_image.image.url }}" class="me-2" alt="review img">
+                                  {% endfor %}
+                                  <!-- Button trigger modal -->
+                                  <button type="button" class="border-0 text-bg-secondary" style="width: 100px;" data-bs-toggle="modal" data-bs-target="#plusModal">
+                                    +더보기
+                                  </button>
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="plusModal" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                          {% for review_image in review.reviewimage_set.all %}
+                                            <img src="{{ review_image.image.url }}" class="mb-2 w-100"alt="review img">
+                                          {% endfor %}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                {% else %}
+                                  {% for review_image in review.reviewimage_set.all %}
+                                    <img src="{{ review_image.image.url }}" class="me-2" alt="review img">
+                                  {% endfor %}
+                                {% endif %}
                               </div>
                             </div>
                           </div>
@@ -127,32 +152,31 @@
                       <div>
                         {% comment %} emote {% endcomment %}
                         <div class="d-flex">
-                          <form action="{% url 'reviews:emotes' review.pk 1 %}" method="POST">
+                          <form class="review-like-forms d-flex" data-review-id="{{ review.pk }}">
                             {% csrf_token %}
-                            {% if request.user.is_authenticated and review.like_exist %}
-                              <button type="submit" class="border-0 bg-transparent">
-                                <i class="bi bi-hand-thumbs-up-fill"></i> {{ review.likes|length }}
-                              </button>
-                            {% else %}
-                              <button type="submit" class="border-0 bg-transparent">
-                                <i class="bi bi-hand-thumbs-up"></i> {{ review.likes|length }}
-                              </button>
-                            {% endif %}
+                            <button type="submit" class="btn-like border-0 bg-transparent" id="review-like-{{ review.pk }}">
+                              {% if request.user.is_authenticated and review.like_exist %}
+                              <i class="bi bi-hand-thumbs-up-fill"></i> 
+                              <span>{{ review.likes|length }}</span>
+                              {% else %}
+                              <i class="bi bi-hand-thumbs-up"></i>
+                              <span>{{ review.likes|length }}</span>
+                              {% endif %}
+                            </button>
                           </form>
-                          <form action="{% url 'reviews:emotes' review.pk 2 %}" method="POST">
-                            {% csrf_token %}
-                            {% if request.user.is_authenticated and review.dislike_exist %}
-                              <button type="submit" class="border-0 bg-transparent">
-                                <i class="bi bi-hand-thumbs-down-fill"></i> {{ review.dislikes|length }}
-                              </button>
-                            {% else %}
-                              <button type="submit" class="border-0 bg-transparent">
-                                <i class="bi bi-hand-thumbs-down"></i> {{ review.dislikes|length }}
-                              </button>
-                            {% endif %}
+                          <form class="review-dislike-forms d-flex" data-review-id="{{ review.pk }}">
+                            <button type="submit" class="btn-dislike border-0 bg-transparent" id="review-dislike-{{ review.pk }}">
+                              {% if request.user.is_authenticated and review.dislike_exist %}
+                              <i class="bi bi-hand-thumbs-down-fill"></i> 
+                              <span>{{ review.dislikes|length }}</span>
+                              {% else %}
+                              <i class="bi bi-hand-thumbs-down"></i>
+                              <span>{{ review.dislikes|length }}</span> 
+                              {% endif %}
+                            </button>
                           </form>
                         </div>
-        
+      
                         {% comment %} rating {% endcomment %}
                         <div class="text-center">별점 : {{ review.rate_to_star }}</div>
                       </div>
@@ -257,12 +281,89 @@
           iTag.classList.replace('bi-star-fill', 'bi-star')
           iTag.classList.remove('text-orange')
         }
-        console.log(iTag)
       })
       .catch((error) => {
         console.log(error.response)
       })
       })
     })
+
+  // 비동기 리뷰 좋아요/싫어요
+  const reviewLikeForms = document.querySelectorAll('.review-like-forms')
+  const reviewDislikeForms = document.querySelectorAll('.review-dislike-forms')
+
+  reviewLikeForms.forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      
+      const reviewId = event.target.dataset.reviewId
+      axios({
+        method: 'post',
+        url: `/reviews/${ reviewId }/emotes/1/`,
+        headers: {'X-CSRFToken': csrftoken,},
+      })
+      .then((response) => {
+        const isChecked = response.data.is_checked
+        const emoteCnt = response.data.cnt
+        const isAlert = response.data.alert
+        const iTag = document.querySelector(`#review-like-${ reviewId }>i`)
+        const cntSpanTag = document.querySelector(`#review-like-${ reviewId }>span`)
+
+        if (isChecked === undefined) {
+          // 경고창
+          alert('로그인 후 이용해주세요.')
+        } else if (isAlert) {
+          alert('이미 싫어요를 눌렀습니다.')
+        } else if (isChecked) {
+          iTag.classList.replace('bi-hand-thumbs-up', 'bi-hand-thumbs-up-fill')
+          cntSpanTag.textContent = emoteCnt
+        } else {
+          iTag.classList.replace('bi-hand-thumbs-up-fill', 'bi-hand-thumbs-up')
+          cntSpanTag.textContent = emoteCnt
+        }
+      })
+      .catch((error) => {
+        console.log(error.response)
+      })
+    })
+  })
+  reviewDislikeForms.forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      
+      const reviewId = event.target.dataset.reviewId
+      axios({
+        method: 'post',
+        url: `/reviews/${ reviewId }/emotes/2/`,
+        headers: {'X-CSRFToken': csrftoken,},
+      })
+      .then((response) => {
+        const isChecked = response.data.is_checked
+        const emoteCnt = response.data.cnt
+        const isAlert = response.data.alert
+        const iTag = document.querySelector(`#review-dislike-${ reviewId }>i`)
+        const cntSpanTag = document.querySelector(`#review-dislike-${ reviewId }>span`)
+
+        console.log(emoteCnt)
+
+        if (isChecked === undefined) {
+          // 경고창
+          alert('로그인 후 이용해주세요.')
+        } else if (isAlert) {
+          alert('이미 좋아요를 눌렀습니다.')
+        } else if (isChecked) {
+          iTag.classList.replace('bi-hand-thumbs-down', 'bi-hand-thumbs-down-fill')
+          cntSpanTag.textContent = emoteCnt
+        } else {
+          iTag.classList.replace('bi-hand-thumbs-down-fill', 'bi-hand-thumbs-down')
+          cntSpanTag.textContent = emoteCnt
+        }
+      })
+      .catch((error) => {
+        console.log(error.response)
+      })
+    })
+  })
+  
 </script>
 {% endblock script %}
