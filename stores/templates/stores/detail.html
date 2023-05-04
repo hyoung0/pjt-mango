@@ -3,204 +3,201 @@
 
 
 {% block content %}
-<header>
-  <div id="reviewImage" class="carousel slide" style="height: 350px;">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        {% if store.thumbnail %}
-        <img src="{{ store.thumbnail.url }}" class="d-block mx-auto" alt="thumbnail" style="height: 350px;">
-        {% else %}
-        <img src="{% static 'empty-food.jpg' %}" alt="" class="d-block mx-auto" style="height: 350px;">
-        {% endif %}
-      </div>
-      {% for store_image in store_images %}
-        <div class="carousel-item">
-          <img src="{{ store_image.image.url }}" class="d-block mx-auto" alt="store_image" style="height: 350px;">
-        </div>
-      {% endfor %}
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#reviewImage" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#reviewImage" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</header>
-<main>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-9">
-        <div class="container-fluid">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col">
-                <p class="mt-4">{{ store.name }} ★ 
-                  {% if store_avg %}
-                    {{ store_avg|floatformat:1 }}
-                  {% else %}
-                    0.0
-                  {% endif %}
-                  ({{ store.review_set.all|length }})
-                </p>
-              </div>
-              <div class="col">
-                <div class="container-fluid d-flex justify-content-end">
-                  <div class="row">
-                    <div class="col-sm-4 ms-5">
-                      <div class="row">
-                        <a href="{% url 'reviews:create' store.pk %}" class="text-decoration-none btn" style="width: 5rem;">
-                          <img src="https://png.pngtree.com/png-vector/20190628/ourmid/pngtree-pencil-icon-for-your-project-png-image_1520432.jpg" style="width: 3rem;">
-                        </a>
-                        <p>리뷰 작성</p>
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="row">
-                        <form class="like-forms" data-store-id={{ store.pk }}>
-                          {% csrf_token %}
-                          <button id="like-{{ store.pk }}" class='bg-transparent border-0'>
-                            {% if request.user in store.like_users.all %}
-                            <i class="bi bi-star-fill text-orange fs-1"></i>
-                            {% else %}
-                            <i class="bi bi-star fs-1"></i>
-                            {% endif %}
-                            <p class=''>즐겨찾기</p>
-                          </button>
-                        </form>
+<main class="bg-body-tertiary">
 
+  <header class="container-fluid container-lg">
+    <div id="reviewImage" class="carousel slide" style="height: 350px;">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          {% if store.thumbnail %}
+          <img src="{{ store.thumbnail.url }}" class="d-block mx-auto" alt="thumbnail" style="height: 350px;">
+          {% else %}
+          <img src="{% static 'empty-food.jpg' %}" alt="" class="d-block mx-auto" style="height: 350px;">
+          {% endif %}
+        </div>
+        {% for store_image in store_images %}
+          <div class="carousel-item">
+            <img src="{{ store_image.image.url }}" class="d-block mx-auto" alt="store_image" style="height: 350px;">
+          </div>
+        {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#reviewImage" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#reviewImage" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="container-fluid container-lg bg-white" id="main-info">
+
+      <div class="map-container col-12 col-lg-3">
+        {% if store.latitude and store.longitude %}
+        <div id="map" class="map-box container-fluid"></div>
+        {% else %}
+        <p class="text-none-data text-center">위치 정보가 없습니다.</p>
+        {% endif %}
+        <div class="address text-secondary">
+          {% if store.address %}
+          {{ store.address }}
+          {% endif %}
+        </div>
+        <p id="lat" style="display: none">{{ store.latitude }}</p>
+        <p id="lng" style="display: none">{{ store.longitude }}</p>
+      </div>
+      
+      <div class="store-info">
+        <div class="">
+          <h1 class="d-inline-block m-0">{{ store.name }} </h1>
+          <span class="text-orange">
+            ★
+            {% if store_avg %}
+            {{ store_avg|floatformat:1 }}
+            {% else %}
+            -
+            {% endif %}
+          </span>
+          <span class="fs-2">
+            <i class="bi bi-chat-left-text ms-2 me-1 fs-4"></i>({{ reviews|length }})
+          </span>
+        </div>
+        <p class="text-secondary">조회수 {{ store.hits }} / 즐겨찾기수 {{ store.like_users.count }}</p>
+        <p class="text-warning-emphasis mb-2 fs-3">{{ store.category }}</p>
+        <p class="">
+          <span class="me-5">번호</span>
+          <span class="">
+            {% if store.phone_number %}
+            {{ store.phone_number }}
+            {% else %}
+            <span class="text-none-data">등록된 번호가 없습니다.</span>
+            {% endif %}
+          </span>
+        </p>
+        <p>{{ store.price }}</p>
+        <p class="">
+          <span class="me-2">영업 시간</span>
+          <span class="">
+            {% if store.starttime and store.endtime %}
+            {{ store.starttime }} ~ {{ store.endtime }}
+            {% else %}
+            <span class="text-none-data">등록된 시간이 없습니다.</ㄴ>
+            {% endif %}
+          </span>
+        </p>
+        <p class="mb-2">
+          <span class="me-5">소개</span>
+          <span class="">
+            {% if store.content %}
+            {{ store.content }}
+            {% else %}
+            <span class="text-none-data">등록된 소개가 없습니다.</span>
+            {% endif %}
+          </span>
+        </p>
+        <p class="mb-5">메뉴</p>
+        {% comment %} 
+        <ul class="list-unstyled">
+          {% for menu in store.menu_set.all %}
+          <li class="">{{ menu }}</li>
+          {% empty %}
+          <p class="text-none-data">등록된 메뉴가 없습니다.</p>
+          {% endfor %} 
+        </ul>
+        {% endcomment %}
+      </div>
+
+  </section>
+
+  <section class="container-fluid container-lg bg-white" id="section-link-action">
+
+      <div class="">
+        <a href="{% url 'reviews:create' store.pk %}" class="text-decoration-none btn" style="width: 5rem;">
+          <img src="https://png.pngtree.com/png-vector/20190628/ourmid/pngtree-pencil-icon-for-your-project-png-image_1520432.jpg" style="width: 3rem;">
+        </a>
+        <p>리뷰 작성</p>
+      </div>
+
+
+      <form class="like-forms" data-store-id={{ store.pk }}>
+        {% csrf_token %}
+        <button id="like-{{ store.pk }}" class='bg-transparent border-0'>
+          {% if request.user in store.like_users.all %}
+          <i class="bi bi-star-fill text-orange fs-1"></i>
+          {% else %}
+          <i class="bi bi-star fs-1"></i>
+          {% endif %}
+          <p class=''>즐겨찾기</p>
+        </button>
+      </form>
+
+  </section>
+ 
+  <section class="container-fluid container-lg bg-white">
+  {% for review in page_obj %}
+    <div class="py-2 px-5">
+      
+      {% comment %} 프로필, 작성일, 리뷰 내용, 이미지 {% endcomment %}
+      <div class="container-fluid d-flex justify-content-between mt-3">
+
+        <div class="container-fluid d-flex align-items-center">
+          <div class="row">
+            <div class="col text-center">
+              <a href="{% url 'accounts:profile' review.user %}" class="text-dark">
+                {% if review.user.image %}
+                  <img src="{{ review.user.image.url }}" class="rounded-circle" style="width: 50px;" alt="profile_img">
+                {% else %}
+                  <img src="{% static 'profile_no_image.png' %}" class="rounded-circle" style="width: 50px;" alt="profile_no_image">
+                {% endif %}
+                <p class="align-middle mb-0">{{ review.user }}</p>
+              </a>
+              {% comment %} rating {% endcomment %}
+              <div class="text-center">
+                <span class="text-orange">{{ review.rate_to_star }}{{ review.rate_to_empty_star}}</span>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="container-fluid">
+                <p class="text-body-secondary">{{ review.created_string }}</p>
+              </div>
+              <div class="container-fluid">
+                <p>{{ review.content }}</p>
+                <div class="d-flex review-img-container">
+                  {% if review.reviewimage_set.all|length > 5 %}
+                    {% for review_image in review.reviewimage_set.all|slice:":5" %}
+                      <img src="{{ review_image.image.url }}" class="me-2 review-img" alt="review img">
+                    {% endfor %}
+                    <!-- Button trigger modal -->
+                    <button type="button" class="border-0 text-bg-secondary" style="width: 100px;" data-bs-toggle="modal" data-bs-target="#plusModal">
+                      +더보기
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="plusModal" tabindex="-1" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body text-center">
+                            {% for review_image in review.reviewimage_set.all %}
+                              <img src="{{ review_image.image.url }}" class="mb-2 img-fluid" alt="review img">
+                            {% endfor %}
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  {% else %}
+                    {% for review_image in review.reviewimage_set.all %}
+                      <img src="{{ review_image.image.url }}" class="me-2 review-img" alt="review img">
+                    {% endfor %}
+                  {% endif %}
                 </div>
               </div>
-            </div>
-          </div>
-          <p>조회수 {{ store.hits }}</p>
-          <span>즐겨찾기 수</span>
-          <hr>
-          <p>{{ store.address }}</p>
-          <p>{{ store.phonenumber }}</p>
-          <p>{{ store.category }}</p>
-          <p>{{ store.price }}</p>
-          <p>{{ store.starttime }}</p>
-          <p>{{ store.endtime }}</p>
-          <p>{{ store.menu }}</p>
-          <p>{{ store.content }}</p>
-          <p id="lat" style="display: none">{{ store.latitude }}</p>
-          <p id="lng" style="display: none">{{ store.longitude }}</p>
-          <hr>
-          <div class="container-fluid">
-            <div class="d-flex justify-content-between">
-              <div class="d-flex align-items-center ms-4">
-                <h3>리뷰</h3>
-                <i class="bi bi-chat-left-text ms-3 me-2"></i>{{ reviews|length }}
-              </div>
-            </div>
-            <div class="container-fluid">
-                {% for review in page_obj %}
-                  <div>
-                    {% comment %} 프로필, 작성일, 리뷰 내용, 이미지 {% endcomment %}
-                    <div class="container-fluid d-flex justify-content-between mt-3">
-                      <div class="container-fluid d-flex align-items-center">
-                        <div class="row">
-                          <div class="col text-center">
-                            <a href="{% url 'accounts:profile' review.user %}">
-                              {% if review.user.image %}
-                                <img src="{{ review.user.image.url }}" class="rounded-circle" style="width: 50px;" alt="profile_img">
-                              {% else %}
-                                <img src="{% static 'profile_no_image.png' %}" class="rounded-circle" style="width: 50px;" alt="profile_no_image">
-                              {% endif %}
-                            </a>
-                            <p class="align-middle">{{ review.user }}</p>
-                          </div>
-                          <div class="col">
-                            <div class="container-fluid">
-                              <p>{{ review.created_string }}</p>
-                            </div>
-                            <div class="container-fluid">
-                              <p>{{ review.content }}</p>
-                              <div class="d-flex">
-                                {% if review.reviewimage_set.all|length > 5 %}
-                                  {% for review_image in review.reviewimage_set.all|slice:":5" %}
-                                    <img src="{{ review_image.image.url }}" class="me-2" alt="review img">
-                                  {% endfor %}
-                                  <!-- Button trigger modal -->
-                                  <button type="button" class="border-0 text-bg-secondary" style="width: 100px;" data-bs-toggle="modal" data-bs-target="#plusModal">
-                                    +더보기
-                                  </button>
-                                  <!-- Modal -->
-                                  <div class="modal fade" id="plusModal" tabindex="-1" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body text-center">
-                                          {% for review_image in review.reviewimage_set.all %}
-                                            <img src="{{ review_image.image.url }}" class="mb-2 w-100"alt="review img">
-                                          {% endfor %}
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                {% else %}
-                                  {% for review_image in review.reviewimage_set.all %}
-                                    <img src="{{ review_image.image.url }}" class="me-2" alt="review img">
-                                  {% endfor %}
-                                {% endif %}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        {% comment %} emote {% endcomment %}
-                        <div class="d-flex">
-                          <form class="review-like-forms d-flex" data-review-id="{{ review.pk }}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn-like border-0 bg-transparent" id="review-like-{{ review.pk }}">
-                              {% if request.user.is_authenticated and review.like_exist %}
-                              <i class="bi bi-hand-thumbs-up-fill"></i> 
-                              <span>{{ review.likes|length }}</span>
-                              {% else %}
-                              <i class="bi bi-hand-thumbs-up"></i>
-                              <span>{{ review.likes|length }}</span>
-                              {% endif %}
-                            </button>
-                          </form>
-                          <form class="review-dislike-forms d-flex" data-review-id="{{ review.pk }}">
-                            <button type="submit" class="btn-dislike border-0 bg-transparent" id="review-dislike-{{ review.pk }}">
-                              {% if request.user.is_authenticated and review.dislike_exist %}
-                              <i class="bi bi-hand-thumbs-down-fill"></i> 
-                              <span>{{ review.dislikes|length }}</span>
-                              {% else %}
-                              <i class="bi bi-hand-thumbs-down"></i>
-                              <span>{{ review.dislikes|length }}</span> 
-                              {% endif %}
-                            </button>
-                          </form>
-                        </div>
-      
-                        {% comment %} rating {% endcomment %}
-                        <div class="text-center">별점 : {{ review.rate_to_star }}</div>
-                      </div>
-                    </div>
-                    {% comment %} 리뷰 수정, 삭제 버튼 {% endcomment %}
-                    {% if request.user == review.user %}
-                    <div class="d-flex justify-content-end">
-                      <a href="{% url 'reviews:update' review.pk %}" class="btn btn-outline-primary mt-2" style="width: 3rem; height: 2rem;">수정</a>
-                      <form action="{% url 'reviews:delete' review.pk %}" method="POST" class="mx-3">
-                        {% csrf_token %}
-                        <input type="submit" class="btn btn-outline-danger" value="삭제" style="width: 3rem; height: 2rem;">
-                      </form>
-                    </div>
-                  {% endif %}
-                  </div>
-                  <hr>
-                {% endfor %}
+              
+                <hr>
 
                 {% comment %} 아마 여기 {% endcomment %}
                 <div>
@@ -254,31 +251,63 @@
                     </li>
                   </ul>
                 </div>
-                
+              
             </div>
+          </div>
+        </div>
+       
+        {% comment %} emote {% endcomment %}
+        <div>
+          <div class="d-flex">
+            <form class="review-like-forms d-flex" data-review-id="{{ review.pk }}">
+              {% csrf_token %}
+              <button type="submit" class="btn-like border-0 bg-transparent" id="review-like-{{ review.pk }}">
+                {% if request.user.is_authenticated and review.like_exist %}
+                <i class="bi bi-hand-thumbs-up-fill"></i> 
+                <span>{{ review.likes|length }}</span>
+                {% else %}
+                <i class="bi bi-hand-thumbs-up"></i>
+                <span>{{ review.likes|length }}</span>
+                {% endif %}
+              </button>
+            </form>
+            <form class="review-dislike-forms d-flex" data-review-id="{{ review.pk }}">
+              <button type="submit" class="btn-dislike border-0 bg-transparent" id="review-dislike-{{ review.pk }}">
+                {% if request.user.is_authenticated and review.dislike_exist %}
+                <i class="bi bi-hand-thumbs-down-fill"></i> 
+                <span>{{ review.dislikes|length }}</span>
+                {% else %}
+                <i class="bi bi-hand-thumbs-down"></i>
+                <span>{{ review.dislikes|length }}</span> 
+                {% endif %}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
+      {% comment %} 리뷰 수정, 삭제 버튼 {% endcomment %}
+      {% if request.user == review.user %}
+      <div class="d-flex justify-content-end">
+        <a href="{% url 'reviews:update' review.pk %}" class="btn btn-outline-primary mt-2" style="width: 3rem; height: 2rem;">수정</a>
+        <form action="{% url 'reviews:delete' review.pk %}" method="POST" class="mx-3">
+          {% csrf_token %}
+          <input type="submit" class="btn btn-outline-danger" value="삭제" style="width: 3rem; height: 2rem;">
+        </form>
       </div>
-      <div class="col-lg-3">
-        {% if store.latitude and store.longitude %}
-        <div id="map" style="height:300px; width: 350px;" class="container-fluid"></div>
-        {% else %}
-        <p class="text-secondary fst-italic">No Location Information</p>
-        {% endif %}
-        <p class="text-center">주변 인기 식당</p>
-      </div>
+    {% endif %}
     </div>
-  </div>
-  <div style="display: none;">{{ store.update_counter }}</div>
-  
 
-  </div>
+    <hr>
+  {% endfor %}
+  </section>
+
+  <div style="display: none;">{{ store.update_counter }}</div>
+    
   <div class="container">
     인덱스처럼 다른 식당 리스트 불러오기
   </div>
+
 </main>
-
-
 {% endblock content %}
 
 
