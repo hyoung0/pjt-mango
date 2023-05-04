@@ -5,6 +5,8 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from .forms import CustomAuthenticationForm, CustomUserCreationForm, CustomUserChangeForm, CustomPasswordChangeForm
 from django.contrib.auth import get_user_model
+from django.db.models import Avg
+
 
 # Create your views here.
 def login(request):
@@ -83,6 +85,12 @@ def change_password(request):
         'form': form,
     }
     return render(request, 'accounts/change_password.html', context)
+
+
+def review_average(store_pk):
+    User = get_user_model()
+    rating_avg = User.like_stores.all().annotate(store_avg = Avg('review__rating')).get(pk=store_pk)
+    return rating_avg.store_avg
 
 
 def profile(request, username):
