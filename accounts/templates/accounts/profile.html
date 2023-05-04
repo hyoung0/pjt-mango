@@ -118,9 +118,9 @@
         <div class="mb-3">
           <a href="{% url 'stores:detail' store.pk %}" class="text-decoration-none text-dark">
           <div class="card d-flex" style="width: 27rem;">
-            <div class="card-img-container">
+            <div class="card-img-container ">
               {% if store.thumbnail %}
-              <img src="{{ store.thumbnail.url }}" class="img-fluid overflow-hidden" alt="...">
+              <img src="{{ store.thumbnail.url }}" class="card-img overflow-hidden" alt="...">
               {% else %}
               <img src="{% static 'empty-food.jpg' %}" alt="" class="card-img">
               {% endif %}
@@ -131,7 +131,13 @@
                   {{ store.name }}
                 </h1>
                 <span class="text-orange position-absolute end-0 me-3">
-                  ★ {{ store.rating_avg|floatformat:1 }}({{ store.review_set.all|length }})
+                  ★ 
+                  {% if store.rating_avg %}
+                    {{ store.rating_avg|floatformat:1 }}
+                  {% else %}
+                    0.0
+                  {% endif %}
+                  ({{ store.review_set.all|length }})
                 </span>
               </div>
               <p class="card-text text-center">{{ store.address }}</p>
@@ -146,8 +152,8 @@
     {% endif %}
   </section>  
 
-  <section class="container-fluid">
-    <form action="{% url 'accounts:delete' %}" method="post" class="d-flex justify-content-end mt-2 me-5">
+  <section class="container-fluid container-lg">
+    <form action="{% url 'accounts:delete' %}" method="post" class="d-flex justify-content-end mt-2">
       {% csrf_token %}
       <button type="submit" class="btn btn-danger w-25 fs-3 my-3">회원 탈퇴</button>
     </form>
