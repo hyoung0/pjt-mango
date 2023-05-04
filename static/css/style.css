@@ -76,3 +76,8 @@
 .reviews-input > p > select {
   font-size: 1.5rem;
 }
+
+/* accounts */
+.form-text input {
+  font-size: 1.5rem;
+}

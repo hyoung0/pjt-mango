@@ -2,25 +2,23 @@
 
 {% block content %}
 <div class="container-fluid mt-5">
-    <div class="container-fluid d-flex justify-content-center">
-      <img src="https://d1.awsstatic.com/logos/customers/KO/logo_Mangoplate.12908c5b9952bc4f14bdc966e5e81b521415fc6a.png" style="width: 20rem;">
-    </div>
-    <div class="container d-flex justify-content-center mt-5">
-      <ul class="nav flex-column">
-          <li class="nav-item text-center">
-              <p class="fs-5 ms-3">간단한 회원가입</p>
-          </li>
-          <li class="nav-item">
-          <form action="{% url 'accounts:signup' %}" method="POST" class="nav-link"  enctype = 'multipart/form-data'>
-              {% csrf_token %}
-              {{ form.as_p }}       
-              <div class="container-fluid d-flex justify-content-center">
-                <input type="submit" class="btn btn-outline-primary"  role="button" value="회원가입">
-              </div>
-          </form>
-          </li>
-      </ul>
-    </div>
+  <div class="container-fluid d-flex justify-content-center">
+    <img src="https://d1.awsstatic.com/logos/customers/KO/logo_Mangoplate.12908c5b9952bc4f14bdc966e5e81b521415fc6a.png" style="width: 20rem;">
+  </div>
+  <div class="container mt-5" style="width: 500px;">
+    <h1 class="text-center fw-bold">간단한 회원가입</h1>
+      <form action="{% url 'accounts:signup' %}" method="POST" class="form-text" enctype = 'multipart/form-data'>
+        {% csrf_token %}
+        {% for field in form %}
+          <label for="{{ field.auto_id }}" class="ms-2">{{ field.label }}</label>
+          {{ field }}
+          {% if field.errors %}
+            <span>{{ field.errors }}</span>
+          {% endif %}
+        {% endfor %}
+        <input type="submit" class="btn btn-orange w-100 mt-5 fs-3" value="회원가입">
+      </form>
+  </div>
 </div>
 
 <!-- <script langauge="javascript">
