@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .forms import CustomAuthenticationForm, CustomUserCreationForm, CustomUserChangeForm, CustomPasswordChangeForm
 from django.contrib.auth import get_user_model
 from django.db.models import Avg
 
@@ -15,12 +14,12 @@ def login(request):
         return redirect('stores:index')
 
     if request.method == 'POST':
-        form = AuthenticationForm(request, request.POST)
+        form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
             return redirect('stores:index')
     else:
-        form = AuthenticationForm()
+        form = CustomAuthenticationForm()
     context = {
         'form': form,
     }
@@ -53,6 +52,7 @@ def signup(request):
 @login_required
 def delete(request):
     request.user.delete()
+    auth_logout(request)
     return redirect('stores:index')
 
 
@@ -74,13 +74,13 @@ def update(request):
 @login_required
 def change_password(request):
     if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
+        form = CustomPasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
             return redirect('stores:index')
     else:
-        form = PasswordChangeForm(request.user)
+        form = CustomPasswordChangeForm(request.user)
     context = {
         'form': form,
     }
