@@ -34,7 +34,7 @@ def all_stores(request):
 
 def review_average(store_pk):
     rating_avg = Store.objects.annotate(store_avg = Avg('review__rating')).get(pk=store_pk)
-    return round(rating_avg.store_avg,1)
+    return rating_avg.store_avg
 
 
 def get_location(address: str):
