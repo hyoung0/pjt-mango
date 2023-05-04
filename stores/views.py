@@ -142,6 +142,9 @@ def delete(request, store_pk: int):
         return redirect('stores:index')
     
     store = Store.objects.get(pk=store_pk)
+    store_images = store.storeimage_set.all()
+    for store_image in store_images:
+        store_image.delete()
     store.delete()
     return redirect('stores:index')
 

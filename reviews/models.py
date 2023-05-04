@@ -59,14 +59,6 @@ class ReviewImage(models.Model):
             if not os.listdir(dir_path):
                 os.rmdir(dir_path)
         super(ReviewImage, self).delete(*args, **kargs)
-    
-    # def save(self, *args, **kwargs):
-    #     if self.id:
-    #         old_user = User.objects.get(id=self.id)
-    #         if self.image != old_user.image:
-    #             if old_user.image:
-    #                 os.remove(os.path.join(settings.MEDIA_ROOT, old_user.image.path))
-    #     super(User, self).save(*args, **kwargs)
 
 
 class Emote(models.Model):
