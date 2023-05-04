@@ -210,7 +210,9 @@
     </div>
   </div>
   <div style="display: none;">{{ store.update_counter }}</div>
-  
+  {% for tag in store.tags.all %}
+    <p>{{ tag.name }}</p>
+  {% endfor %}
 
   </div>
   <div class="container">

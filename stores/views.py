@@ -4,11 +4,15 @@ from .forms import StoreForm, StoreImageForm
 from django.db.models import Prefetch, Count, Q, Avg
 from reviews.models import Review, Emote
 import requests, json
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required
 from accounts.models import User
 from datetime import date, datetime, timedelta
 from django.core.paginator import Paginator
+from django.shortcuts import get_object_or_404, render
+from django.views.decorators.http import require_POST
+from django.urls import reverse
+from taggit.models import Tag
 
 
 # Create your views here.
@@ -59,6 +63,7 @@ def create(request):
         store_form = StoreForm(data=request.POST, files=request.FILES)
         store_image_form = StoreImageForm(data=request.POST, files=request.FILES)
         files = request.FILES.getlist('image')
+        tags = request.POST.get('tags').split(',')
         if store_form.is_valid() and store_image_form.is_valid():
             store = store_form.save(commit=False)
             if store.address:
@@ -66,6 +71,9 @@ def create(request):
                 store.latitude = pos.get('lat')
                 store.longitude = pos.get('lng')
             store.save()
+  
+            for tag in tags:
+                store.tags.add(tag.strip())
 
             for file in files:
                 StoreImage.objects.create(store=store, image=file)
@@ -81,10 +89,18 @@ def create(request):
     return render(request, 'stores/create.html', context)
 
 
-def detail(request, store_pk: int, no=0):
+def detail(request, store_pk: int):
     store = Store.objects.get(pk=store_pk)
     store_avg = review_average(store_pk)
     store_images = StoreImage.objects.filter(store=store)
+
+    tags = store.tags.all()
+
+    session_key = 'store_{}_hits'.format(store_pk)
+    if not request.session.get(session_key):
+        store.hits += 1
+        store.save()
+        request.session[session_key] = True
 
 
     if request.user.is_authenticated:
@@ -104,7 +120,9 @@ def detail(request, store_pk: int, no=0):
         'store_images': store_images,
         'reviews': reviews,
         'store_avg': store_avg,
+        'tags': tags,
     }
+
     return render(request, 'stores/detail.html', context)
 
 
@@ -129,11 +147,16 @@ def update(request, store_pk: int):
         files = request.FILES.getlist('image')
         if store_form.is_valid() and store_image_form.is_valid():
             store = store_form.save(commit=False)
+            store.tags.clear()
+            tags = request.POST.get('tags').split(',')
             if store.address:
                 pos = get_location(store.address)
                 store.latitude = pos.get('lat')
                 store.longitude = pos.get('lng')
             store.save()
+
+            for tag in tags:
+                store.tags.add(tag.strip())
 
             for file in files:
                 StoreImage.objects.create(store=store, image=file)
@@ -160,8 +183,10 @@ def search(request):
         search = request.POST['search']        
         store = Store.objects.filter(Q(address__contains=search)|Q(name__contains=search))
         reviews = Review.objects.filter(content__contains=search)
+        tag = Tag.objects.filter(name__contains=search)
         print(store)
         print(reviews)
+        print(tag)
         return render(request, 'stores/search.html', {'search': search, 'store': store, 'reviews': reviews})
     else:
         return render(request, 'stores/search.html', {})
@@ -191,3 +216,5 @@ def category(request, subject):
         'stores': stores,
     }
     return render(request, 'stores/category.html', context)
+
+
