@@ -25,7 +25,7 @@ def index(request):
 
 
 def all_stores(request):
-    stores = Store.objects.all()
+    stores = Store.objects.annotate(store_avg=Avg('review__rating')).all()
     page = request.GET.get('page', '1')
     per_page = 5
     paginator = Paginator(stores, per_page)
@@ -94,6 +94,7 @@ def detail(request, store_pk: int):
     store_avg = review_average(store_pk)
     store_images = StoreImage.objects.filter(store=store)
 
+
     tags = store.tags.all()
 
     session_key = 'store_{}_hits'.format(store_pk)
@@ -115,15 +116,25 @@ def detail(request, store_pk: int):
             Prefetch('emote_set', queryset=Emote.objects.filter(emotion=1), to_attr='likes'),
             Prefetch('emote_set', queryset=Emote.objects.filter(emotion=2), to_attr='dislikes'),
         )
+
+    page = request.GET.get('page', '1')
+    per_page = 5
+    paginator = Paginator(reviews, per_page)
+    page_obj = paginator.get_page(page)
     context = {
         'store':store,
         'store_images': store_images,
         'reviews': reviews,
         'store_avg': store_avg,
+
         'tags': tags,
+
+        'page_obj': page_obj,
+
     }
 
     return render(request, 'stores/detail.html', context)
+
 
 
 def delete(request, store_pk: int):
@@ -181,12 +192,14 @@ def redirect_index(request):
 def search(request):
     if request.method == 'POST':
         search = request.POST['search']        
-        store = Store.objects.filter(Q(address__contains=search)|Q(name__contains=search))
+        store = Store.objects.filter(Q(address__contains=search)|Q(name__contains=search)).annotate(store_avg=Avg('review__rating'))
         reviews = Review.objects.filter(content__contains=search)
+
         tag = Tag.objects.filter(name__contains=search)
         print(store)
         print(reviews)
         print(tag)
+
         return render(request, 'stores/search.html', {'search': search, 'store': store, 'reviews': reviews})
     else:
         return render(request, 'stores/search.html', {})
@@ -210,7 +223,7 @@ def like_stores(request, store_pk):
 
 def category(request, subject):
     subject = subject
-    stores = Store.objects.filter(category=subject).order_by('-pk')
+    stores = Store.objects.filter(category=subject).annotate(store_avg=Avg('review__rating')).order_by('-pk')
     context = {
         'subject': subject,
         'stores': stores,

@@ -2,9 +2,12 @@
 {% load static %}
 
 {% block content %}
-  {% load static %}
-  <h1 class="text-center mt-5" style="color: orange;">{{ person.username }}님의 프로필 페이지</h1>
+<div class="bg-body-tertiary">
+  
+<section class="container-fluid container-lg bg-white mb-5 py-3">
 
+  <h1 class="text-center mb-5" style="color: orange;">{{ person.username }}님의 프로필 페이지</h1>
+  {% comment %} 
   <div class='my-4'>
     <a href="{% url 'stores:index' %}">
       <svg xmlns="http://www.w3.org/2000/svg" width="50" height="40" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -12,16 +15,34 @@
       </svg>
     </a>
   </div>
+  {% endcomment %}
   <div class='d-flex flex-row justify-content-between'>
     <div class='d-flex flex-row'>
       <div class='px-3'>
-        {% if person.image %}
-        <img src="{{ person.image.url }}" alt="profile_img" class="rounded-circle">
+        {% if person == request.user %}
+        <a href="{% url 'accounts:update' %}" class="text-decoration-none">
+          <div class="position-relative">
+            {% if person.image %}
+            <img src="{{ person.image.url }}" alt="profile_img" class="profile-icon profile-icon-update">
+            {% else %}
+            <img src="{% static 'profile_no_image.png' %}" alt="No Image" class="profile-icon profile-icon-update">
+            {% endif %}
+            <p class="profile-icon-plus">+</p>
+          </div>
+        </a>
         {% else %}
-        <img src="{% static 'profile_no_image.png' %}" alt="No Image" class="rounded-circle">
+          {% if person.image %}
+          <img src="{{ person.image.url }}" alt="profile_img" class="profile-icon">
+          {% else %}
+          <img src="{% static 'profile_no_image.png' %}" alt="No Image" class="profile-icon">
+          {% endif %}
+        {% endif %}
+        <h3 class='fs-1 text-center mt-2'>{{ person.username }}</h3>
+        {% if request.user in person.followers.all %}
+        <p class="text-body-tertiary text-center small m-0">팔로잉 중</p>
         {% endif %}
       </div>
-      <div class='d-flex flex-column align-items-center px-3'>
+      <div class='d-flex flex-column align-items-center px-3 ms-5'>
         <p>팔로잉</p>
         {{ person.followings.all|length }} 
       </div>
@@ -31,88 +52,119 @@
       </div>
     </div>
     {% if request.user != person %}
-      <form action="{% url 'accounts:follow' person.pk %}" method="POST">
+    <div class="align-self-center">
+      <form action="{% url 'accounts:follow' person.pk %}" method="POST" class="">
         {% csrf_token %}
-        {% if request.user in person.followers.all %}
-          <input type="submit" value="언팔로우">
-        {% else %}
-          <button type='submit'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="50" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
-              <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-              <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-            </svg>
-          </button>
-        {% endif %}
+        <button type='submit' class="text-orange follow-btn">
+          {% if request.user in person.followers.all %}
+          <i class="bi bi-person-dash-fill"></i>
+          {% else %}
+          <i class="bi bi-person-plus"></i>
+          {% endif %}
+        </button>
       </form>
-    {% else %}
-      <a href="{% url 'accounts:update' %}">수정 아이콘</a>
+    </div>
+      {% else %}
+      <a href="{% url 'accounts:update' %}" class="align-self-center btn btn-outline-orange fs-3 me-3">내 정보 수정</a>
     {% endif %}  
   </div>
-  <h3 class='mx-3 my-4'>{{ person.username }}</h3>
-  <form action="{% url 'accounts:delete' %}">
-    {% csrf_token %}
-    <input class='ms-3' type="submit" value='회원탈퇴'>
-  </form>
   
-  <hr>
+  </section>
   
-  <h1 class="text-center mt-5 mb-5" style="color: orange; ">{{ person.username }}님의 리뷰</h1>
+  <section class="container-fluid container-lg bg-white my-5 py-2">
+    
+  <h1 class="text-center py-3" style="color: orange; ">{{ person.username }}님의 리뷰</h1>
+  {% if person.review_set.count == 0 %}
+  <p class="text-body-tertiary text-center">작성한 리뷰가 없습니다</p>
+  {% else %}
   <table class="table table-hover mx-2">
     <thead>
       <tr>
         <th scope="col">리뷰 내용</th>
-        <th scope="col">리뷰 이미지</th>
+        {% comment %} <th scope="col">리뷰 이미지</th> {% endcomment %}
         <th scope="col">내가 남긴 가게 점수</th>
         <th scope="col">리뷰 작성 날짜</th>
         <th scope="col">가게</th>
       </tr>
     </thead>
     <tbody>
-     
-      {% for review in person.review_set.all %}
+      {% for review in person.review_set.all reversed %}
       <tr>
         <td href="">{{ review.content }}</td>
-        <td>
+        {% comment %} <td>
         {% if review.image %}
         <img src="{{ review.image.url }}" alt="Thumbnail Image">
         {% endif %}
-        </td>
+        </td> {% endcomment %}
         <td>{{ review.rating }}</td>
-        <td>{{ review.created_at }}</td>
+        <td>{{ review.created_string }}</td>
         <td><a href="{% url 'stores:detail' review.store.pk %}">{{ review.store.name }}</a></td>
         </tr>
       {% endfor %}
-
     </tbody>
   </table>
+  {% endif %}
   
-  <hr>
-  
-  <h1 class="text-center mt-5 mb-5" style="color: orange;">{{ person.username }}가 좋아요를 누른 모든 게시글</h1>
-  <div class="row">
-  {% for store in person.like_stores.all %}
-    <div class="col mt-5">
-      <div class="container-fluid d-flex">
-        <div class="card" style="width: 27rem;">
-          {% if store.thumbnail %}
-          <img src="{{ store.thumbnail.url }}" class="card-img-top" alt="...">
-          {% else %}
-          <img src="{% static 'empty-food.jpg' %}" alt="" class="">
-          {% endif %}
-          <div class="card-body">
-            <h1 class="card-title text-center">{{ store.name }}</h1>
-            <p class="card-text text-center">{{ store.address }}</p>
-            <p class="card-text text-center">{{store.rating_avg}}</p>
-            <p class="card-text text-center">{{ store.content }}</p>
-            <div class="container-fluid d-flex justify-content-end">
-              <a href="{% url 'stores:detail' store.pk %}" class="btn btn-primary">해당 가게 보기</a>
+  </section>
+
+  <section class="container-fluid container-lg bg-white my-3 py-2">
+    <h1 class="text-center py-3" style="color: orange;">{{ person.username }}의 즐겨찾기 가게</h1>
+    {% if pseron.like_stores.count == 0 %}
+    <p class="text-body-tertiary text-center">즐겨찾기한 가게가 없습니다</p>
+    {% else %}
+    <div class="row row-cols-1 row-cols-lg-2">
+    {% for store in my_stores %}
+      <div class="col mt-5 d-flex justify-content-center">
+        <div class="mb-3">
+          <a href="{% url 'stores:detail' store.pk %}" class="text-decoration-none text-dark">
+          <div class="card d-flex" style="width: 27rem;">
+            <div class="card-img-container ">
+              {% if store.thumbnail %}
+              <img src="{{ store.thumbnail.url }}" class="card-img overflow-hidden" alt="...">
+              {% else %}
+              <img src="{% static 'empty-food.jpg' %}" alt="" class="card-img">
+              {% endif %}
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-center">
+                <h1 class="card-title mt-1">
+                  {{ store.name }}
+                </h1>
+                <span class="text-orange position-absolute end-0 me-3">
+                  ★ 
+                  {% if store.rating_avg %}
+                    {{ store.rating_avg|floatformat:1 }}
+                  {% else %}
+                    0.0
+                  {% endif %}
+                  ({{ store.review_set.all|length }})
+                </span>
+              </div>
+              <p class="card-text text-center">
+                {% if store.address %}
+                {{ store.address }}
+                {% else %}
+                <span class="text-none-data">등록된 주소가 없습니다.</span>
+                {% endif %}
+
+              </p>
+              <p class="card-text text-center">{{ store.content }}</p>
             </div>
           </div>
+        </a>
         </div>
       </div>
+    {% endfor %}
     </div>
-  {% endfor %}
-  </div>
+    {% endif %}
+  </section>  
 
+  <section class="container-fluid container-lg">
+    <form action="{% url 'accounts:delete' %}" method="post" class="d-flex justify-content-end mt-2">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger w-25 fs-3 my-3">회원 탈퇴</button>
+    </form>
+  </section>
 
-  {% endblock content %}
+</div>
+{% endblock content %}

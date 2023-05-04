@@ -8,39 +8,29 @@
       <img src="https://d1.awsstatic.com/logos/customers/KO/logo_Mangoplate.12908c5b9952bc4f14bdc966e5e81b521415fc6a.png" style="width: 20rem;">
     </div>
     <div class="container-fluid d-flex justify-content-center mt-5">
-      <div class="row d-flex justify-content-center">
-        <div class="container-fluid d-flex justify-content-center">
-          <h1 class='text-center'>로그인</h1>
-        </div>
-        <div class="container-fluid d-flex justify-content-center">
-          <form action="{% url 'accounts:login' %}" method="POST">
-              {% csrf_token %}
-              {% for field in form  %}
+      <div class="container mt-5" style="width: 500px;">
+        <h1 class='text-center fw-bold'>로그인</h1>
+        <form action="{% url 'accounts:login' %}" method="POST" class="form-text">
+            {% csrf_token %}
+            {% for field in form  %}
               <div calss="input-group">
                   <div class="input-gourp-text" id="{{ field.auto_id }}">{{ field.label }}</div>
                   {{ field }}
               </div>
               <br>
-              {% endfor %}
-              <div class="container-fluid d-flex justify-content-center">
-                  <input type="submit" class="btn btn-outline-primary" role="button" value="로그인">
-              </div>
-          </form>
-        </div>
-        <div class="container d-flex justify-content-center mt-5">
+            {% endfor %}
+            <input type="submit" class="btn btn-orange w-100 fs-3 mt-3" value="로그인">
+        </form>
+        <div class="w-100 text-center mt-5">
           {% load socialaccount %}
-          <div class="row d-flex justify-content-center">
-            <a href="{% provider_login_url 'google' method='oauth2' %}" class="d-flex justify-content-center">
+            <a href="{% provider_login_url 'google' method='oauth2' %}">
               <img src="https://t1.daumcdn.net/cfile/tistory/998689465C3D7D1217" style="width: 20rem;">
             </a>
-            <a href="{% provider_login_url 'kakao' method='oauth2' %}" class="d-flex justify-content-center">
+            <a href="{% provider_login_url 'kakao' method='oauth2' %}">
               <img src="https://t1.daumcdn.net/cfile/tistory/99BEE8465C3D7D1214" style="width: 20rem;">
             </a>
-          </div>
         </div>
       </div>
-
-    
     </div>
   </div>
 
