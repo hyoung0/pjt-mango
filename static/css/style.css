@@ -40,18 +40,18 @@
   width: 25rem;
 }
 
-.stores-create-input>p>input {
-  font-size: 1.5rem;
+.stores-create-input input {
+  font-size: 2rem;
   padding: 0 0.5rem;
 }
 
-.stores-create-input>p>textarea {
-  font-size: 1.5rem;
+.stores-create-input textarea {
+  font-size: 2rem;
   padding: 0 0.5rem;
 }
 
-.stores-create-input>p>select {
-  font-size: 1.5rem;
+.stores-create-input select {
+  font-size: 2rem;
   padding: 0 0.5rem;
 }
 

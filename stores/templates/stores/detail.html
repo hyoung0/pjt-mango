@@ -197,61 +197,6 @@
                 </div>
               </div>
               
-                <hr>
-
-                {% comment %} 아마 여기 {% endcomment %}
-                <div>
-                  <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                      <a class="page-link" href="?page=1">처음</a>
-                    </li>
-                    {% if page_obj.has_previous %}
-                      <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
-                          <span aria-hidden="true">&laquo;</span>
-                        </a>
-                      </li>
-                    {% else %}
-                      <li class="page-item disabled">
-                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
-                          <span aria-hidden="true">&laquo;</span>
-                        </a>
-                      </li>
-                    {% endif %}
-                  
-                    {% for page_number in page_obj.paginator.page_range %}
-                      {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
-                        {% if page_number == page_obj.number %}
-                          <li class="page-item active" aria-current="page">
-                            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-                          </li>
-                        {% else %}
-                          <li class="page-item">
-                            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-                          </li>
-                        {% endif %}
-                      {% endif %}
-                    {% endfor %}
-                  
-                    {% if page_obj.has_next %}
-                      <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">
-                          <span aria-hidden="true">&raquo;</span>
-                        </a>
-                      </li>
-                    {% else %}
-                      <li class="page-item disabled">
-                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
-                          <span aria-hidden="true">&raquo;</span>
-                        </a>
-                      </li>
-                    {% endif %}
-                    <li class="page-item">
-                      <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">마지막</a>
-                    </li>
-                  </ul>
-                </div>
-              
             </div>
           </div>
         </div>
@@ -263,7 +208,7 @@
               {% csrf_token %}
               <button type="submit" class="btn-like border-0 bg-transparent" id="review-like-{{ review.pk }}">
                 {% if request.user.is_authenticated and review.like_exist %}
-                <i class="bi bi-hand-thumbs-up-fill"></i> 
+                <i class="bi bi-hand-thumbs-up-fill text-orange"></i> 
                 <span>{{ review.likes|length }}</span>
                 {% else %}
                 <i class="bi bi-hand-thumbs-up"></i>
@@ -274,7 +219,7 @@
             <form class="review-dislike-forms d-flex" data-review-id="{{ review.pk }}">
               <button type="submit" class="btn-dislike border-0 bg-transparent" id="review-dislike-{{ review.pk }}">
                 {% if request.user.is_authenticated and review.dislike_exist %}
-                <i class="bi bi-hand-thumbs-down-fill"></i> 
+                <i class="bi bi-hand-thumbs-down-fill text-orange"></i> 
                 <span>{{ review.dislikes|length }}</span>
                 {% else %}
                 <i class="bi bi-hand-thumbs-down"></i>
@@ -299,13 +244,68 @@
 
     <hr>
   {% endfor %}
+
+  {% comment %} 아마 여기 {% endcomment %}
+  <div class="py-3">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="?page=1">처음</a>
+      </li>
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      {% endif %}
+    
+      {% for page_number in page_obj.paginator.page_range %}
+        {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
+          {% if page_number == page_obj.number %}
+            <li class="page-item active" aria-current="page">
+              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      {% endif %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">마지막</a>
+      </li>
+    </ul>
+  </div>
   </section>
 
   <div style="display: none;">{{ store.update_counter }}</div>
-    
+  
+  {% comment %}     
   <div class="container">
     인덱스처럼 다른 식당 리스트 불러오기
-  </div>
+  </div> 
+  {% endcomment %}
 
 </main>
 {% endblock content %}
@@ -406,9 +406,11 @@
           alert('이미 싫어요를 눌렀습니다.')
         } else if (isChecked) {
           iTag.classList.replace('bi-hand-thumbs-up', 'bi-hand-thumbs-up-fill')
+          iTag.classList.add('text-orange')
           cntSpanTag.textContent = emoteCnt
         } else {
           iTag.classList.replace('bi-hand-thumbs-up-fill', 'bi-hand-thumbs-up')
+          iTag.classList.remove('text-orange')
           cntSpanTag.textContent = emoteCnt
         }
       })
@@ -443,9 +445,11 @@
           alert('이미 좋아요를 눌렀습니다.')
         } else if (isChecked) {
           iTag.classList.replace('bi-hand-thumbs-down', 'bi-hand-thumbs-down-fill')
+          iTag.classList.add('text-orange')
           cntSpanTag.textContent = emoteCnt
         } else {
           iTag.classList.replace('bi-hand-thumbs-down-fill', 'bi-hand-thumbs-down')
+          iTag.classList.remove('text-orange')
           cntSpanTag.textContent = emoteCnt
         }
       })
