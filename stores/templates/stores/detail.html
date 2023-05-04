@@ -37,7 +37,14 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col">
-                <p class="mt-4">{{ store.name }} {{ store_avg }}</p>
+                <p class="mt-4">{{ store.name }} ★ 
+                  {% if store_avg %}
+                    {{ store_avg|floatformat:1 }}
+                  {% else %}
+                    0.0
+                  {% endif %}
+                  ({{ store.review_set.all|length }})
+                </p>
               </div>
               <div class="col">
                 <div class="container-fluid d-flex justify-content-end">

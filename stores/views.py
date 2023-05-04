@@ -21,7 +21,7 @@ def index(request):
 
 
 def all_stores(request):
-    stores = Store.objects.all()
+    stores = Store.objects.annotate(store_avg=Avg('review__rating')).all()
     page = request.GET.get('page', '1')
     per_page = 5
     paginator = Paginator(stores, per_page)
@@ -164,10 +164,8 @@ def redirect_index(request):
 def search(request):
     if request.method == 'POST':
         search = request.POST['search']        
-        store = Store.objects.filter(Q(address__contains=search)|Q(name__contains=search))
+        store = Store.objects.filter(Q(address__contains=search)|Q(name__contains=search)).annotate(store_avg=Avg('review__rating'))
         reviews = Review.objects.filter(content__contains=search)
-        print(store)
-        print(reviews)
         return render(request, 'stores/search.html', {'search': search, 'store': store, 'reviews': reviews})
     else:
         return render(request, 'stores/search.html', {})
@@ -191,7 +189,7 @@ def like_stores(request, store_pk):
 
 def category(request, subject):
     subject = subject
-    stores = Store.objects.filter(category=subject).order_by('-pk')
+    stores = Store.objects.filter(category=subject).annotate(store_avg=Avg('review__rating')).order_by('-pk')
     context = {
         'subject': subject,
         'stores': stores,
