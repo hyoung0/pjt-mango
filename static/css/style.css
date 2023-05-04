@@ -21,6 +21,22 @@
   color: orange;
 }
 
+.btn-orange {
+  color: white;
+  background-color: orange;
+  border-radius: 10px;
+}
+.btn-orange:hover {
+  color: white;
+  background-color: rgb(194, 126, 1);
+  border-radius: 10px;
+}
+.btn.btn-orange:active {
+  color: white;
+  background-color: rgb(194, 126, 1);
+  border-radius: 10px;
+}
+
 .all-head {
   display: flex;
   flex-direction: column;
