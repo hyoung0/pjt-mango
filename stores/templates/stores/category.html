@@ -42,7 +42,14 @@
       <div class="my-auto d-flex flex-column flex-fill ">
         <p class="fs-1 m-0">
           <a href="{% url 'stores:detail' store.pk %}" class="text-dark">{{ store.name }}</a>
-          <span class="text-orange">평균 평점이 들어갈곳{{ store.rating }}</span>
+          <span class="text-orange">★ 
+            {% if store.store_avg %}
+              {{ store.store_avg|floatformat:1 }}
+            {% else %}
+              0.0
+            {% endif %}
+            ({{ store.review_set.all|length }})
+          </span>
         </p>
         <p class="text-warning-emphasis fs-2 m-0">{{ store.category }}</p>
         <p class="text-body-tertiary fs-2">
@@ -60,6 +67,60 @@
   </section>
   {% endfor %}
 </main>
+
+{% comment %} pagination {% endcomment %}
+<div>
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" href="?page=1">처음</a>
+    </li>
+    {% if stores.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ stores.previous_page_number }}">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+    {% endif %}
+  
+    {% for page_number in stores.paginator.page_range %}
+      {% if page_number >= stores.number|add:-5 and page_number <= stores.number|add:5 %}
+        {% if page_number == stores.number %}
+          <li class="page-item active" aria-current="page">
+            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+          </li>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  
+    {% if stores.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ stores.next_page_number }}">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    {% endif %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ stores.paginator.num_pages }}">마지막</a>
+    </li>
+  </ul>
+</div>
+
 {% endblock content %}
 
 

@@ -136,7 +136,7 @@
   </section>
  
   <section class="container-fluid container-lg bg-white">
-  {% for review in reviews %}
+  {% for review in page_obj %}
     <div class="py-2 px-5">
       
       {% comment %} 프로필, 작성일, 리뷰 내용, 이미지 {% endcomment %}
@@ -196,6 +196,62 @@
                   {% endif %}
                 </div>
               </div>
+              
+                <hr>
+
+                {% comment %} 아마 여기 {% endcomment %}
+                <div>
+                  <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                      <a class="page-link" href="?page=1">처음</a>
+                    </li>
+                    {% if page_obj.has_previous %}
+                      <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                    {% else %}
+                      <li class="page-item disabled">
+                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                    {% endif %}
+                  
+                    {% for page_number in page_obj.paginator.page_range %}
+                      {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
+                        {% if page_number == page_obj.number %}
+                          <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                          </li>
+                        {% else %}
+                          <li class="page-item">
+                            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                          </li>
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  
+                    {% if page_obj.has_next %}
+                      <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    {% else %}
+                      <li class="page-item disabled">
+                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    {% endif %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">마지막</a>
+                    </li>
+                  </ul>
+                </div>
+              
             </div>
           </div>
         </div>

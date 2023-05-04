@@ -5,6 +5,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from .forms import CustomAuthenticationForm, CustomUserCreationForm, CustomUserChangeForm, CustomPasswordChangeForm
 from django.contrib.auth import get_user_model
+from stores.models import Store
 from django.db.models import Avg
 
 
@@ -87,17 +88,14 @@ def change_password(request):
     return render(request, 'accounts/change_password.html', context)
 
 
-def review_average(store_pk):
-    User = get_user_model()
-    rating_avg = User.like_stores.all().annotate(store_avg = Avg('review__rating')).get(pk=store_pk)
-    return rating_avg.store_avg
-
-
 def profile(request, username):
     User = get_user_model()
     person = User.objects.get(username=username)
+    stores = person.like_stores.all()
+    my_stores = stores.annotate(rating_avg=(Avg('review__rating')))
     context = {
         'person': person,
+        'my_stores': my_stores,
     }
     return render(request, 'accounts/profile.html', context)
 
