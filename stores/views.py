@@ -195,3 +195,5 @@ def category(request, subject):
         'stores': stores,
     }
     return render(request, 'stores/category.html', context)
+
+

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+
+
+  <div class='d-flex flex-column justify-content-center text-center' style='height: 55vw;'>
+    <h1 class='text-orange' style='font-size: 5rem'>구글로그인을 계속 진행하시겠습니까?</h1>
+    <h3 class='text-orange mb-5' style='font-size: 3rem'>진행을 원하시면 <span class='warning'>계속</span>을 눌러주세요</h3>
+    <form method="post">
+      {% csrf_token %}
+      <button class='btn-orange' type="submit">{% trans "Continue" %}</button>
+    </form>
+  </div>
+
+
+{% endblock %}

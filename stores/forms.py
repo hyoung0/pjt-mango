@@ -1,5 +1,5 @@
 from django import forms
-from .models import Store, StoreImage
+from .models import Store, StoreImage, Menu
 
 
 class StoreForm(forms.ModelForm):
@@ -69,3 +69,13 @@ class StoreImageForm(forms.ModelForm):
     class Meta:
         model = StoreImage
         fields = ('image',)
+
+
+class MenuForm(forms.ModelForm):
+    class Meta:
+        model = Menu
+        fields = ('menu', 'price',)
+        labels = {
+            'menu': '메뉴 이름',
+            'price': '가격',
+        }
