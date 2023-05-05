@@ -80,26 +80,21 @@
   <table class="table table-hover mx-2">
     <thead>
       <tr>
+        <th scope="col">가게</th>
         <th scope="col">리뷰 내용</th>
         {% comment %} <th scope="col">리뷰 이미지</th> {% endcomment %}
         <th scope="col">내가 남긴 가게 점수</th>
         <th scope="col">리뷰 작성 날짜</th>
-        <th scope="col">가게</th>
       </tr>
     </thead>
     <tbody>
       {% for review in person.review_set.all reversed %}
-      <tr>
-        <td href="">{{ review.content }}</td>
-        {% comment %} <td>
-        {% if review.image %}
-        <img src="{{ review.image.url }}" alt="Thumbnail Image">
-        {% endif %}
-        </td> {% endcomment %}
-        <td>{{ review.rating }}</td>
-        <td>{{ review.created_string }}</td>
+      <tr class="review-content-row">
         <td><a href="{% url 'stores:detail' review.store.pk %}">{{ review.store.name }}</a></td>
-        </tr>
+        <td href="" class="review-content-text">{{ review.content }}</td>
+        <td class="text-orange">{{ review.rate_to_star }}{{ review.rate_to_empty_star }}</td>
+        <td>{{ review.created_string }}</td>
+      </tr>
       {% endfor %}
     </tbody>
   </table>

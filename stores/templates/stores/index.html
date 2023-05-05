@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 {% load static %}
 <div class="container-fluid" style="padding: 0;">
@@ -239,40 +238,112 @@
   
         <hr class="mt-5">
 
-        <div class="container-fluid">
-            <div class="container">
-                <h1 class="mt-5">에디터 이정일 선정 맛집 리스트</h1>
+        <section class="container bg-white my-3 py-2">
+            <h1 class="text-center py-3" style="color: orange;">Editor1의 추천 가게</h1>
+            {% if editor1_like_stores.count == 0 %}
+            <p class="text-body-tertiary text-center">추천 가게가 없습니다</p>
+            {% else %}
+            <div class="row row-cols-1 row-cols-lg-2">
+            {% for store in editor1_like_stores|slice:4 %}
+              <div class="col mt-5 d-flex justify-content-center">
+                <div class="mb-3">
+                  <a href="{% url 'stores:detail' store.pk %}" class="text-decoration-none text-dark">
+                  <div class="card d-flex" style="width: 27rem;">
+                    <div class="card-img-container ">
+                      {% if store.thumbnail %}
+                      <img src="{{ store.thumbnail.url }}" class="card-img overflow-hidden" alt="...">
+                      {% else %}
+                      <img src="{% static 'empty-food.jpg' %}" alt="" class="card-img">
+                      {% endif %}
+                    </div>
+                    <div class="card-body">
+                      <div class="d-flex justify-content-center">
+                        <h1 class="card-title mt-1">
+                          {{ store.name }}
+                        </h1>
+                        <span class="text-orange position-absolute end-0 me-3">
+                          ★ 
+                          {% if store.rating_avg %}
+                            {{ store.rating_avg|floatformat:1 }}
+                          {% else %}
+                            0.0
+                          {% endif %}
+                          ({{ store.review_set.all|length }})
+                        </span>
+                      </div>
+                      <p class="card-text text-center">
+                        {% if store.address %}
+                        {{ store.address }}
+                        {% else %}
+                        <span class="text-none-data">등록된 주소가 없습니다.</span>
+                        {% endif %}
+        
+                      </p>
+                      <p class="card-text text-center">{{ store.content }}</p>
+                    </div>
+                  </div>
+                </a>
+                </div>
+              </div>
+            {% endfor %}
             </div>
-            <div class="row">
-                <div class="col">
+            {% endif %}
+          </section>  
 
+        <hr class="mt-5">
+
+        <section class="container-fluid container-lg bg-white my-3 py-2">
+            <h1 class="text-center py-3" style="color: orange;">Editor2의 추천 가게</h1>
+            {% if editor2_like_stores.count == 0 %}
+            <p class="text-body-tertiary text-center">추천 가게가 없습니다</p>
+            {% else %}
+            <div class="row row-cols-1 row-cols-lg-2">
+            {% for store in editor2_like_stores|slice:4 %}
+                <div class="col mt-5 d-flex justify-content-center">
+                <div class="mb-3">
+                    <a href="{% url 'stores:detail' store.pk %}" class="text-decoration-none text-dark">
+                    <div class="card d-flex" style="width: 27rem;">
+                    <div class="card-img-container ">
+                        {% if store.thumbnail %}
+                        <img src="{{ store.thumbnail.url }}" class="card-img overflow-hidden" alt="...">
+                        {% else %}
+                        <img src="{% static 'empty-food.jpg' %}" alt="" class="card-img">
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center">
+                        <h1 class="card-title mt-1">
+                            {{ store.name }}
+                        </h1>
+                        <span class="text-orange position-absolute end-0 me-3">
+                            ★ 
+                            {% if store.rating_avg %}
+                            {{ store.rating_avg|floatformat:1 }}
+                            {% else %}
+                            0.0
+                            {% endif %}
+                            ({{ store.review_set.all|length }})
+                        </span>
+                        </div>
+                        <p class="card-text text-center">
+                        {% if store.address %}
+                        {{ store.address }}
+                        {% else %}
+                        <span class="text-none-data">등록된 주소가 없습니다.</span>
+                        {% endif %}
+        
+                        </p>
+                        <p class="card-text text-center">{{ store.content }}</p>
+                    </div>
+                    </div>
+                </a>
                 </div>
-                <div class="col">
-                    
                 </div>
-                <div class="col">
-                    
-                </div>
-                <div class="col">
-                    
-                </div>
+            {% endfor %}
             </div>
-            <div class="row">
-                <div class="col">
+            {% endif %}
+        </section>  
 
-                </div>
-                <div class="col">
-                    
-                </div>
-                <div class="col">
-                    
-                </div>
-                <div class="col">
-                    
-                </div>
-            </div>
-
-        </div>
     </main>
 </div>
 
