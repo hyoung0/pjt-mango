@@ -2,10 +2,10 @@
 
 
 {% block content %}
-
+{% load static %}
 <div class="container-fluid" style="padding: 0;">
     <header class="d-flex justify-content-center align-items-center">
-        <div class="container-fluid bg-image" style="background-image: url('https://d2v80xjmx68n4w.cloudfront.net/gigs/fPoZ31584321311.jpg'); width: 100%;">
+        <div class="container-fluid bg-image w-100" style="background-image: url('{% static 'main_page.avif' %}'); text-shadow: 1px 1px 2px #DF3A01, 0 0 1em #DF3A01, 0 0 0.2em #DF3A01;">
             <h1 class="title text-light text-center mt-5" style="font-size: larger;">솔직한 리뷰, 믿을 수 있는 평점!</h1>
             <h1 class="title text-light text-center" style="font-size: larger;">망고플레이트</h1>
             <div class="container-fluid d-flex justify-content-center mb-5">
