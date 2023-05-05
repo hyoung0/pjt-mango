@@ -131,15 +131,15 @@
           </span>
         </p>
         <p class="mb-5">메뉴</p>
-        {% comment %} 
+
         <ul class="list-unstyled">
           {% for menu in store.menu_set.all %}
-          <li class="">{{ menu }}</li>
+          <li class="">{{ menu.menu }} {{ menu.price }}</li>
           {% empty %}
           <p class="text-none-data">등록된 메뉴가 없습니다.</p>
           {% endfor %} 
         </ul>
-        {% endcomment %}
+
       </div>
 
   </section>
