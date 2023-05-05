@@ -82,7 +82,7 @@
           {% endif %}
         </div>
 
-        <p class="text-secondary">조회수 {{ store.hits }} / 즐겨찾기수 {{ store.like_users.count }}</p>
+        <p class="text-secondary">조회수 {{ store.hits }} / 즐겨찾기수 <span id="likes-count">{{ store.like_users.count }}</span></p>
         <div class="row">
           <div class="col-sm-2">
             <div class="text-warning-emphasis mb-2">{{ store.category }}</div>
@@ -99,46 +99,50 @@
             </div>
           </div>
         </div>
-        <p class="">
-          <span class="me-5">번호</span>
-          <span class="">
-            {% if store.phone_number %}
-            {{ store.phone_number }}
-            {% else %}
-            <span class="text-none-data">등록된 번호가 없습니다.</span>
-            {% endif %}
-          </span>
-        </p>
-        <p>{{ store.price }}</p>
-        <p class="">
-          <span class="me-2">영업 시간</span>
-          <span class="">
-            {% if store.starttime and store.endtime %}
-            {{ store.starttime }} ~ {{ store.endtime }}
-            {% else %}
-            <span class="text-none-data">등록된 시간이 없습니다.</span>
-            {% endif %}
-          </span>
-        </p>
-        <p class="mb-2">
-          <span class="me-5">소개</span>
-          <span class="">
-            {% if store.content %}
-            {{ store.content }}
-            {% else %}
-            <span class="text-none-data">등록된 소개가 없습니다.</span>
-            {% endif %}
-          </span>
-        </p>
-        <p class="mb-5">메뉴</p>
-
-        <ul class="list-unstyled">
-          {% for menu in store.menu_set.all %}
-          <li class="">{{ menu.menu }} {{ menu.price }}</li>
-          {% empty %}
-          <p class="text-none-data">등록된 메뉴가 없습니다.</p>
-          {% endfor %} 
-        </ul>
+        <table class="mt-4">
+          <tbody>
+            <tr>
+              <td>번호</td>
+              <td>
+                {% if store.phone_number %}
+                {{ store.phone_number }}
+                {% else %}
+                <span class="text-none-data">등록된 번호가 없습니다.</span>
+                {% endif %}
+              </td>
+            </tr>
+            <tr>
+              <td class="me-3 pe-5">영업 시간</td>
+              <td>
+                {% if store.open_hours and store.closing_hours %}
+                {{ store.open_hours }} ~ {{ store.closing_hours }}
+                {% else %}
+                <span class="text-none-data">등록된 시간이 없습니다.</span>
+                {% endif %}
+              </td>
+            </tr>
+            <tr>
+              <td>소개</td>
+              <td>
+                {% if store.info %}
+                {{ store.info }}
+                {% else %}
+                <span class="text-none-data">등록된 소개가 없습니다.</span>
+                {% endif %}
+              </td>
+            </tr>
+            <tr>
+              <td class="align-top">메뉴</td>
+              <td>
+                {% for menu in store.menu_set.all %}
+                <li style="list-style: none;">{{ menu.menu }} - {{ menu.price }}원</li>
+                {% empty %}
+                <p class="text-none-data">등록된 메뉴가 없습니다.</p>
+                {% endfor %} 
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
       </div>
 
@@ -434,6 +438,9 @@
           iTag.classList.replace('bi-star-fill', 'bi-star')
           iTag.classList.remove('text-orange')
         }
+        const likesCountTag = document.querySelector('#likes-count')
+        const likesCountData = response.data.likes_count
+        likesCountTag.textContent = likesCountData
       })
       .catch((error) => {
         console.log(error.response)

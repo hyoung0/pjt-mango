@@ -8,7 +8,7 @@
       <img src="https://d1.awsstatic.com/logos/customers/KO/logo_Mangoplate.12908c5b9952bc4f14bdc966e5e81b521415fc6a.png" style="width: 20rem;">
     </div>
     <div class="container-fluid d-flex justify-content-center mt-5">
-      <div class="container mt-5" style="width: 500px;">
+      <div class="container" style="width: 500px;">
         <h1 class='text-center fw-bold'>로그인</h1>
         <form action="{% url 'accounts:login' %}" method="POST" class="form-text">
             {% csrf_token %}
@@ -17,9 +17,8 @@
                   <div class="input-gourp-text" id="{{ field.auto_id }}">{{ field.label }}</div>
                   {{ field }}
               </div>
-              <br>
             {% endfor %}
-            <input type="submit" class="btn btn-orange w-100 fs-3 mt-3" value="로그인">
+            <input type="submit" class="btn btn-orange w-100 fs-3 mt-5" value="로그인">
         </form>
         <div class="w-100 text-center mt-5">
           {% load socialaccount %}

@@ -235,6 +235,7 @@ def like_stores(request, store_pk):
         is_liked = True
     context = {
         'is_liked': is_liked,
+        'likes_count': store.like_users.count(),
     }
     return JsonResponse(context)
 
