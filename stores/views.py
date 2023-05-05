@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Store, StoreImage
-from .forms import StoreForm, StoreImageForm
+from .models import Store, StoreImage, Menu
+from .forms import StoreForm, StoreImageForm, MenuForm, MenuFormSet
 from django.db.models import Prefetch, Count, Q, Avg
 from reviews.models import Review, Emote
 import requests, json
@@ -64,7 +64,8 @@ def create(request):
         store_image_form = StoreImageForm(data=request.POST, files=request.FILES)
         files = request.FILES.getlist('image')
         tags = request.POST.get('tags').split(',')
-        if store_form.is_valid() and store_image_form.is_valid():
+        menu_formset = MenuFormSet(request.POST, instance=Store())
+        if store_form.is_valid() and store_image_form.is_valid() and menu_formset.is_valid():
             store = store_form.save(commit=False)
             if store.address:
                 pos = get_location(store.address)
@@ -78,13 +79,21 @@ def create(request):
             for file in files:
                 StoreImage.objects.create(store=store, image=file)
 
+            menu_instances = menu_formset.save(commit=False)
+            for menu_instance in menu_instances:
+                if menu_instance.menu and menu_instance.price:
+                    menu_instance.store = store
+                    menu_instance.save()
+
             return redirect('stores:detail', store.pk)
     else:
         store_form = StoreForm()
         store_image_form = StoreImageForm()
+        menu_formset = MenuFormSet(instance=Store())
     context = {
         'store_form': store_form,
         'store_image_form': store_image_form,
+        'menu_formset': menu_formset,
     }
     return render(request, 'stores/create.html', context)
 

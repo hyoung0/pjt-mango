@@ -17,6 +17,18 @@
             <ul class="list-group list-group-flush">
               {{ store_form.as_p }}
               {{ store_image_form.as_p }}
+              {{ menu_formset.management_form }}
+              <p class="text-orange">menu와 price:</p>
+              {% for form in menu_formset.forms %}
+              <div class="input-group mb-4 price-menu-input">
+                <span class="input-group-text fs-3">menu and price</span>
+                {{ form.menu }}
+                {{ form.price }}
+              </div>
+              {% endfor %}
+
+              
+
             </ul>
             <button type="submit" class="btn fs-4 py-0 position-absolute bottom-0 end-0 mb-4 me-4" style="background-color: orange; color: white;">가게 등록</button>
           </form>

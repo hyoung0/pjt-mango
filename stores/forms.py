@@ -2,7 +2,7 @@ from django import forms
 from .models import Store, StoreImage, Menu
 from taggit.managers import TaggableManager
 from taggit.forms import TagField, TagWidget
-
+from django.forms import inlineformset_factory
 
 class StoreForm(forms.ModelForm):
     category = forms.ChoiceField(
@@ -82,3 +82,9 @@ class MenuForm(forms.ModelForm):
             'menu': '메뉴 이름',
             'price': '가격',
         }
+        widgets={
+            'menu': forms.TextInput(attrs={'class':'form-control',}),
+            'price': forms.NumberInput(attrs={'class':'form-control',}),
+        }
+
+MenuFormSet = inlineformset_factory(Store, Menu, form=MenuForm, extra=4, can_delete=False)

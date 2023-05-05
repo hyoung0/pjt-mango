@@ -37,7 +37,7 @@
 
 /* Store Create Form */
 .stores-create-input {
-  width: 25rem;
+  width: 40rem;
 }
 
 .stores-create-input input {
@@ -207,4 +207,9 @@
   }
 
 }
-
+.price-menu-input span{
+  font-size: 1rem;
+}
+.price-menu-input input{
+  font-size: 1rem;
+}
