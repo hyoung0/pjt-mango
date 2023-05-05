@@ -203,3 +203,6 @@
     height: 25rem;
   }
 }
+.nowrap {
+  white-space: nowrap;
+}
