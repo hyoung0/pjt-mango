@@ -3,18 +3,25 @@
 
 {% block title %} - 가게 정보 수정{% endblock title %}
 
+{% block style %}
+
+{% endblock style %}
 
 {% block content %}
-
-  <section class="container-fluid my-3">
-    <h1 class="fw-bold ms-3">가게 정보 수정</h1>
-  
-    <form action="{% url 'stores:update' store.pk %}" method="post" class="ms-3 stores-create-input" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ store_form.as_p }}
-      {{ store_image_form.as_p }}
-      <button type="submit" class="btn btn-primary fs-4 py-0">정보 수정</button>
-    </form>
+  <section class="container my-3">
+      <h1 class="fw-bold ms-3 text-center text-orange">가게 정보 수정</h1>
+      <div class="container d-flex justify-content-center">
+        <div class="card" style="width: 50rem; border-color: orange; border-style: solid;">
+          <form action="{% url 'stores:update' store.pk %}" method="post" class="ms-3 stores-create-input text-orange" enctype="multipart/form-data">
+            {% csrf_token %}
+            <ul class="list-group list-group-flush">
+              {{ store_form.as_p }}
+              {{ store_image_form.as_p }}
+            </ul>
+            <button type="submit" class="btn fs-4 py-0 position-absolute bottom-0 end-0 mb-4 me-4" style="background-color: orange; color: white;">가게 등록</button>
+          </form>
+        </div>
+      </div>
   </section>
 
 {% endblock content %}
