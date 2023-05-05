@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'stores',
     'django_extensions',
     'imagekit',
+    'taggit',
+    'taggit_templatetags2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',

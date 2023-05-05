@@ -140,7 +140,14 @@
                   ({{ store.review_set.all|length }})
                 </span>
               </div>
-              <p class="card-text text-center">{{ store.address }}</p>
+              <p class="card-text text-center">
+                {% if store.address %}
+                {{ store.address }}
+                {% else %}
+                <span class="text-none-data">등록된 주소가 없습니다.</span>
+                {% endif %}
+
+              </p>
               <p class="card-text text-center">{{ store.content }}</p>
             </div>
           </div>

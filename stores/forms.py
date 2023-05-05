@@ -1,5 +1,7 @@
 from django import forms
 from .models import Store, StoreImage, Menu
+from taggit.managers import TaggableManager
+from taggit.forms import TagField, TagWidget
 
 
 class StoreForm(forms.ModelForm):
@@ -27,7 +29,7 @@ class StoreForm(forms.ModelForm):
 
     class Meta:
         model = Store
-        exclude = ('like_users', 'latitude', 'longitude', )
+        exclude = ('like_users', 'latitude', 'longitude', 'hits')
         
         labels = {
             'name': '가게 이름',
@@ -38,7 +40,7 @@ class StoreForm(forms.ModelForm):
             'closing_hours': '폐장 시간',
             'thumbnail': '썸네일 사진',
         }
-        
+
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control w-75'}),
             'phone_number': forms.TextInput(
@@ -49,9 +51,10 @@ class StoreForm(forms.ModelForm):
                     }),
             'info': forms.Textarea(attrs={'class': 'form-control w-75', 'rows': '5'}),
             'address': forms.TextInput(attrs={'class': 'form-control w-75'}),
-            'open_hours': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control w-25'}),
-            'closing_hours': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control w-25'}),
+            'open_hours': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control w-50'}),
+            'closing_hours': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control w-50'}),
             'thumbnail': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'tags': TagWidget(attrs={'class': 'form-control', 'placeholder': "콤마 구분"}),
         }
 
 

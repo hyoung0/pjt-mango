@@ -2,7 +2,8 @@ from django.db import models
 from django.conf import settings
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
-
+from taggit.managers import TaggableManager
+import os
 
 # Create your models here.   
 class Store(models.Model):
@@ -31,13 +32,23 @@ class Store(models.Model):
     
     category = models.CharField(max_length=20)
 
+    tags = TaggableManager(blank = True)
+
     def __str__(self):
         return self.name 
+    
+    def delete(self, *args, **kargs):
+        if self.thumbnail:
+            os.remove(os.path.join(settings.MEDIA_ROOT, self.thumbnail.path))
+            dir_path = os.path.dirname(os.path.join(settings.MEDIA_ROOT, self.thumbnail.name))
+            if not os.listdir(dir_path):
+                os.rmdir(dir_path)
+        super(Store, self).delete(*args, **kargs)
 
-    @property
-    def update_counter(self):
-        self.hits = self.hits + 1
-        self.save()
+    # @property
+    # def update_counter(self):
+    #     self.hits = self.hits + 1
+    #     self.save()
     
     
 class Menu(models.Model):
@@ -56,3 +67,11 @@ class StoreImage(models.Model):
                                 processors=[ResizeToFill(350,350)],
                                 format='JPEG',
                                 options={'quality': 100})
+    
+    def delete(self, *args, **kargs):
+        if self.image:
+            os.remove(os.path.join(settings.MEDIA_ROOT, self.image.path))
+            dir_path = os.path.dirname(os.path.join(settings.MEDIA_ROOT, self.image.name))
+            if not os.listdir(dir_path):
+                os.rmdir(dir_path)
+        super(StoreImage, self).delete(*args, **kargs)

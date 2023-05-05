@@ -78,6 +78,12 @@
         <a href="{% url 'stores:detail' review.store.pk %}">{{ review.store.name }}</a>
     {% endfor %}
 
+    {% for tag in store.tags.all %}
+    <p>{{ tag.name }}</p>
+    {% endfor %}
+
+
+
 </main>
 
 {% comment %} pagination {% endcomment %}
