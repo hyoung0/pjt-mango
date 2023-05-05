@@ -56,6 +56,10 @@ class StoreForm(forms.ModelForm):
             'thumbnail': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'tags': TagWidget(attrs={'class': 'form-control', 'placeholder': "콤마 구분"}),
         }
+        
+        help_texts = {
+            'tags': '콤마로 구분해주세요!',
+        }
 
 
 class StoreImageForm(forms.ModelForm):
