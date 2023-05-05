@@ -57,7 +57,7 @@
             {% if store_avg %}
             {{ store_avg|floatformat:1 }}
             {% else %}
-            -
+            0.0
             {% endif %}
           </span>
           <span class="fs-2">
@@ -83,7 +83,7 @@
             {% if store.starttime and store.endtime %}
             {{ store.starttime }} ~ {{ store.endtime }}
             {% else %}
-            <span class="text-none-data">등록된 시간이 없습니다.</ㄴ>
+            <span class="text-none-data">등록된 시간이 없습니다.</span>
             {% endif %}
           </span>
         </p>
