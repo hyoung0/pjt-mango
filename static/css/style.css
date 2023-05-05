@@ -241,4 +241,7 @@
   }
 
 }
+.nowrap {
+  white-space: nowrap;
+}
 

@@ -83,7 +83,22 @@
         </div>
 
         <p class="text-secondary">조회수 {{ store.hits }} / 즐겨찾기수 {{ store.like_users.count }}</p>
-        <p class="text-warning-emphasis mb-2 fs-3">{{ store.category }}</p>
+        <div class="row">
+          <div class="col-sm-2">
+            <div class="text-warning-emphasis mb-2">{{ store.category }}</div>
+          </div>
+          <div class="col">
+            <div class="row">
+              {% for tag in store.tags.all|slice:"8" %}
+              <div class="col-4 col-xl-3">
+                  <div class="text-center nowrap" style="background-color: aliceblue; border-style: none; border-radius: 1.5rem; display: inline-block; width: 120px; font-size: 1.5rem;">
+                    #{{ tag.name|truncatechars:10 }}
+                  </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
         <p class="">
           <span class="me-5">번호</span>
           <span class="">
@@ -327,12 +342,8 @@
   </div>
   </section>
 
-  <div style="display: none;">{{ store.update_counter }}</div>
 
-  {% for tag in store.tags.all %}
-    <p>{{ tag.name }}</p>
-  {% endfor %}
-
+  
   </div>
 
  
