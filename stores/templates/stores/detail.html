@@ -3,7 +3,7 @@
 
 
 {% block content %}
-<main class="bg-body-tertiary">
+<main class="store-detail">
 
   <header class="container-fluid container-lg">
     <div id="reviewImage" class="carousel slide" data-bs-ride="carousel" style="height: 350px;">
@@ -36,7 +36,7 @@
 
       <div class="map-container col-12 col-lg-3">
         {% if store.latitude and store.longitude %}
-        <div id="map" class="map-box container-fluid"></div>
+        <div id="static-map" class="map-box container-fluid"></div>
         {% else %}
         <p class="text-none-data text-center">위치 정보가 없습니다.</p>
         {% endif %}
@@ -50,20 +50,38 @@
       </div>
       
       <div class="store-info">
-        <div class="">
-          <h1 class="d-inline-block m-0">{{ store.name }} </h1>
-          <span class="text-orange">
-            ★
-            {% if store_avg %}
-            {{ store_avg|floatformat:1 }}
-            {% else %}
-            0.0
-            {% endif %}
-          </span>
-          <span class="fs-2">
-            <i class="bi bi-chat-left-text ms-2 me-1 fs-4"></i>({{ reviews|length }})
-          </span>
+        <div class="d-flex justify-content-between">
+          <div class="">
+            <h1 class="d-inline-block m-0">{{ store.name }} </h1>
+            <span class="text-orange">
+              ★
+              {% if store_avg %}
+              {{ store_avg|floatformat:1 }}
+              {% else %}
+              0.0
+              {% endif %}
+            </span>
+            <span class="fs-2">
+              <i class="bi bi-chat-left-text ms-2 me-1 fs-4"></i>({{ reviews|length }})
+            </span>
+          </div>
+          {% if request.user.is_superuser %}
+          <div class="d-flex mt-auto">
+            <div class="me-3">
+              <a href="{% url 'stores:update' store.pk %}" class="text-primary fs-2">
+                <i class="bi bi-pencil-square"></i>
+              </a>
+            </div>
+            <form action="{% url 'stores:delete' store.pk %}" method="post" class="">
+              {% csrf_token %}
+              <button type="submit" class="text-danger btn p-0">
+                <i class="bi bi-trash3 fs-2"></i>
+              </button>
+            </form>
+          </div>
+          {% endif %}
         </div>
+
         <p class="text-secondary">조회수 {{ store.hits }} / 즐겨찾기수 {{ store.like_users.count }}</p>
         <p class="text-warning-emphasis mb-2 fs-3">{{ store.category }}</p>
         <p class="">
@@ -137,34 +155,52 @@
  
   <section class="container-fluid container-lg bg-white">
   {% for review in page_obj %}
-    <div class="py-2 px-5">
+    <div class="review-container">
       
       {% comment %} 프로필, 작성일, 리뷰 내용, 이미지 {% endcomment %}
-      <div class="container-fluid d-flex justify-content-between mt-3">
+      <div class="container-fluid d-flex justify-content-between mt-3 d-flex align-items-center">
 
-        <div class="container-fluid d-flex align-items-center">
-          <div class="row">
-            <div class="col text-center">
-              <a href="{% url 'accounts:profile' review.user %}" class="text-dark">
-                {% if review.user.image %}
+          {# review row start #}
+          <div class="row container-fluid">
+
+            <div class="col-2 text-center d-flex flex-column justify-content-center">
+              <div class="">
+                <a href="{% url 'accounts:profile' review.user %}" class="text-dark">
+                  {% if review.user.image %}
                   <img src="{{ review.user.image.url }}" class="rounded-circle" style="width: 50px;" alt="profile_img">
-                {% else %}
+                  {% else %}
                   <img src="{% static 'profile_no_image.png' %}" class="rounded-circle" style="width: 50px;" alt="profile_no_image">
-                {% endif %}
-                <p class="align-middle mb-0">{{ review.user }}</p>
-              </a>
+                  {% endif %}
+                  <p class="align-middle mb-0">{{ review.user }}</p>
+                </a>
+              </div>
+
               {% comment %} rating {% endcomment %}
               <div class="text-center">
                 <span class="text-orange">{{ review.rate_to_star }}{{ review.rate_to_empty_star}}</span>
               </div>
+
+              {% comment %} 리뷰 수정, 삭제 버튼 {% endcomment %}
+              {% if request.user == review.user %}
+              <div class="d-flex justify-content-center">
+                <div class="me-2">
+                  <a href="{% url 'reviews:update' review.pk %}" class="btn btn-outline-primary review-btn-size" style="width: 3rem; height: 2rem;">수정</a>
+                </div>
+                <form action="{% url 'reviews:delete' review.pk %}" method="POST" class="">
+                  {% csrf_token %}
+                  <input type="submit" class="btn btn-outline-danger review-btn-size" value="삭제">
+                </form>
+              </div>
+              {% endif %} 
+
             </div>
 
-            <div class="col">
+            <div class="col-9 review-contents-container">
               <div class="container-fluid">
                 <p class="text-body-secondary">{{ review.created_string }}</p>
               </div>
               <div class="container-fluid">
-                <p>{{ review.content }}</p>
+                <p class="">{{ review.content }}</p>
                 <div class="d-flex review-img-container">
                   {% if review.reviewimage_set.all|length > 5 %}
                     {% for review_image in review.reviewimage_set.all|slice:":5" %}
@@ -198,54 +234,46 @@
               </div>
               
             </div>
+
+            {% comment %} emote {% endcomment %}
+            <div class="col-1">
+              <div class="d-flex">
+                <form class="review-like-forms d-flex" data-review-id="{{ review.pk }}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn-like border-0 bg-transparent" id="review-like-{{ review.pk }}">
+                    {% if request.user.is_authenticated and review.like_exist %}
+                    <i class="bi bi-hand-thumbs-up-fill text-orange"></i> 
+                    <span>{{ review.likes|length }}</span>
+                    {% else %}
+                    <i class="bi bi-hand-thumbs-up"></i>
+                    <span>{{ review.likes|length }}</span>
+                    {% endif %}
+                  </button>
+                </form>
+                <form class="review-dislike-forms d-flex" data-review-id="{{ review.pk }}">
+                  <button type="submit" class="btn-dislike border-0 bg-transparent" id="review-dislike-{{ review.pk }}">
+                    {% if request.user.is_authenticated and review.dislike_exist %}
+                    <i class="bi bi-hand-thumbs-down-fill text-orange"></i> 
+                    <span>{{ review.dislikes|length }}</span>
+                    {% else %}
+                    <i class="bi bi-hand-thumbs-down"></i>
+                    <span>{{ review.dislikes|length }}</span> 
+                    {% endif %}
+                  </button>
+                </form>
+              </div>
+            </div>
+
           </div>
-        </div>
+          {# row end #}
        
-        {% comment %} emote {% endcomment %}
-        <div>
-          <div class="d-flex">
-            <form class="review-like-forms d-flex" data-review-id="{{ review.pk }}">
-              {% csrf_token %}
-              <button type="submit" class="btn-like border-0 bg-transparent" id="review-like-{{ review.pk }}">
-                {% if request.user.is_authenticated and review.like_exist %}
-                <i class="bi bi-hand-thumbs-up-fill text-orange"></i> 
-                <span>{{ review.likes|length }}</span>
-                {% else %}
-                <i class="bi bi-hand-thumbs-up"></i>
-                <span>{{ review.likes|length }}</span>
-                {% endif %}
-              </button>
-            </form>
-            <form class="review-dislike-forms d-flex" data-review-id="{{ review.pk }}">
-              <button type="submit" class="btn-dislike border-0 bg-transparent" id="review-dislike-{{ review.pk }}">
-                {% if request.user.is_authenticated and review.dislike_exist %}
-                <i class="bi bi-hand-thumbs-down-fill text-orange"></i> 
-                <span>{{ review.dislikes|length }}</span>
-                {% else %}
-                <i class="bi bi-hand-thumbs-down"></i>
-                <span>{{ review.dislikes|length }}</span> 
-                {% endif %}
-              </button>
-            </form>
-          </div>
-        </div>
       </div>
-      {% comment %} 리뷰 수정, 삭제 버튼 {% endcomment %}
-      {% if request.user == review.user %}
-      <div class="d-flex justify-content-end">
-        <a href="{% url 'reviews:update' review.pk %}" class="btn btn-outline-primary mt-2" style="width: 3rem; height: 2rem;">수정</a>
-        <form action="{% url 'reviews:delete' review.pk %}" method="POST" class="mx-3">
-          {% csrf_token %}
-          <input type="submit" class="btn btn-outline-danger" value="삭제" style="width: 3rem; height: 2rem;">
-        </form>
-      </div>
-    {% endif %}
     </div>
 
     <hr>
   {% endfor %}
 
-  {% comment %} 아마 여기 {% endcomment %}
+  {% comment %} 페이지 버튼 {% endcomment %}
   <div class="py-3">
     <ul class="pagination justify-content-center">
       <li class="page-item">
@@ -322,35 +350,52 @@
 {# ajax cdn #}
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 {# APIKEY 숨기기는 React 권장 #}
+{# Kakao Map은 지정된 URL만 접근 가능하여 괜찮을 듯 #}
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=afbeb49e64cb240112a667970ea3d85f"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=afbeb49e64cb240112a667970ea3d85f&libraries=services,clusterer,drawing"></script>
 <script>
   // Kakao Map
-  const mapLat = document.getElementById('lat').textContent
-  const mapLng = document.getElementById('lng').textContent
-
-  if (mapLat !== 'None' && mapLng !== 'None') {
-    const mapPosition = new kakao.maps.LatLng(mapLat, mapLng)
+  const mapGenerator = () => {
+    const mapLat = document.getElementById('lat').textContent
+    const mapLng = document.getElementById('lng').textContent
   
-    console.log(mapLat, mapLng)
-  
-    var mapContainer = document.getElementById('map')
-    var mapOption = {
-      center: mapPosition,
-      level: 3
+    if (mapLat !== 'None' && mapLng !== 'None') {
+      const mapPosition = new kakao.maps.LatLng(mapLat, mapLng)
+      console.log(mapLat, mapLng)
+      
+      var markerPosition = mapPosition
+    
+      var marker = new kakao.maps.Marker({
+        position: markerPosition
+      })
+    
+      var staticMapContainer = document.getElementById('static-map')
+      staticMapContainer.innerHTML = ''
+      var staticMapOption = {
+        center: mapPosition,
+        level: 3,
+        marker: marker
+      }
+    
+      var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption)
+      // marker.setMap(map)
     }
-  
-    var map = new kakao.maps.Map(mapContainer, mapOption)
-  
-    var markerPosition = mapPosition
-  
-    var marker = new kakao.maps.Marker({
-      position: markerPosition
-    })
-  
-    marker.setMap(map)
   }
+  mapGenerator()
 
+  // 창 크기 변경 후 delay에 추가하여 map reloading 하는 코드
+  let resizeTimer
+  window.onresize = function(event) {
+    clearTimeout(resizeTimer)
+    resizeTimer = setTimeout(function() {
+      if (window.innerWidth >= 992) {
+        mapGenerator()
+      } else {
+        mapGenerator()
+      }
+    }, 500)
+  }
+  
   // 비동기 즐겨찾기
   const forms = document.querySelectorAll('.like-forms')
   const csrftoken = document.querySelector('.like-forms>[name=csrfmiddlewaretoken]').value
