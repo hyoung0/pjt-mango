@@ -1,7 +1,8 @@
 from django import forms
-from .models import Store, StoreImage
+from .models import Store, StoreImage, Menu
 from taggit.managers import TaggableManager
 from taggit.forms import TagField, TagWidget
+
 
 class StoreForm(forms.ModelForm):
     category = forms.ChoiceField(
@@ -71,3 +72,13 @@ class StoreImageForm(forms.ModelForm):
     class Meta:
         model = StoreImage
         fields = ('image',)
+
+
+class MenuForm(forms.ModelForm):
+    class Meta:
+        model = Menu
+        fields = ('menu', 'price',)
+        labels = {
+            'menu': '메뉴 이름',
+            'price': '가격',
+        }

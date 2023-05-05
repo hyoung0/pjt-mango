@@ -163,3 +163,4 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'  # 로그인 후 리다이렉트 될 경로
+
