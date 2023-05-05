@@ -13,13 +13,19 @@ from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_POST
 from django.urls import reverse
 from taggit.models import Tag
+from django.contrib.auth import get_user_model
 
 
 # Create your views here.
 def index(request):
     stores = Store.objects.all()
+    User = get_user_model()
+    editor1 = User.objects.get(pk=2)
+    editor2 = User.objects.get(pk=3)
     context = {
         'stores': stores,
+        'editor1_like_stores': editor1.like_stores.order_by('-pk'),
+        'editor2_like_stores': editor2.like_stores.order_by('-pk'),
     }
     return render(request, 'stores/index.html', context)
 
