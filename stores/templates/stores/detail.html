@@ -132,10 +132,46 @@
               </td>
             </tr>
             <tr>
-              <td class="align-top">메뉴</td>
+              <td class="align-top">메뉴
+                {% if request.user.is_superuser %}
+                {# Menu Create Modal Button #}
+                <button type="button" class="btn py-0 fs-5 mt-2" data-bs-toggle="modal" data-bs-target="#menu-create-modal">
+                  <i class="bi bi-plus-circle text-orange"></i>
+                </button>
+                {# Menu Create Modal #}
+                <div class="modal fade menu-modal" id="menu-create-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <form action="{% url 'stores:menu_create' store.pk %}" method="POST" class="modal-content">
+                      {% csrf_token %}
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-2" id="exampleModalLabel">Menu 등록</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body fs-1">
+                        {{ menu_form.as_p }}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary fs-4" data-bs-dismiss="modal">닫기</button>
+                        <button type="submit" class="btn btn-orange fs-4">메뉴 등록</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                {% endif %}
+              </td>
               <td>
                 {% for menu in store.menu_set.all %}
-                <li style="list-style: none;">{{ menu.menu }} - {{ menu.price }}원</li>
+                <li class="d-flex align-items-center" style="list-style: none;">
+                  <p>{{ menu.menu }} - {{ menu.price }}원</p>
+                  {% if request.user.is_superuser %}
+                  <form action="{% url 'stores:menu_delete' store.pk menu.pk %}" method="post" class="">
+                    {% csrf_token %}
+                    <button type="submit" class="text-danger btn p-0 mt-2 ms-2">
+                      <i class="bi bi-trash3 fs-6"></i>
+                    </button>
+                  </form>
+                  {% endif %}
+                </li>
                 {% empty %}
                 <p class="text-none-data">등록된 메뉴가 없습니다.</p>
                 {% endfor %} 

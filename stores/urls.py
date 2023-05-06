@@ -13,5 +13,6 @@ urlpatterns = [
     path('<int:store_pk>/like-stores/', views.like_stores, name='like_stores'),
     path('category/<str:subject>/', views.category, name='category'),
     path('all/', views.all_stores, name='all_stores'),
-    
+    path('<int:store_pk>/menu/create/', views.menu_create, name='menu_create'),
+    path('<int:store_pk>/menu/<int:menu_pk>/delete/', views.menu_delete, name='menu_delete'),
 ]

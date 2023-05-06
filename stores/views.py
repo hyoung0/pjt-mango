@@ -146,6 +146,7 @@ def detail(request, store_pk: int):
 
         'page_obj': page_obj,
 
+        'menu_form': MenuForm(),
     }
 
     return render(request, 'stores/detail.html', context)
@@ -250,3 +251,25 @@ def category(request, subject):
     return render(request, 'stores/category.html', context)
 
 
+def menu_create(request, store_pk: int):
+    if not request.user.is_superuser:
+        return redirect('stores:detail', store_pk)
+    
+    if request.method == 'POST':
+        store = Store.objects.get(pk=store_pk)
+        menu_form = MenuForm(data=request.POST)
+        if menu_form.is_valid():
+            menu = menu_form.save(commit=False)
+            menu.store = store
+            menu.save()
+        
+    return redirect('stores:detail', store_pk)    
+
+
+def menu_delete(request, store_pk: int, menu_pk: int):
+    if not request.user.is_superuser:
+        return redirect('stores:detail', store_pk)
+    
+    menu = Menu.objects.get(pk=menu_pk)
+    menu.delete()
+    return redirect('stores:detail', store_pk)
