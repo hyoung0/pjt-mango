@@ -178,6 +178,9 @@
   width: 100%;
   margin: 0 auto;
 }
+.menu-modal input{
+  font-size: 1.5rem;
+}
 
 /* review */
 .map-box {
