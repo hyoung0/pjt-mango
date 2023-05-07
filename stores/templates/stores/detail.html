@@ -112,7 +112,7 @@
               </td>
             </tr>
             <tr>
-              <td class="me-3 pe-5">영업 시간</td>
+              <td class="me-3 pe-5 text-nowrap">영업 시간</td>
               <td>
                 {% if store.open_hours and store.closing_hours %}
                 {{ store.open_hours }} ~ {{ store.closing_hours }}
@@ -132,7 +132,7 @@
               </td>
             </tr>
             <tr>
-              <td class="align-top">메뉴
+              <td class="align-top d-flex">메뉴
                 {% if request.user.is_superuser %}
                 {# Menu Create Modal Button #}
                 <button type="button" class="btn py-0 fs-5 mt-2" data-bs-toggle="modal" data-bs-target="#menu-create-modal">
