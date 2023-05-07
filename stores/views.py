@@ -22,8 +22,8 @@ def index(request):
     User = get_user_model()
     editor1 = User.objects.get(pk=2)
     editor2 = User.objects.get(pk=3)
-
-    top_stores = Store.objects.annotate(rating_avg=Avg('review__rating')).order_by('-rating_avg')[:8]
+    hot_stores = Store.objects.annotate(count=Count('review__user')).filter(count__gte = 3)
+    top_stores = hot_stores.annotate(rating_avg=Avg('review__rating')).order_by('-rating_avg')[:8]
     
     editor1_likes = editor1.like_stores.all().annotate(rating_avg=Avg('review__rating')).order_by('-pk')
     editor2_likes = editor2.like_stores.all().annotate(rating_avg=Avg('review__rating')).order_by('-pk')
@@ -132,12 +132,12 @@ def detail(request, store_pk: int):
             Prefetch('emote_set', queryset=Emote.objects.filter(emotion=1, user=request.user), to_attr='like_exist'),
             Prefetch('emote_set', queryset=Emote.objects.filter(emotion=2), to_attr='dislikes'),
             Prefetch('emote_set', queryset=Emote.objects.filter(emotion=2, user=request.user), to_attr='dislike_exist')
-        )
+        ).order_by('-pk')
     else:
         reviews = Review.objects.filter(store=store).prefetch_related(
             Prefetch('emote_set', queryset=Emote.objects.filter(emotion=1), to_attr='likes'),
             Prefetch('emote_set', queryset=Emote.objects.filter(emotion=2), to_attr='dislikes'),
-        )
+        ).order_by('-pk')
 
     page = request.GET.get('page', '1')
     per_page = 5

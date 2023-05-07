@@ -700,5 +700,275 @@
         "menu": "믈총조개탕",
         "price": "14900"
     }
+},
+{
+    "model": "stores.menu",
+    "pk": 79,
+    "fields": {
+        "store": 23,
+        "menu": "휠레미뇽 비프 카르파치오",
+        "price": "29000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 80,
+    "fields": {
+        "store": 23,
+        "menu": "클래식 봉골레",
+        "price": "28000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 81,
+    "fields": {
+        "store": 23,
+        "menu": "페스티발 포르케타",
+        "price": "43000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 82,
+    "fields": {
+        "store": 24,
+        "menu": "쭈꾸미2인+칼국수",
+        "price": "25000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 83,
+    "fields": {
+        "store": 24,
+        "menu": "얼큰이 칼국수",
+        "price": "7500"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 84,
+    "fields": {
+        "store": 24,
+        "menu": "흰칼국수",
+        "price": "7500"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 85,
+    "fields": {
+        "store": 24,
+        "menu": "쭈꾸미볶음",
+        "price": "19000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 86,
+    "fields": {
+        "store": 25,
+        "menu": "치즈",
+        "price": "21000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 87,
+    "fields": {
+        "store": 25,
+        "menu": "페퍼로니",
+        "price": "24000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 88,
+    "fields": {
+        "store": 25,
+        "menu": "베이컨체다",
+        "price": "25000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 90,
+    "fields": {
+        "store": 26,
+        "menu": "대파갈비피자",
+        "price": "13900"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 91,
+    "fields": {
+        "store": 26,
+        "menu": "앱솔루트하이볼",
+        "price": "8000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 92,
+    "fields": {
+        "store": 26,
+        "menu": "얼그레이하이볼",
+        "price": "8000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 93,
+    "fields": {
+        "store": 27,
+        "menu": "장칼국수",
+        "price": "8000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 94,
+    "fields": {
+        "store": 27,
+        "menu": "들깨칼국수",
+        "price": "9000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 95,
+    "fields": {
+        "store": 27,
+        "menu": "돈가스",
+        "price": "8000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 96,
+    "fields": {
+        "store": 27,
+        "menu": "짜글이",
+        "price": "11000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 97,
+    "fields": {
+        "store": 28,
+        "menu": "오이무침 / ピクルス",
+        "price": "6000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 98,
+    "fields": {
+        "store": 28,
+        "menu": "유자토마토사라다 / ゆずトマトサラダ",
+        "price": "7000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 99,
+    "fields": {
+        "store": 28,
+        "menu": "소금누룩 돼지고기 볶음 / 豚肉炒め",
+        "price": "12000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 100,
+    "fields": {
+        "store": 29,
+        "menu": "짜장면",
+        "price": "6000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 101,
+    "fields": {
+        "store": 29,
+        "menu": "홍합짬뽕",
+        "price": "7000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 102,
+    "fields": {
+        "store": 29,
+        "menu": "꼬막짬뽕",
+        "price": "9000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 103,
+    "fields": {
+        "store": 29,
+        "menu": "찹쌀탕수육 소",
+        "price": "10000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 104,
+    "fields": {
+        "store": 30,
+        "menu": "A세트(카츠동+가라아게동+냉모밀소바)",
+        "price": "26000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 105,
+    "fields": {
+        "store": 30,
+        "menu": "카츠동",
+        "price": "9500"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 106,
+    "fields": {
+        "store": 31,
+        "menu": "5 course dinner",
+        "price": "99000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 107,
+    "fields": {
+        "store": 31,
+        "menu": "Scallop Carpaccio",
+        "price": "23000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 108,
+    "fields": {
+        "store": 31,
+        "menu": "Beef Tartar",
+        "price": "23000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 109,
+    "fields": {
+        "store": 31,
+        "menu": "Corn Cream Egg",
+        "price": "21000"
+    }
 }
 ]

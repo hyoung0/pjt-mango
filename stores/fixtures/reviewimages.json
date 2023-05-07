@@ -1,0 +1,234 @@
+[
+{
+    "model": "reviews.reviewimage",
+    "pk": 1,
+    "fields": {
+        "review": 4,
+        "image": "reviews/mangolover/다운로드_7.jpeg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 9,
+    "fields": {
+        "review": 5,
+        "image": "reviews/mangolover/다운로드_13.jpeg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 10,
+    "fields": {
+        "review": 5,
+        "image": "reviews/mangolover/다운로드_12.jpeg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 11,
+    "fields": {
+        "review": 5,
+        "image": "reviews/mangolover/다운로드_11.jpeg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 12,
+    "fields": {
+        "review": 5,
+        "image": "reviews/mangolover/다운로드_10.jpeg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 13,
+    "fields": {
+        "review": 5,
+        "image": "reviews/mangolover/다운로드_9.jpeg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 14,
+    "fields": {
+        "review": 5,
+        "image": "reviews/mangolover/다운로드_8.jpeg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 15,
+    "fields": {
+        "review": 7,
+        "image": "reviews/mangolover/다운로드_14.jpeg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 16,
+    "fields": {
+        "review": 8,
+        "image": "reviews/illson97/집사의하루.jpeg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 22,
+    "fields": {
+        "review": 19,
+        "image": "reviews/mango1/다운로드_6.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 23,
+    "fields": {
+        "review": 19,
+        "image": "reviews/mango1/다운로드_7.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 24,
+    "fields": {
+        "review": 19,
+        "image": "reviews/mango1/다운로드_8.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 25,
+    "fields": {
+        "review": 19,
+        "image": "reviews/mango1/다운로드_9.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 26,
+    "fields": {
+        "review": 19,
+        "image": "reviews/mango1/다운로드_10.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 27,
+    "fields": {
+        "review": 19,
+        "image": "reviews/mango1/다운로드_11.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 28,
+    "fields": {
+        "review": 19,
+        "image": "reviews/mango1/다운로드_12.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 35,
+    "fields": {
+        "review": 22,
+        "image": "reviews/mango1/다운로드_13.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 36,
+    "fields": {
+        "review": 22,
+        "image": "reviews/mango1/다운로드_14.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 37,
+    "fields": {
+        "review": 22,
+        "image": "reviews/mango1/다운로드_15.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 38,
+    "fields": {
+        "review": 22,
+        "image": "reviews/mango1/다운로드_16.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 39,
+    "fields": {
+        "review": 25,
+        "image": "reviews/good2/다운로드_6.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 41,
+    "fields": {
+        "review": 40,
+        "image": "reviews/mangolover1/다운로드_18.jpeg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 42,
+    "fields": {
+        "review": 46,
+        "image": "reviews/good2/다운로드_17.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 43,
+    "fields": {
+        "review": 46,
+        "image": "reviews/good2/다운로드_18.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 44,
+    "fields": {
+        "review": 46,
+        "image": "reviews/good2/다운로드_19.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 45,
+    "fields": {
+        "review": 46,
+        "image": "reviews/good2/다운로드_20.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 46,
+    "fields": {
+        "review": 46,
+        "image": "reviews/good2/다운로드_21.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 47,
+    "fields": {
+        "review": 46,
+        "image": "reviews/good2/다운로드_22.jpg"
+    }
+},
+{
+    "model": "reviews.reviewimage",
+    "pk": 48,
+    "fields": {
+        "review": 46,
+        "image": "reviews/good2/다운로드_23.jpg"
+    }
+}
+]

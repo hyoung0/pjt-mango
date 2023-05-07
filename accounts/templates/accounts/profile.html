@@ -42,15 +42,75 @@
         <p class="text-body-tertiary text-center small m-0">팔로잉 중</p>
         {% endif %}
       </div>
-      <div class='d-flex flex-column align-items-center px-3 ms-5'>
+
+      <button class='d-flex flex-column align-items-center px-3 ms-5 bg-transparent border-0' data-bs-toggle="modal" data-bs-target="#following-modal">
         <p>팔로잉</p>
         {{ person.followings.all|length }} 
+      </button>
+      <div class="modal fade" id="following-modal" tabindex="-1" aria-labelledby="following-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-3" id="following-modal-label">팔로잉 목록</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex flex-column">
+              {% for following in person.followings.all %}
+              <a href="{% url 'accounts:profile' following.username %}" class="text-dark text-decoration-none">
+                <div class="position-relative d-flex align-items-center py-2 border-top border-bottom">
+                  {% if following.image %}
+                  <img src="{{ following.image.url }}" alt="profile_img" class="profile-modal-icon">
+                  {% else %}
+                  <img src="{% static 'profile_no_image.png' %}" alt="No Image" class="profile-modal-icon">
+                  {% endif %}
+                  <h3 class='profile-modal-text mb-0'>{{ following.username }}</h3>
+                </div>
+              </a>
+              {% empty %}
+              <p class="text-secondary fs-4">팔로잉하는 유저가 없습니다.</p>
+              {% endfor %}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary fs-4" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class='d-flex flex-column align-items-center px-3'>
+      <button class='d-flex flex-column align-items-center px-3 ms-2 bg-transparent border-0' data-bs-toggle="modal" data-bs-target="#follower-modal">
         <p>팔로워</p>
-        {{ person.followers.all|length }}
+        {{ person.followers.all|length }} 
+      </button>
+      <div class="modal fade" id="follower-modal" tabindex="-1" aria-labelledby="follower-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-3" id="follower-modal-label">팔로워 목록</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex flex-column">
+              {% for follower in person.followers.all %}
+              <a href="{% url 'accounts:profile' follower.username %}" class="text-dark text-decoration-none">
+                <div class="position-relative d-flex align-items-center py-2 border-top border-bottom">
+                  {% if follower.image %}
+                  <img src="{{ follower.image.url }}" alt="profile_img" class="profile-modal-icon">
+                  {% else %}
+                  <img src="{% static 'profile_no_image.png' %}" alt="No Image" class="profile-modal-icon">
+                  {% endif %}
+                  <h3 class='profile-modal-text mb-0'>{{ follower.username }}</h3>
+                </div>
+              </a>
+              {% empty %}
+              <p class="text-secondary fs-4">"{{person.username}}"을(를) 팔로우하는 유저가 없습니다.</p>
+              {% endfor %}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary fs-4" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
     {% if request.user != person %}
     <div class="align-self-center">
       <form action="{% url 'accounts:follow' person.pk %}" method="POST" class="">

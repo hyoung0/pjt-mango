@@ -11,7 +11,7 @@
         "longitude": 127.071678881023,
         "open_hours": "11:30:00",
         "closing_hours": "21:00:00",
-        "hits": 9,
+        "hits": 17,
         "thumbnail": "stores/멘쇼/다운로드.jpeg",
         "category": "일식",
         "like_users": [
@@ -32,10 +32,11 @@
         "longitude": 127.027622767131,
         "open_hours": "11:30:00",
         "closing_hours": "22:00:00",
-        "hits": 3,
+        "hits": 10,
         "thumbnail": "stores/감성타코 강남역점/다운로드_1.jpeg",
         "category": "기타 양식",
         "like_users": [
+            3,
             6
         ]
     }
@@ -52,7 +53,7 @@
         "longitude": 127.068291454652,
         "open_hours": "10:00:00",
         "closing_hours": "20:00:00",
-        "hits": 3,
+        "hits": 4,
         "thumbnail": "stores/팬케익팬트리/다운로드_4.jpeg",
         "category": "카페 디저트",
         "like_users": [
@@ -73,7 +74,7 @@
         "longitude": 126.992424902392,
         "open_hours": "00:00:00",
         "closing_hours": "21:00:00",
-        "hits": 3,
+        "hits": 6,
         "thumbnail": "",
         "category": "이탈리안",
         "like_users": []
@@ -91,11 +92,12 @@
         "longitude": 126.922689217725,
         "open_hours": "12:00:00",
         "closing_hours": "22:00:00",
-        "hits": 3,
+        "hits": 11,
         "thumbnail": "stores/집사의하루 홍대점/다운로드_5.jpeg",
         "category": "카페 디저트",
         "like_users": [
-            2
+            2,
+            14
         ]
     }
 },
@@ -111,12 +113,15 @@
         "longitude": 127.141624793968,
         "open_hours": "11:30:00",
         "closing_hours": "21:00:00",
-        "hits": 7,
+        "hits": 29,
         "thumbnail": "stores/유쿄니 객사점/유쿄니_썸네일.jpeg",
         "category": "일식",
         "like_users": [
             2,
-            6
+            6,
+            8,
+            9,
+            14
         ]
     }
 },
@@ -150,7 +155,7 @@
         "longitude": 126.989436261467,
         "open_hours": "11:00:00",
         "closing_hours": "22:30:00",
-        "hits": 1,
+        "hits": 3,
         "thumbnail": "",
         "category": "이탈리안",
         "like_users": []
@@ -168,7 +173,7 @@
         "longitude": 127.124822680465,
         "open_hours": "11:00:00",
         "closing_hours": "12:00:00",
-        "hits": 3,
+        "hits": 9,
         "thumbnail": "stores/배두둑 감자탕/배두둑_감자탕_썸네일.jpeg",
         "category": "탕 찌개 전골",
         "like_users": [
@@ -226,8 +231,8 @@
         "longitude": 126.993524321646,
         "open_hours": "00:00:00",
         "closing_hours": "22:00:00",
-        "hits": 2,
-        "thumbnail": "",
+        "hits": 10,
+        "thumbnail": "stores/매덕스피자/다운로드.jpeg",
         "category": "이탈리안",
         "like_users": []
     }
@@ -318,7 +323,7 @@
         "longitude": 129.124005331974,
         "open_hours": "12:00:00",
         "closing_hours": "22:00:00",
-        "hits": 2,
+        "hits": 6,
         "thumbnail": "",
         "category": "기타 양식",
         "like_users": []
@@ -375,7 +380,7 @@
         "longitude": 127.12682831488,
         "open_hours": "23:00:00",
         "closing_hours": "21:00:00",
-        "hits": 1,
+        "hits": 3,
         "thumbnail": "stores/치쿠린/치쿠린_썸네일.jpeg",
         "category": "국수 면 요리",
         "like_users": []
@@ -393,7 +398,7 @@
         "longitude": 127.104446890835,
         "open_hours": "10:30:00",
         "closing_hours": "22:00:00",
-        "hits": 2,
+        "hits": 7,
         "thumbnail": "stores/치즈룸&테이스팅룸 롯데월드몰점/치즈룸.jpeg",
         "category": "이탈리안",
         "like_users": [
@@ -418,6 +423,172 @@
         "thumbnail": "stores/들턱/들턱_썸네일.jpeg",
         "category": "퓨전 한식",
         "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 23,
+    "fields": {
+        "name": "쿠촐로 서울",
+        "phone_number": "010-5232-9851",
+        "info": "쿠촐로 오스테리아, 마렘마 트라토리아, 볼피노 리스토란테 등 다양한 브랜드로 고객님과 함께해온 쿠촐로가 선보이는 새로운 레스토랑, '쿠촐로 서울' 입니다.",
+        "address": "서울 용산구 한강대로 100 아모레퍼시픽 2F",
+        "latitude": 37.5287911785354,
+        "longitude": 126.968673565462,
+        "open_hours": "11:30:00",
+        "closing_hours": "22:00:00",
+        "hits": 5,
+        "thumbnail": "stores/쿠촐로 서울/다운로드.jpg",
+        "category": "이탈리안",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 24,
+    "fields": {
+        "name": "공주칼국수쭈꾸미마당 유천직영점",
+        "phone_number": "042-522-8934",
+        "info": "대전 유천동 쭈꾸미 맛집 진짜 맛있는 공주칼국수쭈꾸미마당 유천직영점",
+        "address": "대전 중구 태평로14번길 7",
+        "latitude": 36.3181268378589,
+        "longitude": 127.392417816351,
+        "open_hours": "11:00:00",
+        "closing_hours": "21:30:00",
+        "hits": 1,
+        "thumbnail": "stores/공주칼국수쭈꾸미마당 유천직영점/공주칼국수_썸네일.jpeg",
+        "category": "국수 면 요리",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 25,
+    "fields": {
+        "name": "범스피자",
+        "phone_number": "507-1368-1992",
+        "info": "노키즈존/ 반려동물 동반불가 / 주차,예약불가",
+        "address": "서울 용산구 한강대로40가길 18 1층",
+        "latitude": 37.5307728790141,
+        "longitude": 126.971677064819,
+        "open_hours": "12:00:00",
+        "closing_hours": "21:50:00",
+        "hits": 7,
+        "thumbnail": "stores/범스피자/다운로드_15.jpeg",
+        "category": "이탈리안",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 26,
+    "fields": {
+        "name": "디어리스트 연남",
+        "phone_number": "050-1333-6864",
+        "info": "홍대입구역에서 도보 3분 거리에 있습니다. 자세한 길 설명드리면, 홍대입구역 2번 출구로 나와 좌회전 후 스타벅스, 투썸플레이스, 할리스 카페 순으로 지나 신호등 건너 우회전하여 쭉 걸어오시면 올리브영 나옵니다. 경윤 빌딩 1층입니다.\r\n길 헷갈리시면 02-332-6861로 문의하세요.",
+        "address": "서울 마포구 동교로27길 21-8 1층",
+        "latitude": 37.5589464545006,
+        "longitude": 126.921974078309,
+        "open_hours": "11:30:00",
+        "closing_hours": "20:30:00",
+        "hits": 7,
+        "thumbnail": "stores/디어리스트 연남/다운로드.jpg",
+        "category": "이탈리안",
+        "like_users": [
+            14
+        ]
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 27,
+    "fields": {
+        "name": "호호칼국수",
+        "phone_number": "010-7519-1733",
+        "info": "장칼국수, 들깨칼국수 취급하는 곳입니다. 보리밥 공짜라구요!",
+        "address": "전북 전주시 덕진구 두간3길 7 1층(송천동1가)813-8",
+        "latitude": 35.8646880280168,
+        "longitude": 127.120278263457,
+        "open_hours": "11:00:00",
+        "closing_hours": "21:00:00",
+        "hits": 2,
+        "thumbnail": "stores/호호칼국수/호호_썸네일.jpeg",
+        "category": "국수 면 요리",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 28,
+    "fields": {
+        "name": "키보",
+        "phone_number": "507-1328-4243",
+        "info": "희망을 전달하는 작은 가게\r\n일본식 타치노미 선술집",
+        "address": "서울 용산구 한강대로50길 17",
+        "latitude": 37.5317481040397,
+        "longitude": 126.971975944831,
+        "open_hours": "15:00:00",
+        "closing_hours": "23:00:00",
+        "hits": 1,
+        "thumbnail": "stores/키보/다운로드_16.jpeg",
+        "category": "일식",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 29,
+    "fields": {
+        "name": "향미각",
+        "phone_number": "041-732-0022",
+        "info": "꼬막짬뽕이 맛있는 논산맛집",
+        "address": "충남 논산시 계백로 935",
+        "latitude": 36.1997965280128,
+        "longitude": 127.082506484604,
+        "open_hours": "11:00:00",
+        "closing_hours": "20:00:00",
+        "hits": 9,
+        "thumbnail": "stores/향미각/향미_썸네일.jpeg",
+        "category": "국수 면 요리",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 30,
+    "fields": {
+        "name": "페이센동 광안직영점",
+        "phone_number": "507-1449-9399",
+        "info": "카츠동, 가라아게동, 냉모밀소바가 대표메뉴인 광안리맛집 광안리밥집 일식당 페이센동입니다.모든 튀김은 일본식 수제튀김으로 조리되며 하루 한정 40팀만 재료준비되어 제공드리는 페이센동 광안직영점 입니다. 재료소진시 조기마감 합니다\r\n\r\n저희 매장은 광안해변공원에서 가깝고 광안리 새벽집에서 조금만 안쪽으로 들어오시면 왼쪽에 보이는 2층에 위치 하고 있습니다\r\n010-7936-1309\r\n길 안내 필요하시면 연락주세요\r\n\r\n페이센동 광안직영점 오시는 날은 항상 맛있게 드시고 가셨으면 좋겠습니다. 계속 더 노력 하겠습니다! 감사합니다!\r\n\r\n 먼 곳까지 소중한 발걸음 해주셔서 감사합니다.\r\n주문 후 즉시 조리되어 여러 튀김을 선보이기 위해\r\n약 10분~15분 정도 조리시간이 소요됩니다\r\n\r\n인스타\r\n@payseondong_official\r\n\r\n물은 셀프입니다\r\n절대 비벼 드시지 마세요!\r\n\r\n젓가락으로 밥 위에 토핑과 밥을 번갈아서 드세요 :)",
+        "address": "부산 수영구 민락로 7-5 2층 페이센동",
+        "latitude": 35.1560144578186,
+        "longitude": 129.122478226524,
+        "open_hours": "11:30:00",
+        "closing_hours": "20:00:00",
+        "hits": 1,
+        "thumbnail": "stores/페이센동 광안직영점/다운로드_17.jpeg",
+        "category": "일식",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 31,
+    "fields": {
+        "name": "셰누프라이빗키친",
+        "phone_number": "010-7519-1733",
+        "info": "이태원 동물 병원과 이태원 우체국 사잇길로 쭉 올라오세요. 꽃집을 지나 분홍색 아크릴이 설치된 회색 건물 3층입니다.",
+        "address": "서울 용산구 녹사평대로 210-6 마이하우스 3층",
+        "latitude": 37.5363433391664,
+        "longitude": 126.987404190597,
+        "open_hours": "18:00:00",
+        "closing_hours": "23:00:00",
+        "hits": 1,
+        "thumbnail": "stores/셰누프라이빗키친/프랑스_썸네일.jpeg",
+        "category": "프랑스 음식",
+        "like_users": [
+            14
+        ]
     }
 }
 ]

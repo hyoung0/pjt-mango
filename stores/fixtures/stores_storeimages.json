@@ -334,5 +334,165 @@
         "store": 6,
         "image": "stores/유쿄니 객사점/유쿄니_6.jpeg"
     }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 43,
+    "fields": {
+        "store": 24,
+        "image": "stores/공주칼국수쭈꾸미마당 유천직영점/공주칼국수_1.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 44,
+    "fields": {
+        "store": 24,
+        "image": "stores/공주칼국수쭈꾸미마당 유천직영점/공주칼국수_2.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 45,
+    "fields": {
+        "store": 24,
+        "image": "stores/공주칼국수쭈꾸미마당 유천직영점/공주칼국수_3.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 46,
+    "fields": {
+        "store": 24,
+        "image": "stores/공주칼국수쭈꾸미마당 유천직영점/공주칼국수_4.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 47,
+    "fields": {
+        "store": 24,
+        "image": "stores/공주칼국수쭈꾸미마당 유천직영점/공주칼국수_5.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 48,
+    "fields": {
+        "store": 26,
+        "image": "stores/디어리스트 연남/다운로드_7XOk1CT.jpg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 49,
+    "fields": {
+        "store": 27,
+        "image": "stores/호호칼국수/호호_1.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 50,
+    "fields": {
+        "store": 27,
+        "image": "stores/호호칼국수/호호_2.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 51,
+    "fields": {
+        "store": 27,
+        "image": "stores/호호칼국수/호호_3.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 52,
+    "fields": {
+        "store": 27,
+        "image": "stores/호호칼국수/호호_4.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 53,
+    "fields": {
+        "store": 27,
+        "image": "stores/호호칼국수/호호_5.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 54,
+    "fields": {
+        "store": 29,
+        "image": "stores/향미각/향미_1.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 55,
+    "fields": {
+        "store": 29,
+        "image": "stores/향미각/향미_2.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 56,
+    "fields": {
+        "store": 29,
+        "image": "stores/향미각/향미_3.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 57,
+    "fields": {
+        "store": 29,
+        "image": "stores/향미각/향미_4.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 58,
+    "fields": {
+        "store": 31,
+        "image": "stores/셰누프라이빗키친/프랑스_1.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 59,
+    "fields": {
+        "store": 31,
+        "image": "stores/셰누프라이빗키친/프랑스_2.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 60,
+    "fields": {
+        "store": 31,
+        "image": "stores/셰누프라이빗키친/프랑스_3.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 61,
+    "fields": {
+        "store": 31,
+        "image": "stores/셰누프라이빗키친/프랑스_4.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 62,
+    "fields": {
+        "store": 31,
+        "image": "stores/셰누프라이빗키친/프랑스_5.jpeg"
+    }
 }
 ]

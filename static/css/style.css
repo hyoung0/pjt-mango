@@ -140,7 +140,14 @@
   text-overflow: ellipsis;
   overflow:hidden;
 }
-
+.profile-modal-icon {
+  border-radius: 50%;
+  width: 3rem;
+}
+.profile-modal-text {
+  margin-left: 1rem;
+  max-width: 10rem;
+}
 
 /* accounts */
 .form-text input {
