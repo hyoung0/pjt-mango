@@ -9,6 +9,10 @@ from django.http import JsonResponse
 @login_required
 def create(request, store_pk):
     store = Store.objects.get(pk=store_pk)
+    
+    if store.review_set.filter(user=request.user).exists():
+        return redirect('stores:detail', store_pk)
+    
     if request.method == 'POST':
         review_form = ReviewForm(request.POST)
         review_image_form = ReviewImageForm(request.POST, request.FILES)
