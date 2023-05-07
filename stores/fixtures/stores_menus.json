@@ -1,0 +1,704 @@
+[
+{
+    "model": "stores.menu",
+    "pk": 1,
+    "fields": {
+        "store": 1,
+        "menu": "츠케멘R",
+        "price": "9000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 2,
+    "fields": {
+        "store": 1,
+        "menu": "츠케멘L",
+        "price": "10000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 3,
+    "fields": {
+        "store": 1,
+        "menu": "매운맛 츠케멘R",
+        "price": "10000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 4,
+    "fields": {
+        "store": 1,
+        "menu": "매운맛 츠케멘L",
+        "price": "11000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 5,
+    "fields": {
+        "store": 2,
+        "menu": "까르니따스 치즈 타코",
+        "price": "10000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 6,
+    "fields": {
+        "store": 2,
+        "menu": "치폴레크림 쉬림프 브리또",
+        "price": "15000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 7,
+    "fields": {
+        "store": 2,
+        "menu": "베르데 숏립 퀘사디아",
+        "price": "15000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 8,
+    "fields": {
+        "store": 2,
+        "menu": "과콰몰리 쉬림프 퀘사디아",
+        "price": "15000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 9,
+    "fields": {
+        "store": 3,
+        "menu": "바베큐 팬케익",
+        "price": "19900"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 10,
+    "fields": {
+        "store": 3,
+        "menu": "칠리버거",
+        "price": "14500"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 11,
+    "fields": {
+        "store": 3,
+        "menu": "오리지널버거",
+        "price": "13500"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 12,
+    "fields": {
+        "store": 3,
+        "menu": "리코타 샐러드",
+        "price": "14900"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 13,
+    "fields": {
+        "store": 4,
+        "menu": "반반피자",
+        "price": "26000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 14,
+    "fields": {
+        "store": 4,
+        "menu": "갈릭바베큐치킨",
+        "price": "27000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 15,
+    "fields": {
+        "store": 4,
+        "menu": "화이트트러플머쉬룸피자",
+        "price": "27000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 16,
+    "fields": {
+        "store": 4,
+        "menu": "베이컨 크림파스타",
+        "price": "14000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 17,
+    "fields": {
+        "store": 5,
+        "menu": "입장료",
+        "price": "10000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 18,
+    "fields": {
+        "store": 6,
+        "menu": "텐동",
+        "price": "11000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 19,
+    "fields": {
+        "store": 6,
+        "menu": "부타 우동",
+        "price": "9500"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 20,
+    "fields": {
+        "store": 6,
+        "menu": "마제 소바",
+        "price": "10500"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 21,
+    "fields": {
+        "store": 6,
+        "menu": "냉소바",
+        "price": "8500"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 22,
+    "fields": {
+        "store": 8,
+        "menu": "JACKSON 5",
+        "price": "25900"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 23,
+    "fields": {
+        "store": 8,
+        "menu": "CHEESE PIZZA",
+        "price": "20000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 24,
+    "fields": {
+        "store": 8,
+        "menu": "MEGA CUNCH",
+        "price": "9500"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 25,
+    "fields": {
+        "store": 8,
+        "menu": "CLASSIC PEPPERONI",
+        "price": "22000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 26,
+    "fields": {
+        "store": 9,
+        "menu": "뼈다귀 전골 대",
+        "price": "40000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 27,
+    "fields": {
+        "store": 9,
+        "menu": "뼈다귀 전골 중",
+        "price": "32000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 28,
+    "fields": {
+        "store": 9,
+        "menu": "뼈다귀 전골 소",
+        "price": "24000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 29,
+    "fields": {
+        "store": 10,
+        "menu": "청와옥 순대국",
+        "price": "9000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 30,
+    "fields": {
+        "store": 10,
+        "menu": "오징어 숯불구이",
+        "price": "9900"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 31,
+    "fields": {
+        "store": 10,
+        "menu": "편백정식",
+        "price": "14000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 32,
+    "fields": {
+        "store": 10,
+        "menu": "찹쌀, 고기 순대",
+        "price": "22000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 33,
+    "fields": {
+        "store": 11,
+        "menu": "황제해물바다칼국수(소)",
+        "price": "42000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 34,
+    "fields": {
+        "store": 11,
+        "menu": "해물파전",
+        "price": "18000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 35,
+    "fields": {
+        "store": 11,
+        "menu": "통바지락칼국수",
+        "price": "10000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 36,
+    "fields": {
+        "store": 12,
+        "menu": "치즈피자(한 조각)",
+        "price": "5400"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 37,
+    "fields": {
+        "store": 12,
+        "menu": "치츠피자(한 판)",
+        "price": "38000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 38,
+    "fields": {
+        "store": 12,
+        "menu": "페퍼로니(한 조각)",
+        "price": "6200"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 39,
+    "fields": {
+        "store": 12,
+        "menu": "페퍼로니피자(한판)",
+        "price": "45000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 40,
+    "fields": {
+        "store": 13,
+        "menu": "야키토리 오마카세",
+        "price": "29000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 41,
+    "fields": {
+        "store": 13,
+        "menu": "야키토리",
+        "price": "20000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 42,
+    "fields": {
+        "store": 13,
+        "menu": "이자카야 안주메뉴",
+        "price": "20000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 43,
+    "fields": {
+        "store": 14,
+        "menu": "닭구이 모둠 대 (700g) 사진",
+        "price": "44000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 44,
+    "fields": {
+        "store": 14,
+        "menu": "봄나물 퉁퉁장 된장찌개 사진",
+        "price": "9000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 45,
+    "fields": {
+        "store": 14,
+        "menu": "닭구이 모둠 중 사진",
+        "price": "29000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 46,
+    "fields": {
+        "store": 14,
+        "menu": "목살",
+        "price": "15000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 47,
+    "fields": {
+        "store": 15,
+        "menu": "게장정식",
+        "price": "23000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 48,
+    "fields": {
+        "store": 15,
+        "menu": "간장게장백반",
+        "price": "18000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 49,
+    "fields": {
+        "store": 15,
+        "menu": "양념게장백반",
+        "price": "18000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 50,
+    "fields": {
+        "store": 15,
+        "menu": "간장새우백반",
+        "price": "18000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 51,
+    "fields": {
+        "store": 16,
+        "menu": "Beurre croissant",
+        "price": "5000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 52,
+    "fields": {
+        "store": 16,
+        "menu": "Donut croissant",
+        "price": "5300"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 53,
+    "fields": {
+        "store": 16,
+        "menu": "Basil croissant",
+        "price": "5300"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 54,
+    "fields": {
+        "store": 16,
+        "menu": "Pain au chocolat",
+        "price": "5800"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 55,
+    "fields": {
+        "store": 17,
+        "menu": "채끝 스테이크",
+        "price": "75000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 56,
+    "fields": {
+        "store": 17,
+        "menu": "봉골레 파스타",
+        "price": "22000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 57,
+    "fields": {
+        "store": 17,
+        "menu": "안심 스테이크",
+        "price": "85000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 58,
+    "fields": {
+        "store": 17,
+        "menu": "트러플 리조또",
+        "price": "30000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 59,
+    "fields": {
+        "store": 18,
+        "menu": "돈코츠라멘",
+        "price": "7000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 60,
+    "fields": {
+        "store": 18,
+        "menu": "쇼유라멘",
+        "price": "7000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 61,
+    "fields": {
+        "store": 18,
+        "menu": "츠케멘",
+        "price": "8000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 62,
+    "fields": {
+        "store": 18,
+        "menu": "산쪼메라멘",
+        "price": "8000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 63,
+    "fields": {
+        "store": 19,
+        "menu": "Beurre croissant",
+        "price": "5000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 64,
+    "fields": {
+        "store": 19,
+        "menu": "Donut croissant",
+        "price": "5300"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 65,
+    "fields": {
+        "store": 19,
+        "menu": "Basil croissant",
+        "price": "5300"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 66,
+    "fields": {
+        "store": 19,
+        "menu": "Pain au chocolat",
+        "price": "5800"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 67,
+    "fields": {
+        "store": 20,
+        "menu": "소유돈코츠라멘 기본",
+        "price": "7000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 68,
+    "fields": {
+        "store": 20,
+        "menu": "시오톤코츠라멘 기본",
+        "price": "7000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 69,
+    "fields": {
+        "store": 20,
+        "menu": "미소라멘 기본",
+        "price": "7500"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 70,
+    "fields": {
+        "store": 20,
+        "menu": "콧테리라멘",
+        "price": "8500"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 71,
+    "fields": {
+        "store": 21,
+        "menu": "트러플 파케리 파스타",
+        "price": "24000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 72,
+    "fields": {
+        "store": 21,
+        "menu": "시금치 플랫브래드",
+        "price": "25000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 73,
+    "fields": {
+        "store": 21,
+        "menu": "보드카 리가토니 파스타",
+        "price": "23000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 74,
+    "fields": {
+        "store": 21,
+        "menu": "포도 플랫브래드",
+        "price": "25000"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 75,
+    "fields": {
+        "store": 22,
+        "menu": "마늘간장 돼지볶음",
+        "price": "13900"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 76,
+    "fields": {
+        "store": 22,
+        "menu": "돼지반 포기 김치찜",
+        "price": "15900"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 77,
+    "fields": {
+        "store": 22,
+        "menu": "데리목살 찹스테이크",
+        "price": "13900"
+    }
+},
+{
+    "model": "stores.menu",
+    "pk": 78,
+    "fields": {
+        "store": 22,
+        "menu": "믈총조개탕",
+        "price": "14900"
+    }
+}
+]

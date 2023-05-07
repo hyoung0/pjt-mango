@@ -1,0 +1,423 @@
+[
+{
+    "model": "stores.store",
+    "pk": 1,
+    "fields": {
+        "name": "멘쇼",
+        "phone_number": "02-499-8788",
+        "info": "멘쇼(麺匠)는 (주)타마루에스엠에스/우마이도 가 함께 만든 국내최초 츠케멘 전문점 입니다.",
+        "address": "서울 광진구 군자로2길 3",
+        "latitude": 37.5444292731922,
+        "longitude": 127.071678881023,
+        "open_hours": "11:30:00",
+        "closing_hours": "21:00:00",
+        "hits": 9,
+        "thumbnail": "stores/멘쇼/다운로드.jpeg",
+        "category": "일식",
+        "like_users": [
+            3,
+            6
+        ]
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 2,
+    "fields": {
+        "name": "감성타코 강남역점",
+        "phone_number": "02-565-8830",
+        "info": "** 감성타코 강남역점 영업 시간 안내 **\r\n평일 및 주말,공휴일 11:30~22:00 (브레이크타임 없음, 라스트오더 21:00)\r\n      ** 라스트오더는 21:00 입니다.\r\n      ** 휴무일 - 설명절 당일 하루, 추석당일 하루 입니다.\r\n\r\n감성타코는 감각적인 멕시칸음식을 선보이는 강남역에 위치한 멕시칸 레스토랑입니다.",
+        "address": "서울 강남구 강남대로 406 지하1층 감성타코",
+        "latitude": 37.4989401291583,
+        "longitude": 127.027622767131,
+        "open_hours": "11:30:00",
+        "closing_hours": "22:00:00",
+        "hits": 3,
+        "thumbnail": "stores/감성타코 강남역점/다운로드_1.jpeg",
+        "category": "기타 양식",
+        "like_users": [
+            6
+        ]
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 3,
+    "fields": {
+        "name": "팬케익팬트리",
+        "phone_number": "02-467-3888",
+        "info": "건대 브런치 카페\r\n팬케익 전문점\r\n수제버거 전문\r\n주차가능(지하 3층)",
+        "address": "서울 광진구 뚝섬로34길 67 광진트라팰리스 B동 110호",
+        "latitude": 37.5316853724558,
+        "longitude": 127.068291454652,
+        "open_hours": "10:00:00",
+        "closing_hours": "20:00:00",
+        "hits": 3,
+        "thumbnail": "stores/팬케익팬트리/다운로드_4.jpeg",
+        "category": "카페 디저트",
+        "like_users": [
+            6,
+            9
+        ]
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 4,
+    "fields": {
+        "name": "아노브 이태원",
+        "phone_number": "050-1428-6601",
+        "info": "아노브는 도우부터 토핑까지 열정을 다하여 '수제'로 만들며, 프랜차이즈 피자와는 차별을 두고 있는 프리미엄 수제피자입니다.",
+        "address": "서울 용산구 이태원로20가길 7-5 1층",
+        "latitude": 37.5337247389211,
+        "longitude": 126.992424902392,
+        "open_hours": "00:00:00",
+        "closing_hours": "21:00:00",
+        "hits": 3,
+        "thumbnail": "",
+        "category": "이탈리안",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 5,
+    "fields": {
+        "name": "집사의하루 홍대점",
+        "phone_number": "507-1392-7984",
+        "info": "집사의하루는 2015년 동물병원에서 20년 일하다가 한두마리씩 유기고양이를 돌보던중 자립형 보호소를 운영하고자 오픈하게된 고양이카페입니다.\r\n15마리로 시작하여 5년동안 홍대점 강남점 건대점을 오픈하게 되면서 총 130 여마리를 현재 돌보고 있으며 *사지말고 입양하세요*를 운영 사연많은 고양이들을 카페를 통해 사회화훈련을 거쳐 착한 반려묘로 좋은 집사님들과 인연을 맺어주며 건강하고 행복한 고양이카페를 추구하여 시설면에서나 관리적인부분에도 최선을 다하고 있습니다.비록 다묘들이 함께 생활하지만 고양이들의 행복과 건강을 최우선으로 생각하고 운영중입니다.방문객의 입장료로 모금활동없이 운영되는 착한가게 집사의하루입니다. 특히 홍대점은 넓은 공간에 아이들이 마음껏 뛰어놀수 있도록 만들어진만큼 방문객들 또한 즐겁게 편안하게 이용하실 수 있답니다.방문이 기부가 되는 착한 가게 집사의하루 입니다.",
+        "address": "서울 마포구 와우산로21길 19-8 태경빌딩 2층",
+        "latitude": 37.552079973082,
+        "longitude": 126.922689217725,
+        "open_hours": "12:00:00",
+        "closing_hours": "22:00:00",
+        "hits": 3,
+        "thumbnail": "stores/집사의하루 홍대점/다운로드_5.jpeg",
+        "category": "카페 디저트",
+        "like_users": [
+            2
+        ]
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 6,
+    "fields": {
+        "name": "유쿄니 객사점",
+        "phone_number": "010-7519-1733",
+        "info": "저희는 우동, 소바 육수를 정성껏 직접 끓입니다 조미료는전혀첨가하지않아요 안심하고 드세요.",
+        "address": "전라북도 전주시 완산구 전주객사3길 57 1층 유쿄니",
+        "latitude": 35.8197061138645,
+        "longitude": 127.141624793968,
+        "open_hours": "11:30:00",
+        "closing_hours": "21:00:00",
+        "hits": 7,
+        "thumbnail": "stores/유쿄니 객사점/유쿄니_썸네일.jpeg",
+        "category": "일식",
+        "like_users": [
+            2,
+            6
+        ]
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 7,
+    "fields": {
+        "name": "아웃백스테이크하우스 수원역사점",
+        "phone_number": "507-1346-2111",
+        "info": "아웃백 스테이크하우스는 세계적인 스테이크 전문 프리미엄 레스토랑 브랜드입니다. 호주 대자연의 아름다움과 따뜻함을 느낄 수 있는 매장 인테리어와 함께 퀄리티 있는 메뉴를 만날 수 있습니다. 대표 메뉴인 스테이크는 엄선한 부위를 아웃백만의 노하우로 구워 육즙이 풍부하며 최상의 맛을 경험할 수 있습니다. 아웃백의 신선한 재료로 정성스럽게 조리한 다양한 메뉴를 만나보세요.",
+        "address": "경기 수원시 팔달구 덕영대로 924 AK플라자 수원점 6층",
+        "latitude": 37.2656768667795,
+        "longitude": 127.000096053009,
+        "open_hours": "10:30:00",
+        "closing_hours": "22:00:00",
+        "hits": 1,
+        "thumbnail": "",
+        "category": "고기 요리",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 8,
+    "fields": {
+        "name": "모터시티바이매니멀 본점",
+        "phone_number": "050-1343-8912",
+        "info": "디트로이트 스타일 피자는 미시간 주 디트로이트에서 처음으로 선보인 딥 디쉬 스타일 피자입니다.",
+        "address": "서울 용산구 이태원로 140-1 2층",
+        "latitude": 37.5339654370555,
+        "longitude": 126.989436261467,
+        "open_hours": "11:00:00",
+        "closing_hours": "22:30:00",
+        "hits": 1,
+        "thumbnail": "",
+        "category": "이탈리안",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 9,
+    "fields": {
+        "name": "배두둑 감자탕",
+        "phone_number": "063-222-3885",
+        "info": "배두둑하게 드시고 가세요.",
+        "address": "전북 전주시 완산구 영경3길 3",
+        "latitude": 35.8167895107077,
+        "longitude": 127.124822680465,
+        "open_hours": "11:00:00",
+        "closing_hours": "12:00:00",
+        "hits": 3,
+        "thumbnail": "stores/배두둑 감자탕/배두둑_감자탕_썸네일.jpeg",
+        "category": "탕 찌개 전골",
+        "like_users": [
+            6
+        ]
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 10,
+    "fields": {
+        "name": "청와옥",
+        "phone_number": "050-1365-3480",
+        "info": "갓 도정한 쌀, 정수된 물 사용, 3無 (합성보존료, 프림, 엑기스 무첨가) 재료와 타협하지 않으며 맛을 위한 바른 길을 걷겠습니다. 우리음식, 순대국의 100년 전통을 이어가겠습니다.",
+        "address": "서울 송파구 위례성대로 48 반도빌딩 1층",
+        "latitude": 37.5153144419563,
+        "longitude": 127.11752964387,
+        "open_hours": "08:00:00",
+        "closing_hours": "22:00:00",
+        "hits": 2,
+        "thumbnail": "",
+        "category": "전통 한식",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 11,
+    "fields": {
+        "name": "16호원조할머니칼국수 대부도본점",
+        "phone_number": "507-1315-5590",
+        "info": "2018년도 헤럴드경제 고객만족경영 대상 수상\r\n\r\n대부도 맛집인 16호원조할머니손칼국수는 현지인이 인정하는 맛집으로 단골손님이 많습니다.\r\n가격이 비싸더라도 국내산 배추와 국내산 고추가루를 고집하고 있으며, 3주에 한번씩 김치를 담구어 대형김치 냉장고에서 숙성을 통해 손님께 제공해 드리고 있습니다.",
+        "address": "경기 안산시 단원구 대선로 10",
+        "latitude": 37.2705384786313,
+        "longitude": 126.570902109595,
+        "open_hours": "08:30:00",
+        "closing_hours": "20:30:00",
+        "hits": 1,
+        "thumbnail": "",
+        "category": "국수 면 요리",
+        "like_users": [
+            6
+        ]
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 12,
+    "fields": {
+        "name": "매덕스피자",
+        "phone_number": "02-792-2420",
+        "info": "백종원 3대천왕에 나왔던 핵꿀맛 뉴욕풍 피자",
+        "address": "서울 용산구 이태원로26길 26 2층",
+        "latitude": 37.5333457532052,
+        "longitude": 126.993524321646,
+        "open_hours": "00:00:00",
+        "closing_hours": "22:00:00",
+        "hits": 2,
+        "thumbnail": "",
+        "category": "이탈리안",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 13,
+    "fields": {
+        "name": "한라",
+        "phone_number": "010-9158-8271",
+        "info": "야키토리(닭꼬치)와 일본식의 스몰안주를 파는 동네 자그마한 '술집'입니다. 동네사람들의 '사랑방'이며 고되었던 하루를 '쓴 술'로 정리하는 공간입니다. 비 음주자는 죄송합니다.",
+        "address": "전주 완산구 효자동3가 1667-9",
+        "latitude": 35.8212172605916,
+        "longitude": 127.100985902675,
+        "open_hours": "18:00:00",
+        "closing_hours": "00:00:00",
+        "hits": 3,
+        "thumbnail": "stores/한라/한라_썸네일.jpeg",
+        "category": "일식",
+        "like_users": [
+            6
+        ]
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 14,
+    "fields": {
+        "name": "송계옥",
+        "phone_number": null,
+        "info": "**송계옥은 연중무휴입니다 (추석,설 당일포함 연휴에도 정상영업)**",
+        "address": "서울 송파구 올림픽로32길 38 1층 103,104호",
+        "latitude": 37.5128932525047,
+        "longitude": 127.110350889927,
+        "open_hours": "15:00:00",
+        "closing_hours": "22:00:00",
+        "hits": 2,
+        "thumbnail": "",
+        "category": "전통 한식",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 15,
+    "fields": {
+        "name": "총각네 게장",
+        "phone_number": "010-7519-1733",
+        "info": "전주 혁신도시 맛집 총각네게장은 한옥마을과 전주역에서 차로 15분정도 걸리며 만성동 양현중학교 건너편에 있습니다",
+        "address": "전북 전주시 덕진구 만성북3길 11 1층",
+        "latitude": 35.8486670673747,
+        "longitude": 127.075870273555,
+        "open_hours": "11:00:00",
+        "closing_hours": "18:00:00",
+        "hits": 2,
+        "thumbnail": "stores/총각네 게장/총각네_게장_썸네일.jpeg",
+        "category": "전통 한식",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 16,
+    "fields": {
+        "name": "테디뵈르하우스",
+        "phone_number": "050-1379-8663",
+        "info": "컴플레인은 네이버 톡톡으로 문의해주세요~\r\n테디뵈르하우스는 테이블링 어플 시스템으로 운영하고있습니다~(개별예약X)\r\n평일에는 12시 대기오픈(이전까지 빈자리 착석)\r\n\r\n빵 조기 품절시 음료주문도 같이 마감하고있습니다(오더마감)",
+        "address": "서울 용산구 한강대로40가길 42 1층",
+        "latitude": 37.5315987586666,
+        "longitude": 126.972532410003,
+        "open_hours": "10:00:00",
+        "closing_hours": "22:00:00",
+        "hits": 2,
+        "thumbnail": "",
+        "category": "퓨전 중식",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 17,
+    "fields": {
+        "name": "뉼리",
+        "phone_number": "507-1374-3870",
+        "info": "광안리 메인 오션뷰, 스테이크하우스 , 와인바\r\n스테이크전문 와인바\r\n\r\n스테이크 필수 주문입니다.",
+        "address": "부산 수영구 민락수변로 7 8층 뉼리",
+        "latitude": 35.1551342050388,
+        "longitude": 129.124005331974,
+        "open_hours": "12:00:00",
+        "closing_hours": "22:00:00",
+        "hits": 2,
+        "thumbnail": "",
+        "category": "기타 양식",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 18,
+    "fields": {
+        "name": "산쪼메",
+        "phone_number": "063-277-7677",
+        "info": "한국인 입맛에 맞는 일본 라멘 맛집",
+        "address": "전북 전주시 덕진구 명륜3길 18-8",
+        "latitude": 35.8422931550938,
+        "longitude": 127.128326538003,
+        "open_hours": "11:00:00",
+        "closing_hours": "21:00:00",
+        "hits": 1,
+        "thumbnail": "stores/산쪼메/산쪼메_썸네일.jpeg",
+        "category": "국수 면 요리",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 19,
+    "fields": {
+        "name": "테디뵈르하우스",
+        "phone_number": "050-1379-8663",
+        "info": "컴플레인은 네이버 톡톡으로 문의해주세요~\r\n테디뵈르하우스는 테이블링 어플 시스템으로 운영하고있습니다~(개별예약X)\r\n평일에는 12시 대기오픈(이전까지 빈자리 착석)\r\n\r\n빵 조기 품절시 음료주문도 같이 마감하고있습니다(오더마감)",
+        "address": "서울 용산구 한강대로40가길 42 1층",
+        "latitude": 37.5315987586666,
+        "longitude": 126.972532410003,
+        "open_hours": "10:00:00",
+        "closing_hours": "22:00:00",
+        "hits": 2,
+        "thumbnail": "stores/테디뵈르하우스/다운로드_fXAv6EU.jpg",
+        "category": "카페 디저트",
+        "like_users": [
+            2,
+            6
+        ]
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 20,
+    "fields": {
+        "name": "치쿠린",
+        "phone_number": "063-277-7677",
+        "info": "전북대 네오다다 옷가게골목 엉터리생고기 옆 지하 1층으로 내려오시면 됩니다. (만화카페 건물 지하1층)",
+        "address": "전북 전주시 덕진구 명륜3길 9-1 지하1층 치쿠린",
+        "latitude": 35.8423357528007,
+        "longitude": 127.12682831488,
+        "open_hours": "23:00:00",
+        "closing_hours": "21:00:00",
+        "hits": 1,
+        "thumbnail": "stores/치쿠린/치쿠린_썸네일.jpeg",
+        "category": "국수 면 요리",
+        "like_users": []
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 21,
+    "fields": {
+        "name": "치즈룸&테이스팅룸 롯데월드몰점",
+        "phone_number": "02-3213-4550",
+        "info": "여러나라의 17가지 치즈로 요리하는 [치즈룸]과 위트있고 독특한 이태리 레스토랑 [테이스팅룸] 두 브랜드의 요리를 함께 즐길수 있는 콜라보 공간",
+        "address": "서울 송파구 올림픽로 300 롯데월드몰 5층",
+        "latitude": 37.5137519612953,
+        "longitude": 127.104446890835,
+        "open_hours": "10:30:00",
+        "closing_hours": "22:00:00",
+        "hits": 2,
+        "thumbnail": "stores/치즈룸&테이스팅룸 롯데월드몰점/치즈룸.jpeg",
+        "category": "이탈리안",
+        "like_users": [
+            2,
+            6
+        ]
+    }
+},
+{
+    "model": "stores.store",
+    "pk": 22,
+    "fields": {
+        "name": "들턱",
+        "phone_number": "010-7519-1733",
+        "info": "전북대학교.소나무한의원앞 버스정류장(기린대로덕진공원 방면)에서 덕진공원방면으로 42m 직진 후 오른쪽 골목에서 120m 직진 왼쪽 2층",
+        "address": "전북 전주시 덕진구 명륜3길 13 2층",
+        "latitude": 35.8425223212665,
+        "longitude": 127.127501826402,
+        "open_hours": "18:00:00",
+        "closing_hours": "05:00:00",
+        "hits": 2,
+        "thumbnail": "stores/들턱/들턱_썸네일.jpeg",
+        "category": "퓨전 한식",
+        "like_users": []
+    }
+}
+]

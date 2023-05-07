@@ -1,0 +1,200 @@
+[
+{
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$zR4wqNxdiGWWPG7TizMc39$7r7fYKQsITMT7vCiHLWqskz5WHfQAfD8m8oPGrLYRKs=",
+        "last_login": "2023-05-07T04:56:30.119Z",
+        "is_superuser": true,
+        "username": "mango1",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-05-07T02:47:07.201Z",
+        "image": "",
+        "address": null,
+        "nickname": "",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$B1b8ZyuDN9xOekWY45fCPB$bS2+sjasNxj6o5pNsDXPhA9bAIApfgjXOLNhhIfbFkM=",
+        "last_login": "2023-05-07T04:40:56.851Z",
+        "is_superuser": true,
+        "username": "mango2",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-05-07T02:47:21.783Z",
+        "image": "",
+        "address": null,
+        "nickname": "",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$ee468olmTipJfKYIjjG3AN$Fe39nHCYKzObQkkvGfHPM1J25wFX6bYiLxhzWF3cNas=",
+        "last_login": "2023-05-07T04:34:55.478Z",
+        "is_superuser": true,
+        "username": "mango3",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-05-07T02:47:34.048Z",
+        "image": "",
+        "address": null,
+        "nickname": "",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 4,
+    "fields": {
+        "password": "!XAlhm6SOf94g8hXBxbjTN4EL7z0485a4ZedKvfrK",
+        "last_login": "2023-05-07T03:33:59.100Z",
+        "is_superuser": false,
+        "username": "rpg0227",
+        "first_name": "",
+        "last_name": "",
+        "email": "rpg0227@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-07T02:53:28.143Z",
+        "image": "",
+        "address": null,
+        "nickname": "",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$PqvrhsxKIwh9js8pAq0XlM$35woszu+nW94UI4VNCtk9heoTunnpMJgJIvuzaUmJIM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "hh",
+        "first_name": "",
+        "last_name": "",
+        "email": "choyoung1034@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-07T03:36:21.294Z",
+        "image": "",
+        "address": "군포시",
+        "nickname": "맛있는거~",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$bmjgXqNrtrG36Y13qFsovV$Ccj71Rt9eqsGLGIfKk8hkAjlavOfKqJow0azXb2vW/s=",
+        "last_login": "2023-05-07T04:57:13.540Z",
+        "is_superuser": false,
+        "username": "mangolover",
+        "first_name": "",
+        "last_name": "",
+        "email": "mango@lov.ee",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-07T03:38:18.475Z",
+        "image": "users/nyan_cat.jpg",
+        "address": "서울 서초구 반포동 649-1",
+        "nickname": "망고가제일좋아",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$sp4nTR92vzM32wyVzi2eZ2$MBw1D8L9OG2c+rFjwCYuuBYKLNLHr8HwMAf+PRXZjjk=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "mangogood",
+        "first_name": "",
+        "last_name": "",
+        "email": "choyoung1034@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-07T03:39:08.053Z",
+        "image": "",
+        "address": "군포시",
+        "nickname": "굿굿",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$0QQnTS6OKvYYzKa3Ykrlam$TbsKCHJMftDVGGhISxHrg956phk2gQwcVxfL8o/GP0A=",
+        "last_login": "2023-05-07T03:46:44.361Z",
+        "is_superuser": false,
+        "username": "illson97",
+        "first_name": "",
+        "last_name": "",
+        "email": "gone_789@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-07T03:42:04.176Z",
+        "image": "users/KakaoTalk_20211122_125826004.jpg",
+        "address": "전라북도 전주시 완산구 서신천변2길 7-5",
+        "nickname": "김백수",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$I8vGjf9PfhpRlacv0lK2iO$D8Cb3cPHkIXKN2ddBeZcrBFj7r92azKW4XUHByRZoI4=",
+        "last_login": "2023-05-07T04:54:56.968Z",
+        "is_superuser": false,
+        "username": "mangohater",
+        "first_name": "",
+        "last_name": "",
+        "email": "mango@hat.ee",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-07T04:29:25.176Z",
+        "image": "",
+        "address": "없음",
+        "nickname": "별점테러",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+}
+]

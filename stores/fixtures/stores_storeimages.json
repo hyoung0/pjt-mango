@@ -1,0 +1,338 @@
+[
+{
+    "model": "stores.storeimage",
+    "pk": 1,
+    "fields": {
+        "store": 9,
+        "image": "stores/배두둑 감자탕/배두둑_감자탕_1.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 2,
+    "fields": {
+        "store": 9,
+        "image": "stores/배두둑 감자탕/배두둑_감자탕_2.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 3,
+    "fields": {
+        "store": 9,
+        "image": "stores/배두둑 감자탕/배두둑_감자탕_3.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 4,
+    "fields": {
+        "store": 9,
+        "image": "stores/배두둑 감자탕/배두둑_감자탕_4.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 5,
+    "fields": {
+        "store": 9,
+        "image": "stores/배두둑 감자탕/배두둑_감자탕_5.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 6,
+    "fields": {
+        "store": 13,
+        "image": "stores/한라/한라_1.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 7,
+    "fields": {
+        "store": 13,
+        "image": "stores/한라/한라_2.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 8,
+    "fields": {
+        "store": 13,
+        "image": "stores/한라/한라_3.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 9,
+    "fields": {
+        "store": 13,
+        "image": "stores/한라/한라_4.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 10,
+    "fields": {
+        "store": 13,
+        "image": "stores/한라/한라_5.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 11,
+    "fields": {
+        "store": 15,
+        "image": "stores/총각네 게장/총각네_게장_1.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 12,
+    "fields": {
+        "store": 15,
+        "image": "stores/총각네 게장/총각네_게장_2.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 13,
+    "fields": {
+        "store": 15,
+        "image": "stores/총각네 게장/총각네_게장_3.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 14,
+    "fields": {
+        "store": 15,
+        "image": "stores/총각네 게장/총각네_게장_4.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 15,
+    "fields": {
+        "store": 15,
+        "image": "stores/총각네 게장/총각네_게장_5.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 16,
+    "fields": {
+        "store": 18,
+        "image": "stores/산쪼메/산쪼메_1.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 17,
+    "fields": {
+        "store": 18,
+        "image": "stores/산쪼메/산쪼메_2.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 18,
+    "fields": {
+        "store": 18,
+        "image": "stores/산쪼메/산쪼메_3.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 19,
+    "fields": {
+        "store": 18,
+        "image": "stores/산쪼메/산쪼메_4.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 20,
+    "fields": {
+        "store": 18,
+        "image": "stores/산쪼메/산쪼메_5.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 21,
+    "fields": {
+        "store": 3,
+        "image": "stores/팬케익팬트리/다운로드_3.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 22,
+    "fields": {
+        "store": 3,
+        "image": "stores/팬케익팬트리/다운로드_2.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 23,
+    "fields": {
+        "store": 5,
+        "image": "stores/집사의하루 홍대점/다운로드_6.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 24,
+    "fields": {
+        "store": 19,
+        "image": "stores/테디뵈르하우스/다운로드.jpg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 25,
+    "fields": {
+        "store": 19,
+        "image": "stores/테디뵈르하우스/다운로드_1.jpg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 26,
+    "fields": {
+        "store": 19,
+        "image": "stores/테디뵈르하우스/다운로드_1_dBp4756.jpg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 27,
+    "fields": {
+        "store": 19,
+        "image": "stores/테디뵈르하우스/다운로드_qZf6acY.jpg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 28,
+    "fields": {
+        "store": 19,
+        "image": "stores/테디뵈르하우스/다운로드_1_nN6say5.jpg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 29,
+    "fields": {
+        "store": 20,
+        "image": "stores/치쿠린/치쿠린_1.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 30,
+    "fields": {
+        "store": 20,
+        "image": "stores/치쿠린/치쿠린_2.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 31,
+    "fields": {
+        "store": 20,
+        "image": "stores/치쿠린/치쿠린_3.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 32,
+    "fields": {
+        "store": 20,
+        "image": "stores/치쿠린/치쿠린_4.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 33,
+    "fields": {
+        "store": 20,
+        "image": "stores/치쿠린/치쿠린_5.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 34,
+    "fields": {
+        "store": 21,
+        "image": "stores/치즈룸&테이스팅룸 롯데월드몰점/치즈룸1.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 35,
+    "fields": {
+        "store": 21,
+        "image": "stores/치즈룸&테이스팅룸 롯데월드몰점/치즈룸2.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 36,
+    "fields": {
+        "store": 21,
+        "image": "stores/치즈룸&테이스팅룸 롯데월드몰점/치즈룸3.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 37,
+    "fields": {
+        "store": 6,
+        "image": "stores/유쿄니 객사점/유쿄니_1.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 38,
+    "fields": {
+        "store": 6,
+        "image": "stores/유쿄니 객사점/유쿄니_2.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 39,
+    "fields": {
+        "store": 6,
+        "image": "stores/유쿄니 객사점/유쿄니_3.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 40,
+    "fields": {
+        "store": 6,
+        "image": "stores/유쿄니 객사점/유쿄니_4.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 41,
+    "fields": {
+        "store": 6,
+        "image": "stores/유쿄니 객사점/유쿄니_5.jpeg"
+    }
+},
+{
+    "model": "stores.storeimage",
+    "pk": 42,
+    "fields": {
+        "store": 6,
+        "image": "stores/유쿄니 객사점/유쿄니_6.jpeg"
+    }
+}
+]

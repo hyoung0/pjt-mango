@@ -1,0 +1,29 @@
+[
+{
+    "model": "reviews.emote",
+    "pk": 1,
+    "fields": {
+        "user": 8,
+        "review": 6,
+        "emotion": "1"
+    }
+},
+{
+    "model": "reviews.emote",
+    "pk": 2,
+    "fields": {
+        "user": 6,
+        "review": 6,
+        "emotion": "2"
+    }
+},
+{
+    "model": "reviews.emote",
+    "pk": 3,
+    "fields": {
+        "user": 6,
+        "review": 5,
+        "emotion": "1"
+    }
+}
+]
