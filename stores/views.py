@@ -22,10 +22,13 @@ def index(request):
     User = get_user_model()
     editor1 = User.objects.get(pk=2)
     editor2 = User.objects.get(pk=3)
+    editor1_likes = editor1.like_stores.all().annotate(rating_avg=Avg('review__rating')).order_by('-pk')
+    editor2_likes = editor2.like_stores.all().annotate(rating_avg=Avg('review__rating')).order_by('-pk')
+
     context = {
         'stores': stores,
-        'editor1_like_stores': editor1.like_stores.order_by('-pk'),
-        'editor2_like_stores': editor2.like_stores.order_by('-pk'),
+        'editor1_like_stores': editor1_likes,
+        'editor2_like_stores': editor2_likes,
     }
     return render(request, 'stores/index.html', context)
 
