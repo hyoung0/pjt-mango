@@ -1,0 +1,570 @@
+[
+{
+    "model": "taggit.tag",
+    "pk": 1,
+    "fields": {
+        "name": "건대",
+        "slug": "건대"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 2,
+    "fields": {
+        "name": "라멘",
+        "slug": "라멘"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 3,
+    "fields": {
+        "name": "츠케멘",
+        "slug": "츠케멘"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 4,
+    "fields": {
+        "name": "감성타코",
+        "slug": "감성타코"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 5,
+    "fields": {
+        "name": "강남",
+        "slug": "강남"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 6,
+    "fields": {
+        "name": "브리또",
+        "slug": "브리또"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 7,
+    "fields": {
+        "name": "퀘사디",
+        "slug": "퀘사디"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 8,
+    "fields": {
+        "name": "타코",
+        "slug": "타코"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 9,
+    "fields": {
+        "name": "팬케익",
+        "slug": "팬케익"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 10,
+    "fields": {
+        "name": "한강",
+        "slug": "한강"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 11,
+    "fields": {
+        "name": "수제피자",
+        "slug": "수제피자"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 12,
+    "fields": {
+        "name": "피자맛집",
+        "slug": "피자맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 13,
+    "fields": {
+        "name": "고양이",
+        "slug": "고양이"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 14,
+    "fields": {
+        "name": "고양이카페",
+        "slug": "고양이카페"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 15,
+    "fields": {
+        "name": "홍대",
+        "slug": "홍대"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 16,
+    "fields": {
+        "name": "\"텐동 맛집\"",
+        "slug": "텐동-맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 17,
+    "fields": {
+        "name": "객사",
+        "slug": "객사"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 18,
+    "fields": {
+        "name": "유쿄니",
+        "slug": "유쿄니"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 19,
+    "fields": {
+        "name": "전주",
+        "slug": "전주"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 20,
+    "fields": {
+        "name": "",
+        "slug": ""
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 21,
+    "fields": {
+        "name": "2023망고플레이트인기맛집",
+        "slug": "2023망고플레이트인기맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 22,
+    "fields": {
+        "name": "감자탕 맛집",
+        "slug": "감자탕-맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 23,
+    "fields": {
+        "name": "뼈다귀 전골 맛집",
+        "slug": "뼈다귀-전골-맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 24,
+    "fields": {
+        "name": "맛있다",
+        "slug": "맛있다"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 25,
+    "fields": {
+        "name": "감자가 왜이리 커",
+        "slug": "감자가-왜이리-커"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 26,
+    "fields": {
+        "name": "\"감자가 왜이리 커\"",
+        "slug": "감자가-왜이리-커_1"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 27,
+    "fields": {
+        "name": "\"감자탕 맛집\"",
+        "slug": "감자탕-맛집_1"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 28,
+    "fields": {
+        "name": "\"뼈다귀 전골 맛집\"",
+        "slug": "뼈다귀-전골-맛집_1"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 29,
+    "fields": {
+        "name": "순대국밥",
+        "slug": "순대국밥"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 30,
+    "fields": {
+        "name": "수육",
+        "slug": "수육"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 31,
+    "fields": {
+        "name": "전통",
+        "slug": "전통"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 32,
+    "fields": {
+        "name": "대부도",
+        "slug": "대부도"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 33,
+    "fields": {
+        "name": "해물",
+        "slug": "해물"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 34,
+    "fields": {
+        "name": "황제칼국수",
+        "slug": "황제칼국수"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 35,
+    "fields": {
+        "name": "백종원 3대천왕",
+        "slug": "백종원-3대천왕"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 36,
+    "fields": {
+        "name": "이자카야",
+        "slug": "이자카야"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 37,
+    "fields": {
+        "name": "오마카세",
+        "slug": "오마카세"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 38,
+    "fields": {
+        "name": "전통 일식",
+        "slug": "전통-일식"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 39,
+    "fields": {
+        "name": "맛집",
+        "slug": "맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 40,
+    "fields": {
+        "name": "닭구이",
+        "slug": "닭구이"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 41,
+    "fields": {
+        "name": "푸짐한",
+        "slug": "푸짐한"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 42,
+    "fields": {
+        "name": "간장게장",
+        "slug": "간장게장"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 43,
+    "fields": {
+        "name": "양념게장",
+        "slug": "양념게장"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 44,
+    "fields": {
+        "name": "밥도둑",
+        "slug": "밥도둑"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 45,
+    "fields": {
+        "name": "징역 10년",
+        "slug": "징역-10년"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 46,
+    "fields": {
+        "name": "생방송투데이",
+        "slug": "생방송투데이"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 47,
+    "fields": {
+        "name": "빵지순례",
+        "slug": "빵지순례"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 48,
+    "fields": {
+        "name": "부산",
+        "slug": "부산"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 49,
+    "fields": {
+        "name": "파스타",
+        "slug": "파스타"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 50,
+    "fields": {
+        "name": "스테이크",
+        "slug": "스테이크"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 51,
+    "fields": {
+        "name": "면요리",
+        "slug": "면요리"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 52,
+    "fields": {
+        "name": "전북대",
+        "slug": "전북대"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 53,
+    "fields": {
+        "name": "담백한맛",
+        "slug": "담백한맛"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 54,
+    "fields": {
+        "name": "술집",
+        "slug": "술집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 55,
+    "fields": {
+        "name": "안주맛집",
+        "slug": "안주맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 56,
+    "fields": {
+        "name": "분위기맛집",
+        "slug": "분위기맛집"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 57,
+    "fields": {
+        "name": "착한직원",
+        "slug": "착한직원"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 58,
+    "fields": {
+        "name": "잠실",
+        "slug": "잠실"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 59,
+    "fields": {
+        "name": "롯데월드몰",
+        "slug": "롯데월드몰"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 60,
+    "fields": {
+        "name": "\"\"텐동 맛집\"\"",
+        "slug": "텐동-맛집_1"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 61,
+    "fields": {
+        "name": "대전",
+        "slug": "대전"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 62,
+    "fields": {
+        "name": "칼국수",
+        "slug": "칼국수"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 63,
+    "fields": {
+        "name": "빨간칼국수",
+        "slug": "빨간칼국수"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 64,
+    "fields": {
+        "name": "국수",
+        "slug": "국수"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 65,
+    "fields": {
+        "name": "장칼국수",
+        "slug": "장칼국수"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 66,
+    "fields": {
+        "name": "논산",
+        "slug": "논산"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 67,
+    "fields": {
+        "name": "일본가정",
+        "slug": "일본가정"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 68,
+    "fields": {
+        "name": "프랑스",
+        "slug": "프랑스"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 69,
+    "fields": {
+        "name": "미쉐린 가이드 서울",
+        "slug": "미쉐린-가이드-서울"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 70,
+    "fields": {
+        "name": "프랑스셰프",
+        "slug": "프랑스셰프"
+    }
+},
+{
+    "model": "taggit.tag",
+    "pk": 71,
+    "fields": {
+        "name": "\"백종원 3대천왕\"",
+        "slug": "백종원-3대천왕_1"
+    }
+}
+]
