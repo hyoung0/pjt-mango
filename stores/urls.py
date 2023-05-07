@@ -16,4 +16,3 @@ urlpatterns = [
     path('<int:store_pk>/menu/create/', views.menu_create, name='menu_create'),
     path('<int:store_pk>/menu/<int:menu_pk>/delete/', views.menu_delete, name='menu_delete'),
 ]
-]
