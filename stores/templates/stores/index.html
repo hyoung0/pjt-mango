@@ -23,7 +23,7 @@
     <main>
         <div class="">
             <div class="container">
-                <h1 class="mt-5 ms-5 mb-5 text-center">카테고리 별 맛집 리스트</h1>
+                <h1 class="mt-5 ms-5 mb-5 text-center text-orange">카테고리 별 맛집 리스트</h1>
             </div>
             <div id="carouselExampleDark" class="carousel carousel-dark slide">
                 <div class="carousel-inner">
@@ -239,20 +239,49 @@
         <hr class='mt-5'>
 
         <section class='container bg-white ny-3 py-2'>
+            <h1 class="text-center py-3" style="color: orange;">평점이 높은 인기가게</h1>
             <div class='row row-cols-2 row-cols-lg-4'>
-                {% for top_store in top_stores %}
-                    {% if top_store.thumbnail %}
-                        <div class='container'>
-                            <img src="{{ top_store.thumbnail.url}}" alt="top_store.thumnail" class='mx-1' style="width: 10rem; height: 10rem;">
-                            <div class='d-flex'>
-                                <p>{{ top_store.name }}</p>
-                                <p class='text-orange'>{{ top_store.store_avg}}</p>
-                            </div>
-                            <p>{{ top_store.address }} - {{ top_sotre.category }}</p>
-                        </div>
-                    {% else %}
-                    <img src="{% static 'empty-food.jpg' %}" alt="Empty Food Image" class="food-thumbnail-img mx-1" style="width: 10rem; height: 10rem;">
-                    {% endif %}
+                {% for store in top_stores %}
+                <div class="col mt-5 d-flex justify-content-center">
+                <div class="mb-3">
+                  <a href="{% url 'stores:detail' store.pk %}" class="text-decoration-none text-dark">
+                  <div class="card d-flex" style="min-width: 10rem;">
+                    <div class="card-img-container">
+                      {% if store.thumbnail %}
+                      <img src="{{ store.thumbnail.url }}" class="card-img overflow-hidden" alt="...">
+                      {% else %}
+                      <img src="{% static 'empty-food.jpg' %}" alt="" class="card-img overflow-hidden" style="max-width: 17rem;">
+                      {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <p class="text-orange end-0 me-3 mb-0">
+                            ★ 
+                            {% if store.rating_avg %}
+                            {{ store.rating_avg|floatformat:1 }}
+                            {% else %}
+                            0.0
+                            {% endif %}
+                            ({{ store.review_set.all|length }})
+                        </p>
+                      <div class="d-flex">
+                        <h1 class="card-title mt-1 text-truncate mb-0" style="max-width: 12rem;">
+                          {{ store.name }}
+                        </h1>
+                      </div>
+                      <p class="card-text text-center text-truncate mb-0 text-secondary" style="max-width: 12rem;">
+                        {% if store.address %}
+                        {{ store.address }}
+                        {% else %}
+                        <span class="text-none-data">등록된 주소가 없습니다.</span>
+                        {% endif %}
+        
+                      </p>
+                      <p class="card-text text-center">{{ store.content }}</p>
+                    </div>
+                  </div>
+                </a>
+                </div>
+              </div>
                 {% endfor %}
             </div>
         </section>
@@ -292,7 +321,7 @@
                             ({{ store.review_set.all|length }})
                         </span>
                       </div>
-                      <p class="card-text text-center">
+                      <p class="card-text text-center text-secondary text-nowrap overflow-hidden">
                         {% if store.address %}
                         {{ store.address }}
                         {% else %}
@@ -346,7 +375,7 @@
                             ({{ store.review_set.all|length }})
                         </span>
                         </div>
-                        <p class="card-text text-center">
+                        <p class="card-text text-center text-secondary text-nowrap overflow-hidden">
                         {% if store.address %}
                         {{ store.address }}
                         {% else %}
