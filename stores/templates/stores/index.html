@@ -235,7 +235,28 @@
                 </div>
             </div>       
         </div>
-  
+        
+        <hr class='mt-5'>
+
+        <section class='container bg-white ny-3 py-2'>
+            <div class='row row-cols-2 row-cols-lg-4'>
+                {% for top_store in top_stores %}
+                    {% if top_store.thumbnail %}
+                        <div class='container'>
+                            <img src="{{ top_store.thumbnail.url}}" alt="top_store.thumnail" class='mx-1' style="width: 10rem; height: 10rem;">
+                            <div class='d-flex'>
+                                <p>{{ top_store.name }}</p>
+                                <p class='text-orange'>{{ top_store.store_avg}}</p>
+                            </div>
+                            <p>{{ top_store.address }} - {{ top_sotre.category }}</p>
+                        </div>
+                    {% else %}
+                    <img src="{% static 'empty-food.jpg' %}" alt="Empty Food Image" class="food-thumbnail-img mx-1" style="width: 10rem; height: 10rem;">
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </section>
+
         <hr class="mt-5">
 
         <section class="container bg-white my-3 py-2">
@@ -348,3 +369,6 @@
 </div>
 
 {% endblock content %}
+
+
+

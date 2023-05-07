@@ -22,6 +22,9 @@ def index(request):
     User = get_user_model()
     editor1 = User.objects.get(pk=2)
     editor2 = User.objects.get(pk=3)
+    
+    top_stores = Store.objects.annotate(store_avg=Avg('review__rating')).order_by('-store_avg')[:8]
+    
     editor1_likes = editor1.like_stores.all().annotate(rating_avg=Avg('review__rating')).order_by('-pk')
     editor2_likes = editor2.like_stores.all().annotate(rating_avg=Avg('review__rating')).order_by('-pk')
 
@@ -29,6 +32,7 @@ def index(request):
         'stores': stores,
         'editor1_like_stores': editor1_likes,
         'editor2_like_stores': editor2_likes,
+        'top_stores': top_stores,
     }
     return render(request, 'stores/index.html', context)
 
@@ -276,3 +280,7 @@ def menu_delete(request, store_pk: int, menu_pk: int):
     menu = Menu.objects.get(pk=menu_pk)
     menu.delete()
     return redirect('stores:detail', store_pk)
+
+
+
+    
