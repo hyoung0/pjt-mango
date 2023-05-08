@@ -467,7 +467,10 @@
         const iTag = document.querySelector(`#like-${storeId}>i`)
         
         console.log(iTag)
-        if (isLiked) {
+        if (isLiked === undefined) {
+          // 경고창
+          alert('로그인 후 이용해주세요.')
+        } else if (isLiked) {
           iTag.classList.replace('bi-star', 'bi-star-fill')
           iTag.classList.add('text-orange')
         } else {

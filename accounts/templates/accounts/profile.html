@@ -215,10 +215,12 @@
   </section>  
 
   <section class="container-fluid container-lg">
+    {% if request.user == person.username %}
     <form action="{% url 'accounts:delete' %}" method="post" class="d-flex justify-content-end mt-2">
       {% csrf_token %}
       <button type="submit" class="btn btn-danger w-25 fs-3 my-3">회원 탈퇴</button>
     </form>
+    {% endif %}
   </section>
 
 </div>
